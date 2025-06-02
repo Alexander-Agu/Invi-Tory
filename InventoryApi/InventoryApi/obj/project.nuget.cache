@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "pDH/v7CqhWs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\USER\\Desktop\\Invi-Tory\\InventoryApi\\InventoryApi\\InventoryApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.204\\microsoft.net.sdk.compilers.toolset.9.0.204.nupkg.sha512"
+  ],
+  "logs": []
+}
