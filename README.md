@@ -2,9 +2,11 @@
 
 A full-stack inventory management application built with **ASP.NET (C#)**, **React**, and **SQL Server**. This app supports user registration and login, secure inventory tracking, and item categorization by type.
 
+---
+
 ## 🛠️ Tech Stack
 
-- **Frontend**: React
+- **Frontend**: React (Vite)
 - **Backend**: ASP.NET Core Web API
 - **Database**: SQL Server
 - **Authentication**: JWT-based authentication
@@ -12,144 +14,104 @@ A full-stack inventory management application built with **ASP.NET (C#)**, **Rea
 
 ---
 
-## 📐 Database Structure
+## 📐 Database Structure & Relationships
 
 ### 🔹 User
-Stores registered users and their associated inventory.
 
-| Field         | Type          |
-|---------------|---------------|
-| Id            | int           |
-| FirstName     | string        |
-| LastName      | string        |
-| Username      | string        |
-| Email         | string        |
-| HashedPassword| string        |
-| CreatedAt     | DateTime      |
-| Inventories   | List<Inventory> |
+Stores registered users and their associated inventories and items.
+
+| Field                  | Type            |
+| ---------------------- | --------------- |
+| Id                     | int             |
+| FirstName              | string          |
+| LastName               | string          |
+| Username               | string          |
+| Email                  | string          |
+| HashedPassword         | string          |
+| CreatedAt              | DateTime        |
+| Token                  | string          |
+| RefreshToken           | string          |
+| RefreshTokenExpiryDate | DateTime        |
+| Inventories            | List<Inventory> |
+| Items                  | List<Item>      |
+
+**Relationships**:
+- One User → Many Inventories (1:N)
+- One User → Many Items (1:N)
 
 ---
 
-### 🔹 ItemType
-Defines categories or types of items.
+### 🔹 InventoryType
 
-| Field         | Type          |
-|---------------|---------------|
-| Id            | int           |
-| Name          | string        |
-| Inventories   | List<Inventory> |
+Defines categories/types of inventories.
+
+| Field       | Type            |
+| ----------- | --------------- |
+| Id          | int             |
+| Name        | string          |
+| Inventories | List<Inventory> |
+
+**Relationships**:
+- One InventoryType → Many Inventories (1:N)
 
 ---
 
 ### 🔹 Inventory
-Represents a single item in a user's inventory.
 
-| Field         | Type          |
-|---------------|---------------|
-| Id            | int           |
-| Name          | string        |
-| Tag           | string        |
-| CreatedAt     | DateTime      |
-| UserId        | int (FK)      |
-| User          | User          |
-| ItemTypeId    | int (FK)      |
-| ItemType      | ItemType      |
+Represents a collection of items owned by a user.
+
+| Field           | Type          |
+| --------------- | ------------- |
+| Id              | int           |
+| Title           | string        |
+| UserId          | int (FK)      |
+| InventoryTypeId | int (FK)      |
+| User            | User          |
+| InventoryType   | InventoryType |
+
+**Relationships**:
+- Many Inventories → One User (N:1)
+- Many Inventories → One InventoryType (N:1)
+- One Inventory → Many Items (1:N)
+
+---
+
+### 🔹 Item
+
+Represents a specific item in an inventory.
+
+| Field       | Type      |
+| ----------- | --------- |
+| Id          | int       |
+| Name        | string    |
+| Tag         | string    |
+| CreatedAt   | DateTime  |
+| InventoryId | int (FK)  |
+| UserId      | int (FK)  |
+| Inventory   | Inventory |
+| User        | User      |
+
+**Relationships**:
+- Many Items → One Inventory (N:1)
+- Many Items → One User (N:1)
 
 ---
 
 ## 🔐 Security
 
-- **JWT Authentication**: Secure login and protected routes.
-- **Password Hashing**: User passwords are securely hashed using industry best practices.
-- **Role-based Access (optional)**: Easily extendable to support roles (e.g., admin, user).
+- ✅ **JWT Authentication**: Secure login and protected routes
+- ✅ **Password Hashing**: Follows industry best practices
+- ✅ **Refresh Tokens**: Extend user sessions securely
+- ✅ **Role-based Access** *(optional and extendable)*
 
 ---
 
 ## 📦 Features
 
-- ✅ User Registration & Login
-- ✅ Add/Update/Delete Inventory Items
-- ✅ Categorize Items by Type
-- ✅ View items by user
+- ✅ User Registration & Login  
+- ✅ Add/Update/Delete Inventory Items  
+- ✅ Categorize Inventories by Type  
+- ✅ View Items by User  
 - ✅ Secure API with JWT tokens
 
 ---
-
-## 🚀 Getting Started
-
-### Backend
-
-1. **Clone the repo**  
-   ```bash
-   git clone <your-repo-url>
-   cd InventoryApi
-   ```
-
-2. **Setup SQL Server**  
-   - Create a new SQL Server database.
-   - Update the `appsettings.json` with your DB connection string.
-
-3. **Run Migrations**  
-   ```bash
-   dotnet ef migrations add InitialCreate
-   dotnet ef database update
-   ```
-
-4. **Run the API**  
-   ```bash
-   dotnet run
-   ```
-
----
-
-### Frontend
-
-1. **Navigate to React client folder**  
-   ```bash
-   cd client
-   npm install
-   npm run dev
-   ```
-
-2. **Configure `.env`**  
-   Example:
-   ```env
-   VITE_API_URL=http://localhost:5000/api
-   ```
-
----
-
-## 📁 Folder Structure (Simplified)
-
-```
-/InventoryApi
-│
-├── Controllers/
-├── Models/
-├── Data/
-├── Services/
-├── DTOs/
-└── Program.cs
-
-/client
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   └── App.jsx
-└── vite.config.js
-```
-
----
-
-## 🧪 Testing
-
-- Postman collection included for API testing
-- Frontend supports login and JWT storage in localStorage
-
----
-
-## 👤 Author
-
-**Alexander Agu**  
-Built with ❤️ as part of a full-stack learning project.
