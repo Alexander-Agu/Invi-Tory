@@ -15,8 +15,8 @@ createRoot(document.getElementById('root')).render(
     <Hero />
     <Features />
     <Stat />
-{/*     <Cta />
-    <Footer /> */}
+    <Cta />
+    {/* <Footer /> */}
     <App />
   </StrictMode>,
 )
