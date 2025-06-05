@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./signUp.css"
-import { BsBoxSeam } from "react-icons/bs";
 import InputBox from '../../UI/InputBox/InputBox';
+import SignIntro from '../SignIntro/SignIntro';
 
 export default function SignUp() {
     const [firstname, setFirstname] = useState("");
@@ -14,23 +14,10 @@ export default function SignUp() {
 
   return (
     <article className='sign-up-container'>
-
-        <section className='sign-up-header'>
-
-            <div className="sign-up-logo">
-                <BsBoxSeam style={{ fontWeight: "bolder", color: "#2563eb"}}/>
-            </div>
-
-            <h2>
-                Create Your Account
-            </h2>
-
-            <p>
-                Join thousands of businesses using Invi-Tory to manage their inventory
-            </p>
-
-        </section>
-
+        <SignIntro 
+            title={"Create Your Account"}
+            content={"Join thousands of businesses using Invi-Tory to manage their inventory"}
+        />
         <section className='sign-up-names'>
             <InputBox 
                 title={"Firstname"}
@@ -45,14 +32,6 @@ export default function SignUp() {
                 setInput={setLastname}
                 placeHolder={"Doe"}
             />
-{/*             <div className="sign-name">
-
-            </div>
-
-            <div className="sign-name">
-
-            </div> */}
-
         </section>
 
         <section className='sign-up-crit-info'>
