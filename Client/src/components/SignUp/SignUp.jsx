@@ -18,7 +18,7 @@ export default function SignUp() {
         <section className='sign-up-header'>
 
             <div className="sign-up-logo">
-                <BsBoxSeam style={{scale: 1.5, fontWeight: "bolder", color: "#2563eb"}}/>
+                <BsBoxSeam style={{ fontWeight: "bolder", color: "#2563eb"}}/>
             </div>
 
             <h2>
@@ -32,24 +32,26 @@ export default function SignUp() {
         </section>
 
         <section className='sign-up-names'>
+            <InputBox 
+                title={"Firstname"}
+                input={firstname}
+                setInput={setFirstname}
+                placeHolder={"John"}
+            />
 
-            <div className="sign-name">
-                <InputBox 
-                    title={"Firstname"}
-                    input={firstname}
-                    setInput={setFirstname}
-                    placeHolder={"John"}
-                />
+            <InputBox 
+                title={"Lastname"}
+                input={lastname}
+                setInput={setLastname}
+                placeHolder={"Doe"}
+            />
+{/*             <div className="sign-name">
+
             </div>
 
             <div className="sign-name">
-                <InputBox 
-                    title={"Lastname"}
-                    input={lastname}
-                    setInput={setLastname}
-                    placeHolder={"Doe"}
-                />
-            </div>
+
+            </div> */}
 
         </section>
 

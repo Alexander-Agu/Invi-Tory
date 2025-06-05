@@ -11,9 +11,21 @@
     background-color: #1f2937;
 }
 /* Responsive */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
     .sign-up-container{
-        width: 100%;
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .sign-up-container{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sign-up-container{
+        width: 350px;
     }
 }
 
@@ -37,7 +49,7 @@
     width: 70px;
     height: 70px;
 
-    font-size: 1.5rem;
+    font-size: 2rem;
 
     border-radius: 50%;
     background-color: rgba(30, 58, 138, 0.5);
@@ -57,7 +69,17 @@
     text-align: center;
     color: #d1d5db;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+}
+/* Responsive */
+@media screen and (max-width: 550px) {
+    .sign-up-logo{
+        width: 40px;
+        height: 40px;
+
+        font-size: 1rem
+    }
 }
 
 
@@ -76,6 +98,31 @@
     height: 100px;
     margin-top: 1rem;
 }
+
+
+/* Sign Up Critical Info */
+.sign-up-cric-info{
+
+}
+/* Responsive */
+@media screen and (max-width: 650px) {
+    .sign-up-crit-info{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    /* .sign-up-crit-info{
+        display: flex;
+        flex-direction: column;
+    } */
+}
+
+/* .cric-info{
+    height: 100px;
+} */
 
 
 /* Sign Up Footer */
@@ -119,4 +166,10 @@
     font-weight: bold;
     text-decoration: none;
     color: #2563eb;
+}
+/* Responsive */
+@media screen and (max-width: 500px) {
+    .sign-up-footer p{
+        font-size: 0.6rem;
+    }
 }

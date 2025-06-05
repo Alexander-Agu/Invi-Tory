@@ -16,6 +16,8 @@
 .con{
     width: 100%;
 }
-@media screen and (max-width: 700px) {
-    
-}
+/* @media screen and (max-width: 500px) and (max-height: 900px) {
+    .register-main{
+        height: initial;
+    }
+} */
