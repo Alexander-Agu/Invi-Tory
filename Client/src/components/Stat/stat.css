@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Stat Container */
+.stat-container{
+    width: 100%;
+    height: 20vh;
+
+    background: linear-gradient(to right, #1e3a8a, #1d4ed8);
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+/* Stat Texts */
+.stat-texts{
+    font-weight: bolder;
+    text-align: center;
+    display: grid;
+    place-content: center;
+}
+
+.stat-texts h2{
+    font-weight: 600;
+    color: white;
+    font-size: 3rem;
+}
+
+.stat-texts p{
+    color: #d1d5db;;
+}
+
+
+.stat-container h2{
+    
+}

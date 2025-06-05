@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Header from './components/Header/Header.jsx'
 import Hero from './components/Hero/Hero.jsx'
 import Features from './components/Features/Features.jsx'
+import Stat from './components/Stat/Stat.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
     <Header />
     <Hero />
     <Features />
+    <Stat />
     <App />
   </StrictMode>,
 )
