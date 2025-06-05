@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Card */
+.card-container{
+    width: 400px;
+    height: 250px;
+    padding: 1rem;
+
+    background-color: #1f2937;
+    border: 1px solid #4B5563;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+
+/* Card icon */
+.card-icon{
+    font-size: 2rem;
+    color: #2563eb;
+}
+
+
+/* Card Title */
+.card-title{
+    font-size: 1.2rem;
+    color: white;
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bolder;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+}
+
+
+/* Card Content */
+.card-content{
+    font-size: 1rem;
+    color: #d1d5db;
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+}
