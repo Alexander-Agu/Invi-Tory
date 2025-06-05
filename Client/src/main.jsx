@@ -7,7 +7,7 @@ import Hero from './components/Hero/Hero.jsx'
 import Features from './components/Features/Features.jsx'
 import Stat from './components/Stat/Stat.jsx'
 import Cta from './components/CTA/Cta.jsx'
-
+import Footer from './components/Footer/Footer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +16,7 @@ createRoot(document.getElementById('root')).render(
     <Features />
     <Stat />
     <Cta />
+    <Footer />
     <App />
   </StrictMode>,
 )

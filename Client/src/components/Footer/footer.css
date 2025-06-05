@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Home Footer */
+.home-footer{
+    height: 15vh;
+    width: 100%;
+    padding: 3rem;
+
+    background-color: black;
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Footer Logo */
+.footer-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-logo h2{
+    color: white;
+    font-size: 2rem;
+}
+
+.home-footer p{
+    color: #d1d5db;
+}
