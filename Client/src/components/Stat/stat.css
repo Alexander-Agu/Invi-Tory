@@ -4,7 +4,7 @@
 /* Stat Container */
 .stat-container{
     width: 100%;
-    height: 25vh;
+    height: 25dvh;
 
     background: linear-gradient(to right, #1e3a8a, #1d4ed8);
 
@@ -18,6 +18,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+}
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .stat-container{
+        height: 15dvh;
+    }
 }
 
 
@@ -37,4 +43,24 @@
 
 .stat-texts p{
     color: #d1d5db;;
+}
+/* Responsive */
+@media screen and (max-width: 800px) {
+    .stat-texts h2{
+        font-size: 2rem;
+    }
+
+    .stat-texts p{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .stat-texts h2{
+        font-size: 1.3rem;
+    }
+
+    .stat-texts p{
+        font-size: 0.6rem;
+    }
 }

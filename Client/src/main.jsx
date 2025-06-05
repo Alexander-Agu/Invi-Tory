@@ -14,8 +14,8 @@ createRoot(document.getElementById('root')).render(
     <Header />
     <Hero />
     <Features />
-{/*     <Stat />
-    <Cta />
+    <Stat />
+{/*     <Cta />
     <Footer /> */}
     <App />
   </StrictMode>,
