@@ -101,9 +101,7 @@
 
 
 /* Sign Up Critical Info */
-.sign-up-cric-info{
 
-}
 /* Responsive */
 @media screen and (max-width: 650px) {
     .sign-up-crit-info{
@@ -112,17 +110,6 @@
         grid-template-rows: repeat(2, 1fr);
     }
 }
-
-@media screen and (max-width: 550px) {
-    /* .sign-up-crit-info{
-        display: flex;
-        flex-direction: column;
-    } */
-}
-
-/* .cric-info{
-    height: 100px;
-} */
 
 
 /* Sign Up Footer */
