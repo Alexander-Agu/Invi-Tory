@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Sign Up Container */
+.sign-up-container{
+    width: 600px;
+    padding: 1rem;
+
+    border: 1px solid #374151;
+    border-radius: 20px;
+}
+
+
+/* Sign Up Header */
+.sign-up-header{
+    width: 100%;
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+}
+
+.sign-up-logo{
+    width: 70px;
+    height: 70px;
+
+    font-size: 1.5rem;
+
+    border-radius: 50%;
+    background-color: rgba(30, 58, 138, 0.5);
+
+    display: grid;
+    place-content: center;
+}
+
+.sign-up-header h2{
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.sign-up-header p{
+    text-align: center;
+    color: #d1d5db;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
