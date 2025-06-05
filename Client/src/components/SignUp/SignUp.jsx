@@ -66,7 +66,7 @@ export default function SignUp() {
 
             <p>
                 Already have an account? 
-                <a href="#">
+                <a href="/login">
                      Sign in here
                 </a>
             </p>

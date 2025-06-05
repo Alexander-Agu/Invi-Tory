@@ -14,7 +14,7 @@ export default function Header() {
             </div>
 
             <nav className='navbar'>
-                <a href="#" className='Hsignin'>Sign In</a>
+                <a href="/login" className='Hsignin'>Sign In</a>
                 <a href="/register" className='Hsignup'>Get Started</a>
             </nav>
         </div>
