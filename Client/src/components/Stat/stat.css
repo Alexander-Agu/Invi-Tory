@@ -4,7 +4,7 @@
 /* Stat Container */
 .stat-container{
     width: 100%;
-    height: 20vh;
+    height: 25vh;
 
     background: linear-gradient(to right, #1e3a8a, #1d4ed8);
 
@@ -37,9 +37,4 @@
 
 .stat-texts p{
     color: #d1d5db;;
-}
-
-
-.stat-container h2{
-    
 }
