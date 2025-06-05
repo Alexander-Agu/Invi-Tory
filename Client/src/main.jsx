@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
     <Features />
     <Stat />
     <Cta />
-    {/* <Footer /> */}
+    <Footer />
     <App />
   </StrictMode>,
 )

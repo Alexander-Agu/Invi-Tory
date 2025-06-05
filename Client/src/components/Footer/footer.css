@@ -20,6 +20,12 @@
     align-items: center;
     justify-content: space-between;
 }
+/* Responsive */
+@media screen and (max-width: 500px) {
+    .home-footer{
+        padding: 1rem;
+    }
+}
 
 
 /* Footer Logo */
@@ -37,4 +43,24 @@
 
 .home-footer p{
     color: #d1d5db;
+}
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .footer-logo h2{
+        font-size: 1rem;
+    }
+
+    .home-footer p{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .footer-logo h2{
+        font-size: 1rem;
+    }
+
+    .home-footer p{
+        font-size: 0.6rem;
+    }
 }
