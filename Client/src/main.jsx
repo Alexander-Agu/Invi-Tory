@@ -12,8 +12,8 @@ import Footer from './components/Footer/Footer.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Header />
-    {/* <Hero />
-    <Features />
+    <Hero />
+{/*     <Features />
     <Stat />
     <Cta />
     <Footer /> */}
