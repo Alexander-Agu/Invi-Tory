@@ -13,3 +13,9 @@
     display: grid;
     place-content: center;
 }
+.con{
+    width: 100%;
+}
+@media screen and (max-width: 700px) {
+    
+}

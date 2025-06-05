@@ -25,3 +25,8 @@
     transform: translateX(-10px);
     transition: transform 0.5s ease;
 }
+@media screen and (max-width: 700px) {
+    .register-home{
+        width: 90%;
+    }
+}
