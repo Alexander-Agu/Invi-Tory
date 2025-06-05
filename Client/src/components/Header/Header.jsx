@@ -7,7 +7,7 @@ export default function Header() {
     <header className='header'>
         <div className="headerOverlap">
             <div className="logo">
-                <a href="#">
+                <a href="/">
                     <BsBoxSeam style={{scale: 1.5, fontWeight: "bolder", color: "#2563eb"}}/>
                     <h2>Invi-Tory</h2>
                 </a> 
