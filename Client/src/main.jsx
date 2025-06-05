@@ -13,8 +13,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Header />
     <Hero />
-{/*     <Features />
-    <Stat />
+    <Features />
+{/*     <Stat />
     <Cta />
     <Footer /> */}
     <App />
