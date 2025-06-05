@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.register-home {
+    padding: 10px;
+
+    text-decoration: none;
+    color: #2563eb;
+
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.5rem;
+}
+
+.shift {
+    transition: 0.5s ease;
+}
+
+.register-home:hover .shift {
+    transform: translateX(-10px);
+    transition: transform 0.5s ease;
+}
