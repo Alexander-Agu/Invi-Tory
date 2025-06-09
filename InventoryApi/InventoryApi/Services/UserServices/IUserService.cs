@@ -12,5 +12,11 @@ namespace InventoryApi.Services.UserServices
 
         // Deletes user account
         Task<bool> DeleteUserAsync(int userId);
+
+        // Update basic information
+        Task<bool> UpdateBasicInformationAsync(int userId, SetUserInfoDto request);
+
+        // Update username
+        Task<bool> UpdateUsernameAsync(int userId, UsernameDto request);
     }
 }

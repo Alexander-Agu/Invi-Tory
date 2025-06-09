@@ -40,5 +40,28 @@ namespace InventoryApi.Controllers
 
             return Ok("Account deleted");
         }
+
+
+        // Updates basic user information
+        [HttpPut("update-basic/{userId}")]
+        public async Task<ActionResult<bool>> UpdateBasicInformation(int userId, SetUserInfoDto request)
+        {
+            bool basicInfoUpdated = await userService.UpdateBasicInformationAsync(userId, request);
+            if (!basicInfoUpdated) return BadRequest("User not found");
+
+            return Ok("Basic informayion updated");
+        }
+
+
+        // Update username
+        [HttpPut("update-username/{userId}")]
+        public async Task<ActionResult<bool>> UpdateUsername(int userId, UsernameDto request)
+        {
+            bool usernameUpdated = await userService.UpdateUsernameAsync(userId, request);
+            if (!usernameUpdated) return BadRequest("User not found");
+
+            return Ok("Username updated");
+        }
+
     }
 }

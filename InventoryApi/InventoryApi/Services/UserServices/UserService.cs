@@ -64,6 +64,38 @@ namespace InventoryApi.Services.UserServices
         }
 
 
+        // Updates user's basic information
+        public async Task<bool> UpdateBasicInformationAsync(int userId, SetUserInfoDto request)
+        {
+            User? user = await context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            if (!string.IsNullOrEmpty(request.Firstname)) user.Firstname = request.Firstname;
+
+            if (!string.IsNullOrEmpty(request.Lastname)) user.Lastname = request.Lastname;
+
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+
+        // Update username
+        public async Task<bool> UpdateUsernameAsync(int userId, UsernameDto request)
+        {
+            User? user = await context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            // User cannot use the same username to update the username Column
+            if (user.Username.Equals(request.Username)) return false;
+
+            user.Username = request.Username;
+
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+
         // HELPER METHODS
 
         // Hashes a password
