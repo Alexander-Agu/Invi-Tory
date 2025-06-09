@@ -96,6 +96,28 @@ namespace InventoryApi.Services.UserServices
         }
 
 
+        // Update user email
+        public async Task<bool> UpdateEmailAsync(int userId, EmailDto request)
+        {
+            User? user = await context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            // Validate password
+            if (!ValidatePasswordLogin(user, request.Password)) return false;
+
+            // Validate email
+            if (!ValidateEmail(request.Email)) return false;
+
+            // User cannot use the same email to update the email Column
+            if (user.Email.Equals(request.Email)) return false;
+
+            user.Email = request.Email;
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+
         // HELPER METHODS
 
         // Hashes a password

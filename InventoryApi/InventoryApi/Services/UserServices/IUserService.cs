@@ -18,5 +18,8 @@ namespace InventoryApi.Services.UserServices
 
         // Update username
         Task<bool> UpdateUsernameAsync(int userId, UsernameDto request);
+
+        // Update email
+        Task<bool> UpdateEmailAsync(int userId, EmailDto request);
     }
 }

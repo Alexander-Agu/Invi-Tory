@@ -63,5 +63,16 @@ namespace InventoryApi.Controllers
             return Ok("Username updated");
         }
 
+
+        // Update email
+        [HttpPut("update-email/{userId}")]
+        public async Task<ActionResult<bool>> UpdateEmail(int userId, EmailDto request)
+        {
+            bool emailUpdated = await userService.UpdateEmailAsync(userId,request);
+            if (!emailUpdated) return BadRequest("Email not updated");
+
+            return Ok("Email updated");
+        }
+
     }
 }
