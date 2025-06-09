@@ -1,0 +1,13 @@
+﻿using InventoryApi.Models.UserDtos;
+
+namespace InventoryApi.Services.UserServices
+{
+    public interface IUserService
+    {
+        // Creates user account
+        Task<UserDto> RegisterUserAsync(CreateUserDto request);
+
+        // Login user into their account
+        Task<UserDto> LoginAsync(LoginDto request);
+    }
+}

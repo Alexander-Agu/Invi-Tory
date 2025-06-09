@@ -8,7 +8,7 @@
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string HashedPassword { get; set; } = string.Empty;
-        public DateOnly CreatedAt { get; set; }
+        public DateOnly CreatedAt { get; set; } = DateOnly.FromDateTime(DateTime.Today);
 
         // Token
         public string Token { get; set; } = string.Empty;
