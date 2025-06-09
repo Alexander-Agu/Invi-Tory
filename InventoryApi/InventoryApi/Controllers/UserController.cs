@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InventoryApi.Models.UserDtos;
+using InventoryApi.Services.UserServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApi.Controllers
 {
-    public class UserController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController(IUserService userService) : Controller
     {
-        public IActionResult Index()
+        [HttpPost("register")]
+        public async Task<ActionResult<UserDto>> Register([FromBody] CreateUserDto request)
         {
-            return View();
+            UserDto user = await userService.RegisterUserAsync(request);
+            if (user == null) return BadRequest("Invalid information");
+
+            return Ok(user);
         }
     }
 }

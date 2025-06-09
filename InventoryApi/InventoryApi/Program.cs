@@ -1,4 +1,5 @@
 using InventoryApi.Repository;
+using InventoryApi.Services.UserServices;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -13,6 +14,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<InvitoryContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("InvitoryDB"))
 );
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 

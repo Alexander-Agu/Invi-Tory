@@ -15,5 +15,18 @@ namespace InventoryApi.Mappings
 
             };
         }
+    
+
+
+        public static UserDto ToDto(this User request)
+        {
+            return new UserDto
+            {
+                UserId = request.Id,
+                AccessToken = request.Token,
+                RefreshToken = request.RefreshToken,
+                RefreshTokenExpiryDate = request.RefreshTokenExpiryDate,
+            };
+        }
     }
 }
