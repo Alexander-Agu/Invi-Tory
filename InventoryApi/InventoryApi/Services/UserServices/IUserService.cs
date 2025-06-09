@@ -9,5 +9,8 @@ namespace InventoryApi.Services.UserServices
 
         // Login user into their account
         Task<UserDto> LoginAsync(LoginDto request);
+
+        // Deletes user account
+        Task<bool> DeleteUserAsync(int userId);
     }
 }

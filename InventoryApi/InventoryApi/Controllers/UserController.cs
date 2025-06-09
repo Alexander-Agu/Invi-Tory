@@ -8,6 +8,7 @@ namespace InventoryApi.Controllers
     [ApiController]
     public class UserController(IUserService userService) : Controller
     {
+        // Creates user account
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register([FromBody] CreateUserDto request)
         {
@@ -15,6 +16,29 @@ namespace InventoryApi.Controllers
             if (user == null) return BadRequest("Invalid information");
 
             return Ok(user);
+        }
+
+
+        // Signs user into their account
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto request)
+        {
+            UserDto? user = await userService.LoginAsync(request);
+            if (user == null) return BadRequest("Invalid email or password");
+
+            return Ok(user);
+        }
+
+
+        // Deletes user account
+        [HttpDelete("delete/{userId}")]
+        public async Task<ActionResult<bool>> DeleteAccount(int userId)
+        {
+            bool userDeleted = await userService.DeleteUserAsync(userId);
+
+            if (!userDeleted) return BadRequest("User not found");
+
+            return Ok("Account deleted");
         }
     }
 }
