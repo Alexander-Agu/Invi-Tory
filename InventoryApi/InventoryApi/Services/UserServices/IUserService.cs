@@ -21,5 +21,8 @@ namespace InventoryApi.Services.UserServices
 
         // Update email
         Task<bool> UpdateEmailAsync(int userId, EmailDto request);
+
+        // Update password
+        Task<bool> UpdatePasswordAsync(int userId, PasswordDto request);
     }
 }

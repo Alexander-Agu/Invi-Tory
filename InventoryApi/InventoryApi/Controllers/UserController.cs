@@ -74,5 +74,16 @@ namespace InventoryApi.Controllers
             return Ok("Email updated");
         }
 
+
+        // Update password
+        [HttpPut("update-password/{userId}")]
+        public async Task<ActionResult<bool>> UpdatePassword(int userId, PasswordDto request)
+        {
+            bool passowordUpdated = await userService.UpdatePasswordAsync(userId, request);
+            if (!passowordUpdated) return BadRequest("Password not updated");
+
+            return Ok("Password Updated");
+        }
+
     }
 }

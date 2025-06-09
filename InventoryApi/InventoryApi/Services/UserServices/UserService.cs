@@ -118,10 +118,24 @@ namespace InventoryApi.Services.UserServices
         }
 
 
+        // Update user password
+        public async Task<bool> UpdatePasswordAsync(int userId, PasswordDto request)
+        {
+            User? user = await context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            user.HashedPassword = HashPassword(user, request.Password);
+
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+
         // HELPER METHODS
 
         // Hashes a password
-        public string HashPassword(User user, string password)
+        private string HashPassword(User user, string password)
         {
             return new PasswordHasher<User>()
                 .HashPassword(user, password);
