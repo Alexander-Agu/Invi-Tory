@@ -105,21 +105,18 @@ Represents a specific item in an inventory.
 
 ### 🔹 Unit
 
-Defines a unit associated with either an inventory or an item.
+Defines units of measurement for a user's inventories and items.
 
-| Field         | Type      |
-| ------------- | --------- |
-| Id            | int       |
-| InventoryUnit | int    |
-| ItemUnit      | int    |
-| UserId        | int (FK)  |
-| InventoryId   | int (FK)  |
-| User          | User      |
-| Inventory     | Inventory |
+| Field         | Type    |
+| ------------- | ------- |
+| Id            | int     |
+| InventoryUnit | string  |
+| ItemUnit      | string  |
+| UserId        | int (FK) |
+| User          | User    |
 
 *Relationships*:
-- Many Units → One User (N:1)  
-- Many Units → One Inventory (N:1)
+- One User → One Unit (1:1)
 
 ---
 
