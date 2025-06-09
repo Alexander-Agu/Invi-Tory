@@ -110,8 +110,8 @@ Defines a unit associated with either an inventory or an item.
 | Field         | Type      |
 | ------------- | --------- |
 | Id            | int       |
-| InventoryUnit | string    |
-| ItemUnit      | string    |
+| InventoryUnit | int    |
+| ItemUnit      | int    |
 | UserId        | int (FK)  |
 | InventoryId   | int (FK)  |
 | User          | User      |
