@@ -19,7 +19,6 @@
         // Relationships
         public List<Inventory>? Inventories { get; set; }
         public List<Item>? Items { get; set; }
-        public List<Unit>? Units { get; set; }
         public List<RecentActivity>? RecentActivities { get; set; }
         public Unit? Unit { get; set; }
 
