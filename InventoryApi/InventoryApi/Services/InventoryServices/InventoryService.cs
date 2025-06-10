@@ -8,6 +8,7 @@ namespace InventoryApi.Services.InventoryServices
 {
     public class InventoryService(InvitoryContext context) : IInventoryService
     {
+        // Creates user's Inventory
         public async Task<InventoryDto> CreateInventoryAsync(int userId, CreateInventoryDto request)
         {
             // Find user
@@ -27,14 +28,24 @@ namespace InventoryApi.Services.InventoryServices
             return inventory.ToDto();
         }
 
+
+        // Deletes All Inventory boxes
         public Task<bool> DeleteAllInventoryAsync(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteInventoryAsync(int userId, int inventoryId)
+
+        // Deletes user inventory
+        public async Task<bool> DeleteInventoryAsync(int userId, int inventoryId)
         {
-            throw new NotImplementedException();
+            if (!await FindInventory(userId, inventoryId)) return false;
+
+            await context.Inventory.Where(x => x.Id == inventoryId && x.UserId == userId)
+                .ExecuteDeleteAsync();
+            await context.SaveChangesAsync();
+
+            return true;
         }
 
         public Task<List<InventoryDto>> GetAllInventoryAsync(int userId)
@@ -50,6 +61,31 @@ namespace InventoryApi.Services.InventoryServices
         public Task<InventoryDto> UpdateInventoryAsync(int userId, int inventoryId, SetInventoryDto request)
         {
             throw new NotImplementedException();
+        }
+
+
+
+        // HELPER METHODS
+
+        // Finds inventory by userId
+        private async Task<bool> FindUser(int UserId)
+        {
+            bool userExists = await context.Users.Where(x => x.Id == UserId).AnyAsync();
+            if (userExists) return true;
+
+            return false;
+        }
+
+
+        // Finds inventory by inventoryId and userId
+        private async Task<bool> FindInventory(int UserId, int InventoryId)
+        {
+            bool userExists = await context.Users.Where(x => x.Id == UserId).AnyAsync();
+            bool inventoryExists = await context.Inventory.Where(x => x.Id == InventoryId).AnyAsync();
+
+            if (inventoryExists && userExists) return true;
+
+            return false;
         }
     }
 }
