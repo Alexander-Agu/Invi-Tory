@@ -11,7 +11,7 @@ namespace InventoryApi.Services.InventoryServices
         Task<bool> DeleteInventoryAsync(int userId, int inventoryId);
 
         // Delete all Inventory
-        Task<bool> DeleteAllInventoryAsync(int userId);
+        //Task<bool> DeleteAllInventoryAsync(int userId);
 
         // Update Inventory
         Task<InventoryDto> UpdateInventoryAsync(int userId, int inventoryId, SetInventoryDto request);

@@ -29,13 +29,6 @@ namespace InventoryApi.Services.InventoryServices
         }
 
 
-        // Deletes All Inventory boxes
-        public Task<bool> DeleteAllInventoryAsync(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-
         // Deletes user inventory
         public async Task<bool> DeleteInventoryAsync(int userId, int inventoryId)
         {
