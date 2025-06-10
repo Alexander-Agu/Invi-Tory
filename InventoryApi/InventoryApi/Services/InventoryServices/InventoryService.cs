@@ -41,9 +41,21 @@ namespace InventoryApi.Services.InventoryServices
             return true;
         }
 
-        public Task<List<InventoryDto>> GetAllInventoryAsync(int userId)
+        public async Task<List<InventoryDto>> GetAllInventoryAsync(int userId)
         {
-            throw new NotImplementedException();
+            if (!await FindUser(userId)) return null;
+
+            
+            List<InventoryDto> inventories = await context.Inventory.Where(x => x.UserId == userId)
+                .Select(inventory => new InventoryDto
+                {
+                    InventoryId = inventory.Id,
+                    UserId = userId,
+                    Category = inventory.Category,
+                    Name = inventory.Name
+                }).ToListAsync();
+
+            return inventories;
         }
 
         public Task<InventoryDto> GetInventoryAsync(int userId, int inventoryId)

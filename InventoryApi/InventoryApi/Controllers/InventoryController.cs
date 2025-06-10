@@ -30,5 +30,14 @@ namespace InventoryApi.Controllers
 
             return Ok("Inventory deleted");
         }
+
+
+        [HttpGet("get-inventory/{userId}")]
+        public async Task<ActionResult<List<InventoryDto>>> GetAllInventory(int userId)
+        {
+            List<InventoryDto>? inventory = await inventoryService.GetAllInventoryAsync(userId);
+
+            return Ok(inventory);
+        }
     }
 }
