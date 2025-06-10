@@ -67,9 +67,17 @@ namespace InventoryApi.Services.InventoryServices
             return inventory.ToDto();
         }
 
-        public Task<InventoryDto> UpdateInventoryAsync(int userId, int inventoryId, SetInventoryDto request)
+        public async Task<bool> UpdateInventoryNameAsync(int userId, int inventoryId, SetInventoryDto request)
         {
-            throw new NotImplementedException();
+            Inventory? inventory = await context.Inventory.Where(x => x.UserId == userId && x.Id == inventoryId)
+                .FirstOrDefaultAsync();
+            if (inventory == null) return false;
+
+            inventory.Name = request.Name;
+            await context.SaveChangesAsync();
+
+            return true;
+
         }
 
 
