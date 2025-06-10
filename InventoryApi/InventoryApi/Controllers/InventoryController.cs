@@ -32,10 +32,22 @@ namespace InventoryApi.Controllers
         }
 
 
+        // Get all user inventory
         [HttpGet("get-inventory/{userId}")]
         public async Task<ActionResult<List<InventoryDto>>> GetAllInventory(int userId)
         {
             List<InventoryDto>? inventory = await inventoryService.GetAllInventoryAsync(userId);
+
+            return Ok(inventory);
+        }
+
+
+        // Get user inventory
+        [HttpGet("get-inventory/{userId}/{inventoryId}")]
+        public async Task<ActionResult<InventoryDto>> GetInventory(int userId, int inventoryId)
+        {
+            InventoryDto inventory = await inventoryService.GetInventoryAsync(userId,inventoryId);
+            if (inventory == null) return BadRequest("Inventory not found");
 
             return Ok(inventory);
         }
