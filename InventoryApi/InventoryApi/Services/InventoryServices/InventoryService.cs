@@ -41,6 +41,8 @@ namespace InventoryApi.Services.InventoryServices
             return true;
         }
 
+
+        // Get all users inventory boxes
         public async Task<List<InventoryDto>> GetAllInventoryAsync(int userId)
         {
             if (!await FindUser(userId)) return null;
@@ -58,6 +60,8 @@ namespace InventoryApi.Services.InventoryServices
             return inventories;
         }
 
+
+        // Get user user Inventory
         public async Task<InventoryDto> GetInventoryAsync(int userId, int inventoryId)
         {
             Inventory? inventory = await context.Inventory.Where(x => x.UserId == userId && x.Id == inventoryId)
@@ -77,7 +81,6 @@ namespace InventoryApi.Services.InventoryServices
             await context.SaveChangesAsync();
 
             return true;
-
         }
 
 
