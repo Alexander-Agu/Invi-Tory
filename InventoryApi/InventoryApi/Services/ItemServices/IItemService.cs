@@ -5,13 +5,13 @@ namespace InventoryApi.Services.ItemServices
     public interface IItemService
     {
         // Create item using userId and inventoryId
-        Task<ItemDto> CreateItemAsync(int userId, int inventoryId, CreateItemDto itemDto);
+        Task<ItemDto> CreateItemAsync(int userId, int inventoryId, CreateItemDto request);
 
         // Delete item using userId, inventoryId and itemId
-        Task DeleteItemAsync(int userId, int inventoryId, int itemId);
+        Task<bool> DeleteItemAsync(int userId, int inventoryId, int itemId);
 
         // Updates item using userId, inventoryId and itemId
-        Task UpdateItemAsync(int userId, int inventoryId, int itemId);
+        Task<bool> UpdateItemAsync(int userId, int inventoryId, int itemId, SetItemDto request);
 
         // Get all user items
         Task<List<ItemDto>> GetAllItemsAsync(int userId, int inventoryId);
