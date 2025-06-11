@@ -50,5 +50,16 @@ namespace InventoryApi.Controllers
 
             return Ok(item);
         }
+
+
+        // Update item
+        [HttpPut("update-item/{userId}/{inventoryId}/{itemId}")]
+        public async Task<ActionResult<bool>> UpdateItem(int userId, int inventoryId, int itemId, [FromBody] SetItemDto request)
+        {
+            bool itemUpdated = await itemService.UpdateItemAsync(userId, inventoryId, itemId, request);
+            if (!itemUpdated) return BadRequest("Item not updated");
+
+            return Ok("Item updated");
+        }
     }
 }
