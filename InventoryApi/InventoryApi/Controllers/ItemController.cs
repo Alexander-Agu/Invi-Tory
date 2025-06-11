@@ -39,5 +39,16 @@ namespace InventoryApi.Controllers
 
             return Ok(items);
         }
+
+
+        // Get user item
+        [HttpGet("get-item/{userId}/{inventoryId}/{itemId}")]
+        public async Task<ActionResult<ItemDto>> GetItem(int userId, int inventoryId, int itemId)
+        {
+            ItemDto? item = await itemService.GetItemAsync(userId, inventoryId, itemId);
+            if (item == null) return BadRequest("Item not fount");
+
+            return Ok(item);
+        }
     }
 }

@@ -101,7 +101,7 @@ namespace InventoryApi.Services.ItemServices
         // Get Item by userId, inventoryId and itemId
         private async Task<Item> GetItem(int userId, int inventoryId, int itemId)
         {
-            Item? item = await context.Items.Where(i => i.UserId == userId && i.InventoryId == inventoryId)
+            Item? item = await context.Items.Where(i => i.UserId == userId && i.InventoryId == inventoryId && i.Id == itemId)
                         .FirstOrDefaultAsync();
             if (item is null) return null;
 
