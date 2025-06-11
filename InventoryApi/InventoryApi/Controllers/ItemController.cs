@@ -17,6 +17,16 @@ namespace InventoryApi.Controllers
 
             return Ok(itemDto);
         }
-        
+
+
+        // Delete Item
+        [HttpDelete("delete-item/{userId}/{inventoryId}/{itemId}")]
+        public async Task<ActionResult<bool>> DeleteItem(int userId, int inventoryId, int itemId)
+        {
+            bool itemDeleted = await itemService.DeleteItemAsync(userId, inventoryId, itemId);
+            if (!itemDeleted) return BadRequest("Item not found");
+
+            return Ok("Item deleted");
+        }
     }
 }

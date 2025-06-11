@@ -29,7 +29,7 @@ namespace InventoryApi.Services.ItemServices
         public async Task<bool> DeleteItemAsync(int userId, int inventoryId, int itemId)
         {
             if (
-                !await CheckInventory(userId, inventoryId) &&
+                !await CheckInventory(userId, inventoryId) ||
                 !await context.Items.Where(i => i.Id == itemId).AnyAsync()
                 ) return false;
 
