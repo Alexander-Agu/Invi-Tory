@@ -1,5 +1,6 @@
 using InventoryApi.Repository;
 using InventoryApi.Services.InventoryServices;
+using InventoryApi.Services.ItemServices;
 using InventoryApi.Services.UserServices;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<InvitoryContext>(options =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IInventoryService , InventoryService>();
+builder.Services.AddScoped<IItemService , ItemService>();
 
 var app = builder.Build();
 
