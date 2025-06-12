@@ -12,7 +12,10 @@ namespace InventoryApi.Services.UnitServices
         public async Task<InventoryUnitDto> GetAllUserInventoryCountAsync(int userId)
         {
             List<Unit>? units = await context.Units.Where(x => x.UserId == userId).ToListAsync();
-            if (units is null) return null;
+            if (
+                units is null ||
+                !await context.Users.Where(x => x.Id == userId).AnyAsync()
+            ) return null;
 
             InventoryUnitDto inventoryUnit = new InventoryUnitDto();
             inventoryUnit.InventoryUnit = units.Count();
@@ -25,7 +28,10 @@ namespace InventoryApi.Services.UnitServices
         public async Task<ItemUnitDto> GetAllUserItemCountAsync(int userId)
         {
             List<Unit>? units = await context.Units.Where(x => x.UserId == userId).ToListAsync();
-            if (units is null) return null;
+            if (
+                units is null ||
+                !await context.Users.Where(x => x.Id == userId).AnyAsync()
+            ) return null;
 
             int unitSum = 0;
             for (int i = 0; i < units.Count; i++)
@@ -49,9 +55,14 @@ namespace InventoryApi.Services.UnitServices
                     UnitId = unit.Id,
                     UserId = unit.UserId,
                     InventoryUnit = unit.InventoryId,
-                    InventoryName = unit.InventoryName
+                    InventoryName = unit.InventoryName,
+                    ItemUnit = unit.ItemUnit,
                 }).ToListAsync();
-            if (units is null) return null;
+            if (
+                units is null ||
+                !await context.Users.Where(x => x.Id == userId).AnyAsync()
+            ) return null;
+
 
             return units;
         }
@@ -61,7 +72,10 @@ namespace InventoryApi.Services.UnitServices
         public async Task<UnitDto> GetUnitAsync(int userId, int inventoryId)
         {
             Unit? unit = await context.Units.Where(x => x.UserId == userId && x.InventoryId == inventoryId).FirstOrDefaultAsync();
-            if (unit is null) return null;
+            if (
+                unit is null ||
+                !await context.Users.Where(x => x.Id == userId).AnyAsync()
+            ) return null;
 
             return unit.ToDto();
         }
