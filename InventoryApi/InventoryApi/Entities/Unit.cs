@@ -3,6 +3,7 @@
     public class Unit
     {
         public int Id { get; set; }
+        public string InventoryName { get; set; } = string.Empty;
         public int ItemUnit { get; set; }
 
 

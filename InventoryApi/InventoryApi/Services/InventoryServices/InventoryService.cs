@@ -27,12 +27,12 @@ namespace InventoryApi.Services.InventoryServices
 
             await context.Inventory.AddAsync(inventory);
             await context.SaveChangesAsync();
-            await AddUnit(userId, inventory.Id);
+            await AddUnit(userId, inventory.Id, inventory.Name);
             await AddRecentActivity(userId, inventory.Name, "Inventory", "Create");
 
             return inventory.ToDto();
         }
-
+         
 
         // Deletes user inventory
         public async Task<bool> DeleteInventoryAsync(int userId, int inventoryId)
@@ -122,11 +122,12 @@ namespace InventoryApi.Services.InventoryServices
         // UNITS
 
         // Adding Inventory Unit
-        public async Task AddUnit(int userId, int inventoryId)
+        public async Task AddUnit(int userId, int inventoryId, string name)
         {
             Unit? unit = new Unit();
             unit.UserId = userId;
             unit.InventoryId = inventoryId;
+            unit.InventoryName = name;
             await context.Units.AddAsync(unit);
             await context.SaveChangesAsync();
         }
