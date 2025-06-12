@@ -1,7 +1,9 @@
-﻿using System.Diagnostics.Metrics;
+﻿using System.Collections;
+using System.Diagnostics.Metrics;
 using InventoryApi.Entities;
 using InventoryApi.Mappings;
 using InventoryApi.Models.InventoryTypeDtos;
+using InventoryApi.Models.RecentActivityDtos;
 using InventoryApi.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +28,7 @@ namespace InventoryApi.Services.InventoryServices
             await context.Inventory.AddAsync(inventory);
             await context.SaveChangesAsync();
             await AddUnit(userId, inventory.Id);
+            await AddRecentActivity(userId, inventory.Name, "Inventory", "Create");
 
             return inventory.ToDto();
         }
@@ -34,11 +37,14 @@ namespace InventoryApi.Services.InventoryServices
         // Deletes user inventory
         public async Task<bool> DeleteInventoryAsync(int userId, int inventoryId)
         {
-            if (!await FindInventory(userId, inventoryId)) return false;
+            Inventory? inventory = await context.Inventory.Where(x => x.Id == inventoryId && x.UserId == userId).FirstOrDefaultAsync();
+            if (inventory is null) return false;
 
+            await AddRecentActivity(userId, inventory.Name, "Inventory", "Delete");
             await context.Inventory.Where(x => x.Id == inventoryId && x.UserId == userId)
                 .ExecuteDeleteAsync();
             await context.SaveChangesAsync();
+            
 
             return true;
         }
@@ -81,6 +87,7 @@ namespace InventoryApi.Services.InventoryServices
 
             inventory.Name = request.Name;
             await context.SaveChangesAsync();
+            await AddRecentActivity(userId, inventory.Name, "Inventory", "Update");
 
             return true;
         }
@@ -113,12 +120,39 @@ namespace InventoryApi.Services.InventoryServices
 
 
         // UNITS
+
+        // Adding Inventory Unit
         public async Task AddUnit(int userId, int inventoryId)
         {
             Unit? unit = new Unit();
             unit.UserId = userId;
             unit.InventoryId = inventoryId;
             await context.Units.AddAsync(unit);
+            await context.SaveChangesAsync();
+        }
+
+
+
+        // RECENT ACTIVITY TABLE
+        public async Task AddRecentActivity(int userId, string activityName, string requestType, string endpointType)
+        {
+            List<RecentActivity>? recentActivitis = await context.RecentActivities.Where(x => x.UserId == userId)
+                .ToListAsync();
+
+            if (recentActivitis.Count >= 5)
+            {
+                RecentActivity? activity = recentActivitis.FirstOrDefault();
+
+                await context.RecentActivities.Where(x => x.Id == activity.Id && x.UserId == userId).ExecuteDeleteAsync();
+            }
+
+            RecentActivity recentActivity = new RecentActivity();
+            recentActivity.UserId = userId;
+            recentActivity.Name = activityName;
+            recentActivity.Request = requestType;
+            recentActivity.Type = endpointType;
+
+            await context.RecentActivities.AddAsync(recentActivity);
             await context.SaveChangesAsync();
         }
     }
