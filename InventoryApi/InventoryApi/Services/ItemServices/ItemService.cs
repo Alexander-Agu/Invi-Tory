@@ -3,6 +3,7 @@ using InventoryApi.Mappings;
 using InventoryApi.Models.ItemDtos;
 using InventoryApi.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 
 namespace InventoryApi.Services.ItemServices
 {
@@ -21,6 +22,7 @@ namespace InventoryApi.Services.ItemServices
             await context.Items.AddAsync(item);
             await context.SaveChangesAsync();
             await AddItemUnit(userId, inventoryId);
+            await AddRecentActivity(userId, item.Name, "Item", "Create");
 
             return item.ToDto();
         }
@@ -29,11 +31,12 @@ namespace InventoryApi.Services.ItemServices
         // Delete item
         public async Task<bool> DeleteItemAsync(int userId, int inventoryId, int itemId)
         {
+            Item? item = await context.Items.Where(x => x.Id == itemId && x.UserId == userId && x.InventoryId == inventoryId).FirstOrDefaultAsync();
             if (
-                !await CheckInventory(userId, inventoryId) ||
-                !await context.Items.Where(i => i.Id == itemId).AnyAsync()
+                item is null 
                 ) return false;
 
+            await AddRecentActivity(userId, item.Name, "Item", "Delete");
             await context.Items.Where(u => u.Id == itemId && u.UserId == userId && u.InventoryId == inventoryId)
                 .ExecuteDeleteAsync();
 
@@ -82,6 +85,7 @@ namespace InventoryApi.Services.ItemServices
             item.Tag = request.Tag;
 
             await context.SaveChangesAsync();
+            await AddRecentActivity(userId, item.Name, "Item", "Update");
 
             return true;
         }
@@ -140,6 +144,31 @@ namespace InventoryApi.Services.ItemServices
                 itemUnit.ItemUnit--;
             }
 
+            await context.SaveChangesAsync();
+        }
+
+
+
+        // RECENT ACTIVITY TABLE
+        public async Task AddRecentActivity(int userId, string activityName, string requestType, string endpointType)
+        {
+            List<RecentActivity>? recentActivitis = await context.RecentActivities.Where(x => x.UserId == userId)
+                .ToListAsync(); // FInd recent activities
+
+            if (recentActivitis.Count >= 5) // Ensure user has only 5 activities
+            {
+                RecentActivity? activity = recentActivitis.FirstOrDefault();
+
+                await context.RecentActivities.Where(x => x.Id == activity.Id && x.UserId == userId).ExecuteDeleteAsync();
+            }
+
+            RecentActivity recentActivity = new RecentActivity();
+            recentActivity.UserId = userId;
+            recentActivity.Name = activityName;
+            recentActivity.Request = requestType;
+            recentActivity.Type = endpointType;
+
+            await context.RecentActivities.AddAsync(recentActivity);
             await context.SaveChangesAsync();
         }
     }
