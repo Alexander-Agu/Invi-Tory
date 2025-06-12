@@ -24,16 +24,24 @@ namespace InventoryApi.Repository
             // Delete all items if inventory has been deleted
             modelBuilder.Entity<Item>()
                 .HasOne<Inventory>()
-                .WithMany(i => i.items)
+                .WithMany(i => i.Items)
                 .HasForeignKey( i => i.InventoryId)
                 .OnDelete(DeleteBehavior.Cascade);
 
 
-            // Specify the one to one realtion between User and Units
+            // Specify the one to one realtion between Inventory and Units
+            modelBuilder.Entity<Unit>()
+                .HasOne<Inventory>()
+                .WithOne(i => i.Unit)
+                .HasForeignKey<Unit>(u => u.InventoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            // Specify the one to many realtion between User and Units
             modelBuilder.Entity<Unit>()
                 .HasOne<User>()
-                .WithOne(i => i.Unit)
-                .HasForeignKey<Unit>(u => u.UserId)
+                .WithMany(i => i.Units)
+                .HasForeignKey(u => u.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
 

@@ -1,4 +1,5 @@
-﻿using InventoryApi.Entities;
+﻿using System.Diagnostics.Metrics;
+using InventoryApi.Entities;
 using InventoryApi.Mappings;
 using InventoryApi.Models.InventoryTypeDtos;
 using InventoryApi.Repository;
@@ -24,6 +25,7 @@ namespace InventoryApi.Services.InventoryServices
 
             await context.Inventory.AddAsync(inventory);
             await context.SaveChangesAsync();
+            await AddUnit(userId, inventory.Id);
 
             return inventory.ToDto();
         }
@@ -106,6 +108,18 @@ namespace InventoryApi.Services.InventoryServices
             if (inventoryExists && userExists) return true;
 
             return false;
+        }
+
+
+
+        // UNITS
+        public async Task AddUnit(int userId, int inventoryId)
+        {
+            Unit? unit = new Unit();
+            unit.UserId = userId;
+            unit.InventoryId = inventoryId;
+            await context.Units.AddAsync(unit);
+            await context.SaveChangesAsync();
         }
     }
 }
