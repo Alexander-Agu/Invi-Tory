@@ -1,6 +1,7 @@
 using InventoryApi.Repository;
 using InventoryApi.Services.InventoryServices;
 using InventoryApi.Services.ItemServices;
+using InventoryApi.Services.RecentActivityServices;
 using InventoryApi.Services.UnitServices;
 using InventoryApi.Services.UserServices;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IInventoryService , InventoryService>();
 builder.Services.AddScoped<IItemService , ItemService>();
 builder.Services.AddScoped<IUnitService , UnitService>();
+builder.Services.AddScoped<IRecentActivityService , RecentActivityService>();
 
 var app = builder.Build();
 

@@ -4,6 +4,7 @@ namespace InventoryApi.Services.RecentActivityServices
 {
     public interface IRecentActivityService
     {
-        Task<List<RecentActivityDto>> GetAllRecentActivitiesAsync();
+        // Return all user recent activity
+        Task<List<RecentActivityDto>> GetAllRecentActivitiesAsync(int userId);
     }
 }
