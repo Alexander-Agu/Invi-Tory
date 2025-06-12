@@ -20,6 +20,7 @@ namespace InventoryApi.Services.ItemServices
 
             await context.Items.AddAsync(item);
             await context.SaveChangesAsync();
+            await AddItemUnit(userId, inventoryId);
 
             return item.ToDto();
         }
@@ -37,6 +38,8 @@ namespace InventoryApi.Services.ItemServices
                 .ExecuteDeleteAsync();
 
             await context.SaveChangesAsync();
+            await SubtractItemUnit(userId, inventoryId);
+
             return true;
         }
 
@@ -106,6 +109,38 @@ namespace InventoryApi.Services.ItemServices
             if (item is null) return null;
 
             return item;
+        }
+
+
+
+
+        // UNITS TABLE
+        
+        // Add 1 to Itemunit when item is created
+        public async Task AddItemUnit(int userId, int inventoryId)
+        {
+            Unit? itemUnit = await context.Units.Where(x => x.UserId == userId && inventoryId == x.InventoryId).FirstOrDefaultAsync();
+
+            if (itemUnit != null)
+            {
+                itemUnit.ItemUnit++;
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+
+        // Subtract 1 to Itemunit when item is deleted
+        public async Task SubtractItemUnit(int userId, int inventoryId)
+        {
+            Unit? itemUnit = await context.Units.Where(x => x.UserId == userId && inventoryId == x.InventoryId).FirstOrDefaultAsync();
+
+            if (itemUnit != null)
+            {
+                itemUnit.ItemUnit--;
+            }
+
+            await context.SaveChangesAsync();
         }
     }
 }
