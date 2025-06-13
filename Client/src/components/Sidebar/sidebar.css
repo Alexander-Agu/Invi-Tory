@@ -21,7 +21,7 @@
         height: 80px;
         padding: initial;
 
-        position: fixed;
+        position: sticky;
         bottom: 0;
 
         flex-direction: row;

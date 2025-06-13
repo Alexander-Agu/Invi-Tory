@@ -57,3 +57,68 @@
         flex-direction: column;
     }
 }
+
+
+/* Dasboard Individual Stats */
+.dash-individual-stats{
+    padding: 2rem;
+    width: 100%;
+    min-height: 32rem;
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Inventory Stats */
+.inventory-stats{
+    width: 49%;
+    height: 100%;
+    padding: 1rem;
+    /* flex-grow: 1; */
+    background-color: #1f2937;
+    border-radius: 10px;
+}
+
+.inventory-stats h2{
+    color: white;
+}
+
+
+/* Recent Activities */
+.recent-activities{
+    width: 49%;
+    height: 100%;
+    padding: 1rem;
+    /* flex-grow: 1; */
+    background-color: #1f2937;
+    border-radius: 10px;
+}
+
+.recent-activities h2{
+    color: white;
+}
+
+
+/* Activities */
+.activities{
+    width: 100%;
+    height: 100%;
+    padding: 1.2rem;
+
+    overflow: scroll;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}

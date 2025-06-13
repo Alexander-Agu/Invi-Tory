@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Recent Activity */
+.recent-activity{
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.recent-activity h3{
+    font-size: 1.5rem;
+    color: white;
+}
+
+.recent-activity p{
+    font-size: 1.3rem;
+    color: white;
+}
+
+.recent-activity div{
+    height: 50px;
+    width: 50px;
+
+    background-color: #374151;
+    border-radius: 50%;
+
+    display: grid;
+    place-content: center;
+}

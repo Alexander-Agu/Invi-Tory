@@ -12,7 +12,7 @@ export default function Hero() {
 
         <nav className='heroNav'>
             <a href="/register" className='heroLink'>Join us today</a>
-            <a href="#" className='heroLink request'>Request Demo</a>
+            <a href="dashboard" className='heroLink request'>Request Demo</a>
         </nav>
     </section>
   )
