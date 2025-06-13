@@ -4,3 +4,9 @@
 .dashboardContainer{
     display: flex;
 }
+/* Responsive */
+@media screen and (max-width: 750px) {
+    .dashboardContainer{
+        flex-direction: column-reverse;
+    }
+}

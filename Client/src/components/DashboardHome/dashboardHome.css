@@ -4,7 +4,7 @@
 /* Dashboard Home Container */
 .dashboardHome{
     flex-grow: 1;
-    height: inherit;
+    min-height: 100dvh;
 
     background-color: #111827;
 }

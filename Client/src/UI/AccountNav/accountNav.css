@@ -24,7 +24,16 @@
     font-variation-settings:
     "wdth" 100;
 }
+/* Responsive */
+@media screen and (max-width: 750px) {
+    .accountNav a{
+        flex-direction: row;
+    }
 
+    .name{
+        display: none;
+    }
+}
 
 /* Name details */
 .initials{

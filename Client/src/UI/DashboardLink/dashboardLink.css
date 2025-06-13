@@ -18,6 +18,12 @@
     background-color: #374151;
     transition: ease-in 0.3s;
 }
+/* Responsive */
+@media screen and (max-width: 750px) {
+    .dashLinkContainer{
+        width: initial;
+    }
+}
 
 /* Dashboard Link */
 .dashLink{
@@ -27,7 +33,7 @@
 
     color: #d1d5db;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;

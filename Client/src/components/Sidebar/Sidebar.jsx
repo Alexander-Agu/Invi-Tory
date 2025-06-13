@@ -21,7 +21,6 @@ function Sidebar() {
             <DashboardLink />
             <DashboardLink />
             <DashboardLink />
-            <DashboardLink />
         </nav>
 
         <div className="sidebarFooter">
