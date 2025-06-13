@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Account Navigation */
+.accountNav{
+    width: 100%;
+}
+
+.accountNav a{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    font-size: 1rem;
+    text-decoration: none;
+    color: #d1d5db;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bolder;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+}
+
+
+/* Name details */
+.initials{
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    background-color: #60a5fa;
+
+    display: grid;
+    place-content: center;
+}
