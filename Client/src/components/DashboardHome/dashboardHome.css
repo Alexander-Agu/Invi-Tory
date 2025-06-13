@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 /* Dashboard Home Container */
@@ -7,4 +7,53 @@
     min-height: 100dvh;
 
     background-color: #111827;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* Dashboard Intro */
+.dash-intro{
+    width: 100%;
+    padding: 2rem;
+
+    font-size: 1.3rem;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+.dash-intro h1{
+    font-size: 3rem;
+    color: white;
+    font-weight: bolder;
+}
+
+.dash-intro p{
+    font-size: 1rem;
+    color: #9ca3af;
+}
+
+
+/* Dashboard Stats Container */
+.dash-sum-stats{
+    width: 100%;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+/* Responsive */
+@media screen and (max-width: 620px) {
+    .dash-sum-stats{
+        flex-direction: column;
+    }
 }

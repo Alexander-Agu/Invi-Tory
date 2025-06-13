@@ -50,9 +50,7 @@
     gap: 1rem;
 }
 
-.sideHeader label h2{
 
-}
 /* Responsive */
 @media screen and (max-width: 750px) {
     .sideHeader label h2{

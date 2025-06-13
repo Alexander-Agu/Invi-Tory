@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Dashboard Card */
+.dash-card{
+    height: 130px;
+    width: 30%;
+    flex-grow: 1;
+    padding: 1rem;
+
+    background-color: #1f2937;
+    border-radius: 8px;
+    border: 1px solid #374151;
+
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* Responsive */
+@media screen and (max-width: 620px) {
+    .dash-card{
+        width: 90%;
+    }
+}
+
+
+/* Dashboard Card Header */
+.dash-card-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-weight: bolder;
+}
