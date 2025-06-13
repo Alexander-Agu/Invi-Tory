@@ -85,6 +85,7 @@
     /* flex-grow: 1; */
     background-color: #1f2937;
     border-radius: 10px;
+    border: 1px solid #374151;
 }
 
 .inventory-stats h2{
@@ -100,6 +101,7 @@
     /* flex-grow: 1; */
     background-color: #1f2937;
     border-radius: 10px;
+    border: 1px solid #374151;
 }
 
 .recent-activities h2{

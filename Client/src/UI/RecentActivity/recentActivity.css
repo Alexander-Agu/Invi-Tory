@@ -13,8 +13,9 @@
     gap: 0.5rem;
 }
 
-.recent-activity h3{
-    font-size: 1.5rem;
+.recent-type{
+    /* font-size: 1.5rem; */
+    font-weight: bolder;
     color: white;
 }
 
@@ -23,9 +24,13 @@
     color: white;
 }
 
+.recent-icon{
+    font-size: 1rem;
+}
+
 .recent-activity div{
-    height: 50px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
 
     background-color: #374151;
     border-radius: 50%;

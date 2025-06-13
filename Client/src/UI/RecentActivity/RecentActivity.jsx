@@ -6,11 +6,11 @@ export default function RecentActivity() {
   return (
     <div className="recent-activity">
         <div>
-            <RiDeleteBin6Line style={{color: "red"}}/>
+            <RiDeleteBin6Line className='recent-icon' style={{color: "red"}}/>
         </div>
         
 
-        <h3>Deleted</h3>
+        <p className='recent-type'>Deleted</p>
         <p> Item</p>
         <p style={{
             color: "#60a5fa"
