@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+/* Dashboard link container */
+.dashLinkContainer{
+    width: 100%;
+    height: 35px;
+
+    border-radius: 8px;
+    background-color: gray;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Dashboard Link */
+.dashLink{
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
