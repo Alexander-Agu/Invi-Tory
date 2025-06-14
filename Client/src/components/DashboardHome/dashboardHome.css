@@ -75,6 +75,14 @@
     align-items: center;
     justify-content: space-between;
 }
+/* Responsive */
+@media screen and (max-width: 750px) {
+    .dash-individual-stats{
+        flex-direction: column;
+        height: initial;
+        gap: 1.5rem;
+    }
+}
 
 
 /* Inventory Stats */
@@ -112,6 +120,12 @@
 
 .inventory-stats h2{
     color: white;
+}
+/* Responsive */
+@media screen and (max-width: 750px) {
+    .inventory-stats{
+        width: 100%;
+    }
 }
 
 
@@ -151,4 +165,10 @@
 
 .activities::-webkit-scrollbar{
     display: none;
+}
+/* Responsive */
+@media screen and (max-width: 750px) {
+    .recent-activities{
+        width: 100%;
+    }
 }

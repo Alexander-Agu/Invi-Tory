@@ -6,7 +6,7 @@ export default function DashboardLink() {
   return (
     <div className="dashLinkContainer">
         <a href="#" className='dashLink'>
-            <CiHome />
+            <CiHome className='dash-link-icon'/>
             <p>Home</p>
         </a>
     </div>

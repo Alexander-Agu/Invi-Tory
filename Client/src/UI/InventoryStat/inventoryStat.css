@@ -50,3 +50,63 @@
     display: grid;
     place-content: center;
 }
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .stat-name h2{
+        font-size: 1rem;
+    }
+
+    .inventory-stat p{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .stat-name h2{
+        font-size: 0.8rem;
+    }
+
+    .inventory-stat p{
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .stat-name h2{
+        font-size: 1.2rem;
+    }
+
+    .inventory-stat p{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .stat-name h2{
+        font-size: 1rem;
+    }
+
+    .inventory-stat p{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .stat-name h2{
+        font-size: 0.8rem;
+    }
+
+    .inventory-stat p{
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .stat-name h2{
+        font-size: 0.7rem;
+    }
+
+    .inventory-stat p{
+        font-size: 0.6rem;
+    }
+}

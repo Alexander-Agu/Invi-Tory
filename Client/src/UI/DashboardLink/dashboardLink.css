@@ -19,9 +19,13 @@
     transition: ease-in 0.3s;
 }
 /* Responsive */
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1000px) {
     .dashLinkContainer{
         width: initial;
+    }
+
+    .dash-link-icon{
+        font-size: 1.5rem;
     }
 }
 
@@ -34,7 +38,7 @@
     color: #d1d5db;
     text-decoration: none;
     font-size: 1rem;
-font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: bolder;
     font-style: normal;
