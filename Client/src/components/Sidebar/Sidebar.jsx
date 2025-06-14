@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Sidebar.css"
+import "./sidebar.css"
 import { BsBoxSeam } from "react-icons/bs";
 import DashboardLink from '../../UI/DashboardLink/DashboardLink';
 import AccountNav from '../../UI/AccountNav/AccountNav';
