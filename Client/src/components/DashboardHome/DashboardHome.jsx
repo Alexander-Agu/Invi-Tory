@@ -3,6 +3,8 @@ import "./dashboardHome.css"
 import DashCard from '../DashCard/DashCard'
 import RecentActivity from '../../UI/RecentActivity/RecentActivity'
 import InventoryStat from '../../UI/InventoryStat/InventoryStat'
+import { FiBox } from "react-icons/fi";
+import { IoIosTimer } from "react-icons/io";
 
 export default function DashboardHome() {
   return (
@@ -18,9 +20,9 @@ export default function DashboardHome() {
       </article>
 
       <article className='dash-sum-stats'>
-        <DashCard />
-        <DashCard />
-        <DashCard />
+        <DashCard title={"Total Inventory"} icon={<FiBox style={{color: "#60a5fa", fontSize: "1.2rem"}} />} total={1} type={"Inventories"} />
+        <DashCard title={"Total Items"} icon={<FiBox style={{color: "red", fontSize: "1.2rem"}} />} total={127} type={"Items"} />
+        <DashCard title={"Days using app"} icon={<IoIosTimer style={{color: "pink", fontSize: "1.2rem"}} />} total={7} type={"Days"} />
       </article>
 
       <article className='dash-individual-stats'>
