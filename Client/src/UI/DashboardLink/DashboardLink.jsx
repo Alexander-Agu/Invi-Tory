@@ -1,13 +1,13 @@
 import React from 'react'
 import "./dashboardLink.css"
-import { CiHome } from "react-icons/ci";
 
-export default function DashboardLink() {
+
+export default function DashboardLink({name, link, icon}) {
   return (
     <div className="dashLinkContainer">
-        <a href="#" className='dashLink'>
-            <CiHome className='dash-link-icon'/>
-            <p>Home</p>
+        <a href={link} className='dashLink'>
+            {icon}
+            <p>{name}</p>
         </a>
     </div>
   )

@@ -4,6 +4,9 @@ import { BsBoxSeam } from "react-icons/bs";
 import DashboardLink from '../../UI/DashboardLink/DashboardLink';
 import AccountNav from '../../UI/AccountNav/AccountNav';
 import { BiLogOut } from "react-icons/bi";
+import { sidebarLinks } from './Links';
+
+
 
 function Sidebar() {
   return <>
@@ -18,13 +21,16 @@ function Sidebar() {
         </div>
 
         <nav className='sidebarNav'>
-            <DashboardLink />
-            <DashboardLink />
-            <DashboardLink />
+            {
+                sidebarLinks.map(x => {
+                    const {path, name, icon} = x;
+                    return <DashboardLink name={name} link={path} icon={icon} />
+                })
+            }
         </nav>
 
         <div className="sidebarFooter">
-            <AccountNav />
+            <AccountNav name={"Alexander"} link={"#"} />
             <button className='logoutButton'>
                 <BiLogOut />
                 <p>Logout</p>
