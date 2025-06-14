@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+/* Inventory Stat */
+.inventory-stat{
+    padding: 1rem;
+    width: 100%;
+    height: 60px;
+
+    background-color: #374151;
+    border-radius: 5px;
+    border: 1px solid #374151;
+
+    font-size: initial;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: <; */
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory-stat p{
+    color: white;
+}
+
+.stat-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.stat-name h2{
+    font-size: 1.2rem;
+}
+
+.stat-icon{
+    width: 30px;
+    height: 30px;
+
+    background-color: #10b981;
+    border-radius: 5px;
+
+    display: grid;
+    place-content: center;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import "./dashboardHome.css"
 import DashCard from '../DashCard/DashCard'
 import RecentActivity from '../../UI/RecentActivity/RecentActivity'
+import InventoryStat from '../../UI/InventoryStat/InventoryStat'
 
 export default function DashboardHome() {
   return (
@@ -28,7 +29,14 @@ export default function DashboardHome() {
           <h2>Inventory Breakdown</h2>
 
           <div className="stats">
-
+            <InventoryStat />
+            <InventoryStat />
+            <InventoryStat />
+            <InventoryStat />
+            <InventoryStat />
+            <InventoryStat />
+            <InventoryStat />
+            <InventoryStat />
           </div>
         </section>
 
