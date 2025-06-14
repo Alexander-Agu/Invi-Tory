@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./dashboardHome.css"
 import DashCard from '../DashCard/DashCard'
 import RecentActivity from '../../UI/RecentActivity/RecentActivity'
 import InventoryStat from '../../UI/InventoryStat/InventoryStat'
 import { FiBox } from "react-icons/fi";
 import { IoIosTimer } from "react-icons/io";
+import NotFound from '../../UI/NotFound/NotFound'
 
 export default function DashboardHome() {
+  const [noInventory, setNoInventory] = useState(true);
+  const [noRecentActivity, setNoRecentActivity] = useState(true);
+
+  
   return (
     <section className='dashboardHome'>
 
@@ -30,28 +35,34 @@ export default function DashboardHome() {
         <section className='inventory-stats'>
           <h2>Inventory Breakdown</h2>
 
-          <div className="stats">
-            <InventoryStat />
-            <InventoryStat />
-            <InventoryStat />
-            <InventoryStat />
-            <InventoryStat />
-            <InventoryStat />
-            <InventoryStat />
-            <InventoryStat />
-          </div>
+          {
+            noInventory? <NotFound text={"No Inventory"} /> : 
+            <div className="stats">
+              <InventoryStat />
+              <InventoryStat />
+              <InventoryStat />
+              <InventoryStat />
+              <InventoryStat />
+              <InventoryStat />
+              <InventoryStat />
+              <InventoryStat />
+            </div>
+          }
         </section>
 
         <section className='recent-activities'>
           <h2>Recent Activity</h2>
 
-          <div className="activities">
-            <RecentActivity />
-            <RecentActivity />
-            <RecentActivity />
-            <RecentActivity />
-            <RecentActivity />
-          </div>
+          {
+            noRecentActivity? <NotFound text={"No Recent Activity"} /> :
+            <div className="activities">
+              <RecentActivity />
+              <RecentActivity />
+              <RecentActivity />
+              <RecentActivity />
+              <RecentActivity />
+            </div>
+          }
         </section>
 
       </article>
