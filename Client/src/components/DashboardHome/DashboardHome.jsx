@@ -6,8 +6,9 @@ import InventoryStat from '../../UI/InventoryStat/InventoryStat'
 import { FiBox } from "react-icons/fi";
 import { IoIosTimer } from "react-icons/io";
 import NotFound from '../../UI/NotFound/NotFound'
+import LogoutPopUp from '../LogoutPopUp/LogoutPopUp'
 
-export default function DashboardHome() {
+export default function DashboardHome({logoutPopUp, setLogoutPopUp}) {
   const [noInventory, setNoInventory] = useState(true);
   const [noRecentActivity, setNoRecentActivity] = useState(true);
 
@@ -64,7 +65,9 @@ export default function DashboardHome() {
             </div>
           }
         </section>
-
+        {
+          logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp}/> : null
+        }
       </article>
     </section>
   )
