@@ -7,8 +7,7 @@
 }
 
 body{
-        background: linear-gradient(to bottom right, #111827, #1f2937, #000000);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  position: relative;
 }
