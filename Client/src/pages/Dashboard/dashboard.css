@@ -2,6 +2,7 @@
 
 /* Dasboard Container */
 .dashboardContainer{
+    width: 100%;
     display: flex;
 }
 /* Responsive */
