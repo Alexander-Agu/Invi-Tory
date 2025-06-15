@@ -1,5 +1,6 @@
 .register-main {
-    width: 100%;
+    width: 100dvw;
+    padding: 1rem;
     min-height: 100dvh;
 
     background: linear-gradient(to bottom right, #111827, #1f2937, #000000);
