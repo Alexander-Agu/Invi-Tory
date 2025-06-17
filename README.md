@@ -1,159 +1,187 @@
-# 📦 Inventory Management System
 
-A full-stack inventory management application built with *ASP.NET (C#), **React, and **SQL Server*. This app supports user registration and login, secure inventory tracking, and item categorization by type.
+# Inventory Management System
 
----
-
-## 🛠 Tech Stack
-
-- *Frontend*: React (Vite)
-- *Backend*: ASP.NET Core Web API
-- *Database*: SQL Server
-- *Authentication*: JWT-based authentication
-- *ORM*: Entity Framework Core
+A full-stack inventory management application built with **ASP.NET (C#)**, **React**, and **PostgreSQL**. This app supports user registration and login, secure inventory tracking, item categorization, and a weighted average inventory valuation method.
 
 ---
 
-## 📐 Database Structure & Relationships
+## Tech Stack
 
-### 🔹 User
-
-Stores registered users and their associated inventories and items.
-
-| Field                  | Type            |
-| ---------------------- | --------------- |
-| Id                     | int             |
-| FirstName              | string          |
-| LastName               | string          |
-| Username               | string          |
-| Email                  | string          |
-| HashedPassword         | string          |
-| CreatedAt              | DateTime        |
-| Token                  | string          |
-| RefreshToken           | string          |
-| RefreshTokenExpiryDate | DateTime        |
-| Inventories            | List<Inventory> |
-| Items                  | List<Item>      |
-| Units                  | List<Unit>      |
-| RecentActivities       | List<RecentActivity> |
-
-*Relationships*:
-- One User → Many Inventories (1:N)  
-- One User → Many Items (1:N)  
-- One User → Many Units (1:N)  
-- One User → Many RecentActivities (1:N)
+- **Frontend**: React (Vite)
+- **Backend**: ASP.NET Core Web API
+- **Database**: PostgreSQL
+- **Authentication**: JWT-based
+- **ORM**: Entity Framework Core
 
 ---
 
-### 🔹 InventoryType
+## Database Structure & Relationships
+
+### User
+
+Stores registered users and their associated data.
+
+| Field                  | Type     |
+| ---------------------- | -------- |
+| Id                     | int      |
+| FirstName              | string   |
+| LastName               | string   |
+| Username               | string   |
+| Email                  | string   |
+| HashedPassword         | string   |
+| CreatedAt              | DateTime |
+| Token                  | string   |
+| RefreshToken           | string   |
+| RefreshTokenExpiryDate | DateTime |
+
+**Relationships**:
+
+- One User -> Many Inventories
+- One User -> Many Items
+- One User -> Many Units
+- One User -> Many RecentActivities
+
+---
+
+### InventoryType
 
 Defines categories/types of inventories.
 
-| Field       | Type            |
-| ----------- | --------------- |
-| Id          | int             |
-| Name        | string          |
-| Inventories | List<Inventory> |
+| Field | Type   |
+| ----- | ------ |
+| Id    | int    |
+| Name  | string |
 
-*Relationships*:
-- One InventoryType → Many Inventories (1:N)
+**Relationships**:
+
+- One InventoryType -> Many Inventories
 
 ---
 
-### 🔹 Inventory
+### Inventory
 
 Represents a collection of items owned by a user.
 
-| Field           | Type          |
-| --------------- | ------------- |
-| Id              | int           |
-| Title           | string        |
-| UserId          | int (FK)      |
-| InventoryTypeId | int (FK)      |
-| User            | User          |
-| InventoryType   | InventoryType |
-| Units           | List<Unit>    |
+| Field           | Type   |
+| --------------- | ------ |
+| Id              | int    |
+| Title           | string |
+| UserId          | int    |
+| InventoryTypeId | int    |
 
-*Relationships*:
-- Many Inventories → One User (N:1)  
-- Many Inventories → One InventoryType (N:1)  
-- One Inventory → Many Items (1:N)  
-- One Inventory → Many Units (1:N)
+**Relationships**:
+
+- Many Inventories -> One User
+- Many Inventories -> One InventoryType
+- One Inventory -> Many Items
+- One Inventory -> Many Units
 
 ---
 
-### 🔹 Item
+### Item
 
 Represents a specific item in an inventory.
 
-| Field       | Type      |
-| ----------- | --------- |
-| Id          | int       |
-| Name        | string    |
-| Tag         | string    |
-| CreatedAt   | DateTime  |
-| InventoryId | int (FK)  |
-| UserId      | int (FK)  |
-| Inventory   | Inventory |
-| User        | User      |
+| Field       | Type     |
+| ----------- | -------- |
+| Id          | int      |
+| Name        | string   |
+| Tag         | string   |
+| CreatedAt   | DateOnly |
+| InventoryId | int      |
+| UserId      | int      |
 
-*Relationships*:
-- Many Items → One Inventory (N:1)  
-- Many Items → One User (N:1)
+**Relationships**:
 
----
-
-### 🔹 Unit
-
-Defines units of measurement for a user's inventories and items.
-
-| Field         | Type    |
-| ------------- | ------- |
-| Id            | int     |
-| InventoryUnit | string  |
-| ItemUnit      | string  |
-| UserId        | int (FK) |
-| User          | User    |
-
-*Relationships*:
-- One User → One Unit (1:1)
+- Many Items -> One Inventory
+- Many Items -> One User
 
 ---
 
-### 🔹 RecentActivity
+### Unit
 
-Tracks user actions like creating, updating, or deleting resources.
+Defines units of measurement for inventories and items.
 
-| Field     | Type     |
-| --------- | -------- |
-| Id        | int      |
-| Request   | string   | (Create, Update, Delete) |
-| Type      | string   | (Inventory, Item)          |
-| UserId    | int (FK) |
-| User      | User     |
+| Field         | Type   |
+| ------------- | ------ |
+| Id            | int    |
+| InventoryUnit | string |
+| ItemUnit      | int    |
+| UserId        | int    |
 
-*Relationships*:
-- Many RecentActivities → One User (N:1)
+**Relationships**:
 
----
-
-## 🔐 Security
-
-- ✅ *JWT Authentication*: Secure login and protected routes  
-- ✅ *Password Hashing*: Follows industry best practices  
-- ✅ *Refresh Tokens*: Extend user sessions securely  
-- ✅ *Role-based Access* (optional and extendable)
+- One User -> One Unit
 
 ---
 
-## 📦 Features
+### RecentActivity
 
-- ✅ User Registration & Login  
-- ✅ Add/Update/Delete Inventory Items  
-- ✅ Categorize Inventories by Type  
-- ✅ View Items by User  
-- ✅ Track User Activity (Create, Update, Delete)  
-- ✅ Define Units for Inventories and Items  
-- ✅ Secure API with JWT tokens
+Tracks user actions.
+
+| Field   | Type   |
+| ------- | ------ |
+| Id      | int    |
+| Request | string |
+| Type    | string |
+| UserId  | int    |
+
+**Relationships**:
+
+- Many RecentActivities -> One User
 
 ---
+
+### InventoryValuation (Weighted Average)
+
+Tracks monthly inventory valuation using the weighted average method.
+
+| Field             | Type     |
+| ----------------- | -------- |
+| Id                | int      |
+| InventoryId       | int      |
+| UserId            | int      |
+| Period            | string   |
+| UnitsPurchased    | int      |
+| TotalPurchaseCost | decimal  |
+| UnitsSold         | int      |
+| UnitsRemaining    | int      |
+| WeightedAverage   | decimal  |
+| ClosingStock      | decimal  |
+| CreatedAt         | DateOnly |
+
+**Scenario Example**:
+
+- Buy: 10 units @ R100 = R1000
+- Buy: 20 units @ R200 = R2000
+- Total: 30 units, R3000
+- Weighted Avg = 3000 / 30 = R133.33
+- Sold: 5 units
+- Remaining = 25 units
+- Closing Stock = 25 * 133.33 = R3333.25
+
+**Relationships**:
+
+- Many InventoryValuation -> One Inventory
+- Many InventoryValuation -> One User
+
+---
+
+## Security
+
+- JWT Authentication
+- Password Hashing
+- Refresh Tokens
+- Extendable Role-based Access
+
+---
+
+## Features
+
+- User Registration & Login
+- Add/Update/Delete Inventories and Items
+- Categorize Inventories
+- Track Activity (CRUD)
+- Unit Customization
+- Weighted Average Inventory Valuation
+- Secure APIs
