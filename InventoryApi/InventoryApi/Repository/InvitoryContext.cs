@@ -10,6 +10,7 @@ namespace InventoryApi.Repository
         public DbSet<Item> Items => Set<Item>();
         public DbSet<Unit> Units => Set<Unit>();
         public DbSet<RecentActivity> RecentActivities => Set<RecentActivity>();
+        public DbSet<InventoryValuation> inventoryValuations => Set<InventoryValuation>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +51,14 @@ namespace InventoryApi.Repository
                 .HasOne<User>()
                 .WithMany(i => i.RecentActivities)
                 .HasForeignKey(i => i.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            // Specifies a one to one relationship with Inventory
+            modelBuilder.Entity<InventoryValuation>()
+                .HasOne<Inventory>()
+                .WithOne(i => i.InventoryValuation)
+                .HasForeignKey<InventoryValuation>(x => x.InventoryId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

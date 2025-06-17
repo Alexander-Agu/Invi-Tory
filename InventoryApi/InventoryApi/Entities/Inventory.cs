@@ -12,5 +12,6 @@
         public User? User { get; set; }
         public List<Item>? Items { get; set; }
         public Unit? Unit { get; set; }
+        public InventoryValuation? InventoryValuation { get; set; }
     }
 }
