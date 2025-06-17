@@ -43,21 +43,6 @@ Stores registered users and their associated data.
 
 ---
 
-### InventoryType
-
-Defines categories/types of inventories.
-
-| Field | Type   |
-| ----- | ------ |
-| Id    | int    |
-| Name  | string |
-
-**Relationships**:
-
-- One InventoryType -> Many Inventories
-
----
-
 ### Inventory
 
 Represents a collection of items owned by a user.
