@@ -132,6 +132,16 @@ namespace InventoryApi.Services.UserServices
         }
 
 
+        // Get User
+        public async Task<UserDto> GetUserAsync(int userId)
+        {
+            User? user = await context.Users.FindAsync(userId);
+            if (user is null) return null;
+
+            return user.ToDto();
+        }
+
+
         // HELPER METHODS
 
         // Hashes a password
@@ -196,7 +206,5 @@ namespace InventoryApi.Services.UserServices
             if (new PasswordHasher<User>().VerifyHashedPassword(user, user.HashedPassword, password) == PasswordVerificationResult.Failed) return false;
             return true;
         }
-
-
     }
 }

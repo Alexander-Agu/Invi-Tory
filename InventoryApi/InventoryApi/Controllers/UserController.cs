@@ -1,4 +1,5 @@
-﻿using InventoryApi.Models.UserDtos;
+﻿using InventoryApi.Entities;
+using InventoryApi.Models.UserDtos;
 using InventoryApi.Services.UserServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,6 +84,17 @@ namespace InventoryApi.Controllers
             if (!passowordUpdated) return BadRequest("Password not updated");
 
             return Ok("Password Updated");
+        }
+
+
+        // Get user information
+        [HttpGet("get-user/{userId}")]
+        public async Task<ActionResult<UserDto>> GetUser(int userId)
+        {
+            UserDto? user = await userService.GetUserAsync(userId);
+            if (user == null) return BadRequest("User not found");
+
+            return Ok(user);
         }
 
     }

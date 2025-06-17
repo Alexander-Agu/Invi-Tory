@@ -24,5 +24,8 @@ namespace InventoryApi.Services.UserServices
 
         // Update password
         Task<bool> UpdatePasswordAsync(int userId, PasswordDto request);
+
+        // Get user
+        Task<UserDto> GetUserAsync(int userId);
     }
 }
