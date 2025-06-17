@@ -21,7 +21,7 @@ function App() {
       element: <Login />
     },
     {
-      path: "/dashboard",
+      path: "/dashboard/:userId",
       element: <Dashboard />
     }
 ]);

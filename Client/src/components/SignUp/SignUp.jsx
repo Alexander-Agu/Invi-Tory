@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./signUp.css"
 import InputBox from '../../UI/InputBox/InputBox';
 import SignIntro from '../SignIntro/SignIntro';
+import { RegisterUserAsync } from '../../api/UserApi';
 
 export default function SignUp() {
     const [firstname, setFirstname] = useState("");
@@ -11,7 +12,25 @@ export default function SignUp() {
     const [passcode, setPasscode] = useState("");
     const [confirm, setConfirm] = useState("");
 
+    // const RegisterUser = async ()=> {
+    //     let body = {
+    //         "firstname": firstname,
+    //         "lastname": lastname,
+    //         "username": username,
+    //         "email": email,
+    //         "password": passcode 
+    //     }
+        
+    //     try {
 
+    //         const res = await RegisterUserAsync(body)
+
+    //         localStorage.setItem('user', JSON.stringify(res));
+    //         window.location = `dashboard/${res.userId}`
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
   return (
     <article className='sign-up-container'>
         <SignIntro 
@@ -62,7 +81,7 @@ export default function SignUp() {
         </section>
 
         <section className='sign-up-footer'>
-            <button>Create Account</button>
+            <button onClick={()=> RegisterUser()}>Create Account</button>
 
             <p>
                 Already have an account? 
