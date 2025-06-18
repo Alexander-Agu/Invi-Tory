@@ -39,3 +39,21 @@ export const ValidateSigningForm = (form) => {
 
     return true;
 }
+
+
+/* 
+    Validate login form
+
+    Has a state machine
+
+    STATE:
+        1 => Email empty
+        2 => Password empty
+        True => if all criteria is valid
+*/
+export const ValidateLoginForm = (form) => {
+    if (form.email.trim() === "") return 1;
+    if (form.password.trim() === "") return 2;
+
+    return true;
+}

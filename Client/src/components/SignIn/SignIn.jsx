@@ -2,10 +2,35 @@ import React, { useState } from 'react'
 import SignIntro from '../SignIntro/SignIntro'
 import "./signIn.css"
 import InputBox from '../../UI/InputBox/InputBox';
+import { ValidateLoginForm } from '../../tools/Validators';
+import { LoginUserAsync } from '../../api/UserApi';
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
     const [passcode, setPasscode] = useState("");
+    const [validate, setValidate] = useState(0);
+    let body = {"email": email, "password": passcode};
+
+
+    const Login = async (body) => {
+        let result = ValidateLoginForm(body)
+        setValidate(result)
+
+
+        if (result === true){
+            try {
+                let res = await LoginUserAsync(body);
+
+                localStorage.setItem('user', JSON.stringify(res));
+                window.location = `dashboard/${res.userId}`;
+            } catch (error) {
+                alert("Invalid email or password");
+                console.log(error);
+            }
+        }
+
+    }
+
 
   return (
     <article className='sign-in-container'>
@@ -14,21 +39,25 @@ export default function SignIn() {
             content={"Join thousands of businesses using Invi-Tory to manage their inventory"}
         />
 
-        {/* <InputBox 
+        <InputBox 
+            boxValue={1}
+            checkValid={validate}
             title={"Email"}
             input={email}
             setInput={setEmail}
             placeHolder={"doe@gmail.com"}
         />
         <InputBox 
+            boxValue={2}
+            checkValid={validate}
             title={"Password"}
             input={passcode}
             setInput={setPasscode}
             placeHolder={"Create a strong password"}
-        /> */}
+        />
 
         <section className='sign-in-footer'>
-            <button>Create Account</button>
+            <button onClick={()=> Login(body)}>Create Account</button>
 
             <p>
                 Don't have an account? 
