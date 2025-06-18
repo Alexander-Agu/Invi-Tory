@@ -4,10 +4,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: 1px solid red;
 }
 
 body, html {
     margin: 0;
     padding: 0;
+    max-width: 100%;
     overflow-x: hidden;
+    overscroll-behavior: contain;
 }
