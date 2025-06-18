@@ -3,6 +3,7 @@ import "./signUp.css"
 import InputBox from '../../UI/InputBox/InputBox';
 import SignIntro from '../SignIntro/SignIntro';
 import { RegisterUserAsync } from '../../api/UserApi';
+import { ValidatePassword, ValidateSigningForm } from '../../tools/Validators';
 
 export default function SignUp() {
     const [firstname, setFirstname] = useState("");
@@ -12,14 +13,17 @@ export default function SignUp() {
     const [passcode, setPasscode] = useState("");
     const [confirm, setConfirm] = useState("");
 
+    let body = {
+    "firstname": "firstname",
+    "lastname": "lastname",
+    "username": "username",
+    "email": "email",
+    "password": "@Lexander2704#",
+    "confirm": "@Lexander2704#"
+}
+
+console.log(ValidateSigningForm(body))
     // const RegisterUser = async ()=> {
-    //     let body = {
-    //         "firstname": firstname,
-    //         "lastname": lastname,
-    //         "username": username,
-    //         "email": email,
-    //         "password": passcode 
-    //     }
         
     //     try {
 
