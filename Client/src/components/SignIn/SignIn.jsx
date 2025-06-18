@@ -14,7 +14,7 @@ export default function SignIn() {
             content={"Join thousands of businesses using Invi-Tory to manage their inventory"}
         />
 
-        <InputBox 
+        {/* <InputBox 
             title={"Email"}
             input={email}
             setInput={setEmail}
@@ -25,7 +25,7 @@ export default function SignIn() {
             input={passcode}
             setInput={setPasscode}
             placeHolder={"Create a strong password"}
-        />
+        /> */}
 
         <section className='sign-in-footer'>
             <button>Create Account</button>

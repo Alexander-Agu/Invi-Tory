@@ -12,29 +12,38 @@ export default function SignUp() {
     const [email, setEmail] = useState("");
     const [passcode, setPasscode] = useState("");
     const [confirm, setConfirm] = useState("");
+    const [checkValid, setCheckValid] = useState(0);
 
     let body = {
-    "firstname": "firstname",
-    "lastname": "lastname",
-    "username": "username",
-    "email": "email",
-    "password": "@Lexander2704#",
-    "confirm": "@Lexander2704#"
-}
+    "firstname": firstname,
+    "lastname": lastname,
+    "username": username,
+    "email": email,
+    "password": passcode,
+    "confirm": confirm
+    }
 
-console.log(ValidateSigningForm(body))
-    // const RegisterUser = async ()=> {
-        
-    //     try {
+    
 
-    //         const res = await RegisterUserAsync(body)
+    const RegisterUser = async ()=> {
+        let result = ValidateSigningForm(body)
+        setCheckValid(result);
 
-    //         localStorage.setItem('user', JSON.stringify(res));
-    //         window.location = `dashboard/${res.userId}`
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+
+        if (result === true){
+            try {
+                const res = await RegisterUserAsync(body)
+
+                localStorage.setItem('user', JSON.stringify(res));
+                window.location = `dashboard/${res.userId}`
+            } catch (error) {
+                console.log(error)
+            }
+        } else if(result === 6) alert("Make a stronger password");
+        else if (result === 7) alert ("Password does not match");
+
+    }
+
   return (
     <article className='sign-up-container'>
         <SignIntro 
@@ -43,6 +52,9 @@ console.log(ValidateSigningForm(body))
         />
         <section className='sign-up-names'>
             <InputBox 
+                required={true}
+                checkValid={checkValid}
+                boxValue={1}
                 title={"Firstname"}
                 input={firstname}
                 setInput={setFirstname}
@@ -50,6 +62,9 @@ console.log(ValidateSigningForm(body))
             />
 
             <InputBox 
+                required={false}
+                checkValid={checkValid}
+                boxValue={-1}
                 title={"Lastname"}
                 input={lastname}
                 setInput={setLastname}
@@ -59,24 +74,36 @@ console.log(ValidateSigningForm(body))
 
         <section className='sign-up-crit-info'>
             <InputBox 
+                required={true}
+                checkValid={checkValid}
+                boxValue={2}
                 title={"Username"}
                 input={username}
                 setInput={setUsername}
                 placeHolder={"ajsdjhb024"}
             />
             <InputBox 
+                required={true}
+                checkValid={checkValid}
+                boxValue={3}
                 title={"Email"}
                 input={email}
                 setInput={setEmail}
                 placeHolder={"doe@gmail.com"}
             />
-            <InputBox 
+            <InputBox
+                required={true}
+                checkValid={checkValid}
+                boxValue={4}
                 title={"Password"}
                 input={passcode}
                 setInput={setPasscode}
                 placeHolder={"Create a strong password"}
             />
             <InputBox 
+                required={true}
+                checkValid={checkValid}
+                boxValue={5}
                 title={"Confirm Password"}
                 input={confirm}
                 setInput={setConfirm}
