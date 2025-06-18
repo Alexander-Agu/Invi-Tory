@@ -8,7 +8,7 @@ import { IoIosTimer } from "react-icons/io";
 import NotFound from '../../UI/NotFound/NotFound'
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp'
 
-export default function DashboardHome({logoutPopUp, setLogoutPopUp}) {
+export default function DashboardHome({logoutPopUp, setLogoutPopUp, firstname}) {
   const [noInventory, setNoInventory] = useState(true);
   const [noRecentActivity, setNoRecentActivity] = useState(true);
 
@@ -18,7 +18,7 @@ export default function DashboardHome({logoutPopUp, setLogoutPopUp}) {
 
       <article className='dash-intro'>
 
-        <h1>Welcome Alexander</h1>
+        <h1>Welcome {firstname}</h1>
         <p>
           Here's what's happening with your inventory today
         </p>

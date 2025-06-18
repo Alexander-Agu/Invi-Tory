@@ -29,7 +29,7 @@ export const FetchUserAsync = async (id) => {
     try {
         const res = await axios.get(`https://localhost:7216/api/User/get-user/${id}`);
 
-        return await res;
+        return await res.data;
     } catch (error) {
         console.log(error)
     }
