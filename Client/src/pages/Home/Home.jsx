@@ -8,14 +8,14 @@ import Footer from '../../components/Footer/Footer'
 import "./home.css"
 
 export default function Home() {
-  return (
-    <main className='home-main'>
-        <Header />
-        <Hero />
-        <Features />
-        <Stat />
-        <Cta />
-        <Footer />
-    </main>
-  )
+  return <>
+    <Header />
+    <Hero />
+    <Features />
+    <Stat />
+    <Cta />
+    <Footer />
+  </>
+
+  
 }

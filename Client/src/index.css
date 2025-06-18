@@ -6,19 +6,9 @@
     box-sizing: border-box;
 }
 
-body,
-html,
-#root {
-    min-height: 100%;
-    background-color: #11182770;
-}
-
-#root {
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-    /* takes remaining space */
+#root{
+    background: linear-gradient(to bottom right, #111827, #1f2937, #000000);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
