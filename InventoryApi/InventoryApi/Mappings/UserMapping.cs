@@ -28,5 +28,16 @@ namespace InventoryApi.Mappings
                 RefreshTokenExpiryDate = request.RefreshTokenExpiryDate,
             };
         }
+
+
+        public static GetUserDto ToGetUserDto(this User request)
+        {
+            return new GetUserDto
+            {
+                Firstname = request.Firstname,
+                Lastname = request.Lastname,
+                Username = request.Username
+            };
+        }
     }
 }

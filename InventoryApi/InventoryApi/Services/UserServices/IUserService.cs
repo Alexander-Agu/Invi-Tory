@@ -1,4 +1,5 @@
-﻿using InventoryApi.Models.UserDtos;
+﻿using InventoryApi.Entities;
+using InventoryApi.Models.UserDtos;
 
 namespace InventoryApi.Services.UserServices
 {
@@ -26,6 +27,6 @@ namespace InventoryApi.Services.UserServices
         Task<bool> UpdatePasswordAsync(int userId, PasswordDto request);
 
         // Get user
-        Task<UserDto> GetUserAsync(int userId);
+        Task<GetUserDto> GetUserAsync(int userId);
     }
 }

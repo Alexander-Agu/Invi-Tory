@@ -133,12 +133,12 @@ namespace InventoryApi.Services.UserServices
 
 
         // Get User
-        public async Task<UserDto> GetUserAsync(int userId)
+        public async Task<GetUserDto> GetUserAsync(int userId)
         {
             User? user = await context.Users.FindAsync(userId);
             if (user is null) return null;
 
-            return user.ToDto();
+            return user.ToGetUserDto();
         }
 
 
