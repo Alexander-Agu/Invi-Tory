@@ -86,3 +86,15 @@
     font-weight: 400;
     font-style: normal;
 }
+
+
+/* Inventory Bottom Section */
+.inventory-bottom-section{
+    min-height: 32rem;
+    width: 100%;
+    padding: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}

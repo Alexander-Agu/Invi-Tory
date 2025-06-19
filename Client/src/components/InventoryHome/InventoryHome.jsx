@@ -1,6 +1,7 @@
 import React from 'react';
 import "./inventoryHome.css";
 import { FaPlus } from "react-icons/fa";
+import InventoryBox from '../InventoryBox/InventoryBox';
 
 
 export default function InventoryHome() {
@@ -20,7 +21,14 @@ export default function InventoryHome() {
         </section>
 
         <section className='inventory-bottom-section'>
-
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
         </section>
     </article>
   )

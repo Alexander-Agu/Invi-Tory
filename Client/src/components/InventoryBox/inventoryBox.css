@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+/* Inventory Box Container */
+.inventory-box{
+    /* width: 20rem;
+    min-height: 20rem; */
+    padding: 1rem;
+
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 5px;
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.inventory-icon{
+    width: 40px;
+    height: 40px;
+    padding: 1rem;
+
+    background-color: #2563eb;
+    border: none;
+    border-radius: 3px;
+
+    font-size: 1.2rem;
+    color: black;
+
+    display: grid;
+    place-content: center;
+}
+
+
+/* Inventory Header */
+.inventory-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.inventory-buttons button{
+    /* padding: 1rem; */
+    font-size: 1rem;
+    background-color: transparent;
+    color: #d1d5db;
+
+    outline: none;
+    border: none;
+}
+
+
+/* Inventory Body Section */
+.inventory-body{
+    width: 100%;
+}
+
+.inventory-body h2{
+    color: white;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.inventory-body p{
+    color: #9ca3af;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* Inventory Footer Section */
+.inventory-footer{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory-footer p{
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inventory-footer p:first-child{
+    color: white;
+}
+
+.inventory-footer p:last-child{
+    font-weight: bold;
+    color: #9ca3af;
+}
