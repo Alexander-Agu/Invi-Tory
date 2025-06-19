@@ -3,9 +3,12 @@ import "./inventoryHome.css";
 import { FaPlus } from "react-icons/fa";
 import InventoryBox from '../InventoryBox/InventoryBox';
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
+import { useOutletContext } from 'react-router-dom';
 
 
-export default function InventoryHome({logoutPopUp, setLogoutPopUp}) {
+export default function InventoryHome({}) {
+    const { logoutPopUp, setLogoutPopUp} = useOutletContext();
+    
   return (
     <article className="inventory-home">
 

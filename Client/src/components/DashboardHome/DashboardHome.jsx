@@ -7,10 +7,12 @@ import { FiBox } from "react-icons/fi";
 import { IoIosTimer } from "react-icons/io";
 import NotFound from '../../UI/NotFound/NotFound'
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp'
+import { useOutletContext } from 'react-router-dom'
 
-export default function DashboardHome({logoutPopUp, setLogoutPopUp, firstname}) {
+export default function DashboardHome({}) {
   const [noInventory, setNoInventory] = useState(true);
   const [noRecentActivity, setNoRecentActivity] = useState(true);
+const { logoutPopUp, setLogoutPopUp, name } = useOutletContext();
 
   
   return (
@@ -18,7 +20,7 @@ export default function DashboardHome({logoutPopUp, setLogoutPopUp, firstname}) 
 
       <article className='dash-intro'>
 
-        <h1>Welcome {firstname}</h1>
+        <h1>Welcome {name}</h1>
         <p>
           Here's what's happening with your inventory today
         </p>

@@ -3,7 +3,7 @@ import "./dashboard.css"
 import Sidebar from '../../components/Sidebar/Sidebar'
 import DashboardHome from '../../components/DashboardHome/DashboardHome'
 import { FetchUserAsync } from '../../api/UserApi';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import InventoryHome from '../../components/InventoryHome/InventoryHome';
 
 export default function Dashboard() {
@@ -32,8 +32,7 @@ export default function Dashboard() {
     return (
       <main className='dashboardContainer'>
           <Sidebar setLogoutPopUp={setLogoutPopUp} />
-          {/* <DashboardHome logoutPopUp={logoutPopUp} setLogoutPopUp={setLogoutPopUp} firstname={name} /> */}
-          <InventoryHome logoutPopUp={logoutPopUp} setLogoutPopUp={setLogoutPopUp} />
+          <Outlet context={{ logoutPopUp, setLogoutPopUp, name }} />
       </main>
     )
   } else{
