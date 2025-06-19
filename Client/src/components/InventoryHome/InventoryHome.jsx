@@ -2,9 +2,10 @@ import React from 'react';
 import "./inventoryHome.css";
 import { FaPlus } from "react-icons/fa";
 import InventoryBox from '../InventoryBox/InventoryBox';
+import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
 
 
-export default function InventoryHome() {
+export default function InventoryHome({logoutPopUp, setLogoutPopUp}) {
   return (
     <article className="inventory-home">
 
@@ -30,6 +31,10 @@ export default function InventoryHome() {
             <InventoryBox />
             <InventoryBox />
         </section>
+
+        {
+            logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp} /> : <p></p>
+        }
     </article>
   )
 }

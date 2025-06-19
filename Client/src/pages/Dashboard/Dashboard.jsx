@@ -33,7 +33,7 @@ export default function Dashboard() {
       <main className='dashboardContainer'>
           <Sidebar setLogoutPopUp={setLogoutPopUp} />
           {/* <DashboardHome logoutPopUp={logoutPopUp} setLogoutPopUp={setLogoutPopUp} firstname={name} /> */}
-          <InventoryHome />
+          <InventoryHome logoutPopUp={logoutPopUp} setLogoutPopUp={setLogoutPopUp} />
       </main>
     )
   } else{
