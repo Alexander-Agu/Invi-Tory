@@ -54,6 +54,36 @@
     font-weight: 400;
     font-style: normal;
 }
+@media screen and (max-width: 700px) {
+    .inventory-intro h1{
+        font-size: 2rem;
+    }
+
+    .inventory-intro p{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .inventory-intro h1{
+        font-size: 1.5rem;
+    }
+
+    .inventory-intro p{
+        font-size: 0.8rem;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .inventory-intro h1{
+        font-size: 1.5rem;
+    }
+
+    .inventory-intro p{
+        font-size: 0.7rem;
+    }
+}
 
 
 /* Inventory Button */
@@ -86,6 +116,47 @@
     font-weight: 400;
     font-style: normal;
 }
+@media screen and (max-width: 700px) {
+    .inventory-btn{
+        width: 60px;
+        height: 60px;
+
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+
+    .inventory-btn p{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .inventory-btn{
+        width: 40px;
+        height: 40px;
+
+        font-size: 1.5rem;
+        font-weight: bolder;
+    }
+
+    .inventory-btn p{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .inventory-btn{
+        width: 30px;
+        height: 30px;
+
+        font-size: 1.2rem;
+        font-weight: bolder;
+    }
+
+    .inventory-btn p{
+        display: none;
+    }
+}
 
 
 /* Inventory Bottom Section */
@@ -97,4 +168,27 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
+}
+@media screen and (max-width: 1700px) {
+    .inventory-bottom-section{
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr))
+    }
+}
+
+@media screen and (max-width: 1035px) {
+    .inventory-bottom-section{
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr))
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .inventory-bottom-section{
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))
+    }
+}
+
+@media screen and (max-width: 439px) {
+    .inventory-bottom-section{
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr))
+    }
 }

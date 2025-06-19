@@ -67,6 +67,7 @@
 }
 
 .inventory-body h2{
+    font-size: 1rem;
     color: white;
     font-family: "Lexend", sans-serif;
     font-optical-sizing: auto;
@@ -81,6 +82,11 @@
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+}
+@media screen and (max-width: 419px) {
+    .inventory-box h2{
+        font-size: 1.5rem;
+    }
 }
 
 
