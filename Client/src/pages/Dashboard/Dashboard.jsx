@@ -4,6 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import DashboardHome from '../../components/DashboardHome/DashboardHome'
 import { FetchUserAsync } from '../../api/UserApi';
 import { useParams } from 'react-router-dom';
+import InventoryHome from '../../components/InventoryHome/InventoryHome';
 
 export default function Dashboard() {
   const [logoutPopUp, setLogoutPopUp] = useState(false);
@@ -31,7 +32,8 @@ export default function Dashboard() {
     return (
       <main className='dashboardContainer'>
           <Sidebar setLogoutPopUp={setLogoutPopUp} />
-          <DashboardHome logoutPopUp={logoutPopUp} setLogoutPopUp={setLogoutPopUp} firstname={name} />
+          {/* <DashboardHome logoutPopUp={logoutPopUp} setLogoutPopUp={setLogoutPopUp} firstname={name} /> */}
+          <InventoryHome />
       </main>
     )
   } else{

@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+
+/* Inventory Home container */
+.inventory-home{
+    flex-grow: 1;
+    min-height: 100dvh;
+
+    background-color: #111827;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* Inventory Top Section */
+.inventory-top-section{
+    width: 100%;
+    min-height: 5rem;
+    padding: 2rem;
+
+    /* background-color: aqua; */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory-intro{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.inventory-intro h1{
+    color: white;
+    font-size: 3rem;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.inventory-intro p{
+    color: #9ca3af;
+    font-size: 1.2rem;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* Inventory Button */
+.inventory-btn{
+    width: 160px;
+    height: 40px;
+
+    background-color: #2563eb;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.inventory-btn:hover{
+    background-color: #1d4ed8;
+}
+
+.inventory-btn p{
+    /* color: #9ca3af; */
+    /* font-size: 1.2rem; */
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
