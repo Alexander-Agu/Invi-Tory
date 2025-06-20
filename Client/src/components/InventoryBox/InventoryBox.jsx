@@ -4,9 +4,9 @@ import { BsBoxSeam } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
-export default function InventoryBox() {
+export default function InventoryBox({id, category, name, itemCount}) {
   return (
-    <div className="inventory-box">
+    <div className="inventory-box" key={id}>
         <section className='inventory-header'>
             <div className='inventory-icon' >
                 <BsBoxSeam  />
@@ -25,12 +25,12 @@ export default function InventoryBox() {
         </section>
 
         <section className='inventory-body'>
-            <h2>Laptop's</h2>
-            <p>Electronics</p>
+            <h2>{name}</h2>
+            <p>{category}</p>
         </section>
 
         <section className='inventory-footer'>
-            <p>0</p>
+            <p>{itemCount}</p>
             <p>Items</p>
         </section>
     </div>

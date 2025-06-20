@@ -5,7 +5,7 @@ import axios from "axios";
 export const GetAllInventoryAsync = async (userId) => {
     try {
         const res = await axios.get(`https://localhost:7216/api/Inventory/get-inventory/${userId}`);
-        
+        console.log(res.data)
         return res.data;
     } catch (error) {
         console.log(error);
