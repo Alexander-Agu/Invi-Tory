@@ -15,7 +15,7 @@ function Sidebar({setLogoutPopUp}) {
 
         <div className="sideHeader">
             <label htmlFor="sidebar">
-                <BsBoxSeam style={{ fontWeight: "bolder", color: "#2563eb"}}/>
+                <BsBoxSeam style={{ fontWeight: "bolder", color: "#2563eb" }}/>
                 <h2>Invi-Tory</h2>
             </label>
         </div>

@@ -52,8 +52,20 @@
     justify-content: center;
     /* gap: 3rem; */
 }
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .inventory-popup-app{
+        width: 400px;
+        padding: 2rem;
+    }
+}
 
-
+@media screen and (max-width: 450px) {
+    .inventory-popup-app{
+        width: 350px;
+        padding: 2rem;
+    }
+}
 
 
 /* Inventory Buttons */

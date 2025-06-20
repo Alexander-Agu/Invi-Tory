@@ -4,7 +4,7 @@
 
 /* Inventory Home container */
 .inventory-home{
-    flex-grow: 1;
+    width: 85%;
     min-height: 100dvh;
 
     background-color: #111827;
@@ -13,6 +13,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+}
+/* Responsive */
+@media screen and (max-width: 1300px) {
+    .inventory-home{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .inventory-home{
+        width: 100%;
+    }
 }
 
 

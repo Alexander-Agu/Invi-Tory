@@ -32,7 +32,7 @@ export default function Dashboard() {
     return (
       <main className='dashboardContainer'>
           <Sidebar setLogoutPopUp={setLogoutPopUp} />
-          <Outlet context={{ logoutPopUp, setLogoutPopUp, name }} />
+          <Outlet className="sa" context={{ logoutPopUp, setLogoutPopUp, name }} />
       </main>
     )
   } else{

@@ -35,6 +35,14 @@ export default function InventoryHome({}) {
             <InventoryBox />
             <InventoryBox />
             <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
+            <InventoryBox />
         </section>
 
         {

@@ -2,9 +2,13 @@
 
 /* Dasboard Container */
 .dashboardContainer{
-    min-width: 100%;
-    min-height: 100%;
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+
+  align-items: flex-end;
+  justify-content: space-between;
 }
 /* Responsive */
 @media screen and (max-width: 1000px) {
