@@ -2,7 +2,7 @@ import React from 'react'
 import "./inventoryStat.css"
 import { FiBox } from "react-icons/fi";
 
-export default function InventoryStat() {
+export default function InventoryStat({name, units}) {
   return (
     <div className="inventory-stat">
         <div className="stat-name">
@@ -11,12 +11,12 @@ export default function InventoryStat() {
             </div>
 
             <h2>
-                Laptop's
+                {name}
             </h2>
         </div>
 
         <p>
-            500 items
+            {units} items
         </p>
         
     </div>

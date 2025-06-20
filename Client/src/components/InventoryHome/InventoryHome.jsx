@@ -10,6 +10,7 @@ import InventoryPopup from '../InventoryPopup/InventoryPopup';
 export default function InventoryHome({}) {
     const { logoutPopUp, setLogoutPopUp} = useOutletContext();
     const [inventoryPopup, setInventoryPopUp] = useState(false);
+    const [inventoryAvailable, setInventoryAvailable] = useState(false);
     
   return (
     <article className="inventory-home">
@@ -27,22 +28,7 @@ export default function InventoryHome({}) {
         </section>
 
         <section className='inventory-bottom-section'>
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
-            <InventoryBox />
+            
         </section>
 
         {

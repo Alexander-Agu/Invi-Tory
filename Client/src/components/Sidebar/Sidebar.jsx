@@ -24,7 +24,7 @@ function Sidebar({setLogoutPopUp}) {
             {
                 sidebarLinks.map(x => {
                     const {path, name, icon} = x;
-                    return <DashboardLink name={name} link={path} icon={icon} />
+                    return <DashboardLink key={name} name={name} link={path} icon={icon} />
                 })
             }
         </nav>
