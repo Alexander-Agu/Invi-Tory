@@ -10,14 +10,16 @@ import LogoutPopUp from '../LogoutPopUp/LogoutPopUp'
 import { useOutletContext, useParams } from 'react-router-dom'
 import { GetInventoryCountAsync, GetItemCountAsync } from '../../api/UnitsApi'
 import { GetAllInventoryAsync } from '../../api/InventoryApi'
+import { GetAllUserRecentActivity } from '../../api/RecentActivityApi'
 
 export default function DashboardHome() {
   const [noInventory, setNoInventory] = useState(true);
-  const [noRecentActivity, setNoRecentActivity] = useState(true);
+  const [noRecentActivity, setNoRecentActivity] = useState(false);
   const { logoutPopUp, setLogoutPopUp, name } = useOutletContext();
   const [inventoryCount, setInventoryCount] = useState(0);
   const [itemCount, setItemCount] = useState(0);
   const [inventories, setInventories] = useState([]);
+  const [recentActivities, setRecentActivities] = useState([]);
   const [dasHomeLoad, setDashHomeLoad] = useState(true);
   const [error, setError] = useState(null);
   const { userId } = useParams();
@@ -28,10 +30,11 @@ export default function DashboardHome() {
     const fetchData = async () => {
       try {
         // Execute all requests in parallel
-        const [inventoryRes, itemRes, inventoriesRes] = await Promise.all([
+        const [inventoryRes, itemRes, inventoriesRes, recentActivitiesRes] = await Promise.all([
           GetInventoryCountAsync(userId),
           GetItemCountAsync(userId),
-          GetAllInventoryAsync(userId)
+          GetAllInventoryAsync(userId),
+          GetAllUserRecentActivity(userId)
         ]);
 
         if (isMounted) {
@@ -39,6 +42,8 @@ export default function DashboardHome() {
           setItemCount(itemRes);
           setInventories(inventoriesRes);
           setNoInventory(inventoriesRes.length === 0);
+          setRecentActivities(recentActivitiesRes);
+          setNoRecentActivity(recentActivitiesRes.length === 0);
         }
       } catch (err) {
         if (isMounted) {
@@ -119,11 +124,18 @@ export default function DashboardHome() {
                 <NotFound text={"No Recent Activity"} />
               ) : (
                 <div className="activities">
-                  <RecentActivity />
-                  <RecentActivity />
-                  <RecentActivity />
-                  <RecentActivity />
-                  <RecentActivity />
+                  {
+                    recentActivities.map(x => {
+                      const {recentActivityId, request, type, name} = x;
+
+                      return <RecentActivity
+                        id={recentActivityId}
+                        request={type}
+                        type={request}
+                        name={name}
+                      />
+                    })
+                  }
                 </div>
               )}
             </section>
