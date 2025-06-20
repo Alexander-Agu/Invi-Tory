@@ -13,7 +13,7 @@ export default function InventoryBox() {
             </div>
             
 
-            <div className="inventory-buttons">
+            <div className="inventory-buttonss">
                 <button>
                     <HiOutlinePencilSquare />
                 </button>

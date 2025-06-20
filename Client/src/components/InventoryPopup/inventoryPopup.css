@@ -1,0 +1,85 @@
+
+
+
+/* Inventory Popup container */
+.inventory-popup{
+    height: 100dvh;
+    width: 100%;
+
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1;
+
+    background-color: #11182770;
+    backdrop-filter: blur(5px);
+
+    transition: ease-in 0.4s;
+
+    display: grid;
+    place-content: center;
+}
+
+.inventory-popup-h2{
+    margin-bottom: 1rem;
+}
+
+
+/* Inventory Popup App */
+.inventory-popup-app{
+    width: 500px;
+    min-height: 300px;
+    padding: 1rem;
+
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 5px;
+
+    text-align: center;
+    color: white;
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* gap: 3rem; */
+}
+
+
+
+
+/* Inventory Buttons */
+.inventory-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.inventory-buttons button{
+    width: 100px;
+    height: 40px;
+
+    font-size: 1rem;
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+
+    outline: none;
+    border: none;
+    border-radius: 4px;
+
+    display: grid;
+    place-content: center;
+}
