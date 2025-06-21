@@ -96,7 +96,7 @@ namespace InventoryApi.Services.InventoryServices
                 .FirstOrDefaultAsync();
             if (inventory == null) return false;
 
-            inventory.Name = request.Name;
+            if (!string.IsNullOrEmpty(request.Name)) inventory.Name = request.Name; ;
             await context.SaveChangesAsync();
             await AddRecentActivity(userId, inventory.Name, "Inventory", "Update");
 
@@ -111,8 +111,8 @@ namespace InventoryApi.Services.InventoryServices
                 .FirstOrDefaultAsync();
             if (inventory == null) return false;
 
-            inventory.Name = request.Name;
-            inventory.Category = request.Category;
+            if (!string.IsNullOrEmpty(request.Name)) inventory.Name = request.Name;
+            if (!string.IsNullOrEmpty(request.Category)) inventory.Category = request.Category;
 
             inventory.Name = request.Name;
             await context.SaveChangesAsync();
