@@ -10,31 +10,31 @@ export default function Popup({message, inputs, buttons, popup}) {
         <div className="popup-app" onClick={(e) => e.stopPropagation()}>
             <h1>{message}</h1>
 
-            {/* <div className="popup-inputs">
+            <div className="popup-inputs">
                 {
                     inputs.map(x => {
                         return <p></p>
                     })
                 }
-            </div> */}
+            </div>
 
             <div className="popup-buttons">
-                {/* <button onClick={()=> setLogoutPopUp(false)}>No</button>
-
-                <a href='/' className='log-a'>Yes</a> */}
-
                 {
-                    buttons.map(x => {
-                        const {buttonId, name, color, fontColor, execute} = x;
+                    // Only render existing buttons
+                    buttons.length > 0?
 
-                        return <button 
-                                key={buttonId} 
-                                onClick={()=> name === "Cancel"? popup(false): execute(userId, )}
-                                style={{"color": fontColor, "backgroundColor": color}}
-                            >
-                            {name}
-                        </button>
-                    })
+                        buttons.map(x => {
+                            const {buttonId, name, color, fontColor, execute} = x;
+
+                            return <button 
+                                    key={buttonId} 
+                                    onClick={()=> name === "Cancel"? popup(false): execute(userId)}
+                                    style={{"color": fontColor, "backgroundColor": color}}
+                                >
+                                {name}
+                            </button>
+                        })
+                    : <p></p>
                 }
             </div>
 

@@ -24,8 +24,7 @@ export default function InventoryHome({}) {
             "name": "Cancel",
             "color": "lightgreen",
             "fontColor": "white",
-            "execute": setInventoryPopUp,
-            // "arguments": [false]
+            "execute": setInventoryPopUp
         },
         {
             "buttonId": 2,
@@ -36,15 +35,13 @@ export default function InventoryHome({}) {
                 try {
                     console.log(targetInventory);
                     const res =  await DeleteInventoryAsync(userId, targetInventory);
-                    console.log(res)
                     location.reload();
                     setInventoryPopUp(false)
 
                 } catch (error) {
                     console.log(error)
                 }
-            },
-            // "arguments": []
+            }
         }
     ]
 
@@ -118,6 +115,7 @@ export default function InventoryHome({}) {
         {
             deletePopup? 
                 <Popup message={"Are you sure you want to delete your inventory?"} 
+                inputs={[]}
                 buttons={deleteButtons}
                 popup={setDeletePopup}
             /> : <p></p>
