@@ -2,7 +2,7 @@
 
 
 .popup-container {
-    height: 100dvh;
+    min-height: 100dvh;
     width: 100%;
 
     position: fixed;
@@ -23,8 +23,9 @@
 
 /* Logout App */
 .popup-app {
-    width: 350px;
-    height: 300px;
+    width: 500px;
+    height: 400px;
+    padding: 1rem;
 
     background-color: #111827;
     border: 1px solid #1f2937;
@@ -43,9 +44,36 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    /* gap: 1rem; */
 }
 
+.popup-message{
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+}
+@media screen and (max-width: 600px) {
+    .popup-app{
+        width: 400px;
+    }
+
+    .popup-message{
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .popup-app{
+        width: 320px;
+    }
+
+    .popup-message{
+        font-size: 1.3rem;
+    }
+}
+
+
+/* Popup buttons */
 .popup-buttons {
     display: flex;
     align-items: center;
@@ -73,13 +101,20 @@
     display: grid;
     place-content: center;
 }
-/* 
-.popup-buttons button {
-    background-color: lightgreen;
+/* Responsive */
+@media screen and (max-width: 450px) {
+    .popup-buttons button{
+        width: 80px;
+        height: 30px;
+
+        font-size: 0.8rem;
+    }
 }
 
-.popup-buttons a {
-    background-color: white;
-    text-decoration: none;
-    color: black;
-} */
+
+/* Popup input boxes */
+.popup-inputs{
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

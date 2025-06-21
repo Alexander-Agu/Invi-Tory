@@ -9,7 +9,7 @@ export default function Popup({message, inputs, buttons, popup}) {
   return (
     <div className="popup-container" onClick={()=> popup(false)}>
         <div className="popup-app" onClick={(e) => e.stopPropagation()}>
-            <h1>{message}</h1>
+            <h1 className='popup-message'>{message}</h1>
 
             <div className="popup-inputs">
                 {

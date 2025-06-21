@@ -44,8 +44,8 @@ export const updateButtons = (setInventoryPopUp, userId, targetInventory, body)=
         {
             "buttonId": 2,
             "name": "Update",
-            "color": "white",
-            "fontColor": "black",
+            "color": "#2563eb",
+            "fontColor": "white",
             "execute": async function  () {
                 try {
                     const res =  await UpdateInventoryAsync(userId, targetInventory, body);
