@@ -55,15 +55,23 @@ namespace InventoryApi.Services.InventoryServices
         {
             if (!await FindUser(userId)) return null;
 
-            
+            List<Item> items = await context.Items.Where(x => x.UserId == userId).ToListAsync();
             List<InventoryDto> inventories = await context.Inventory.Where(x => x.UserId == userId)
                 .Select(inventory => new InventoryDto
                 {
                     InventoryId = inventory.Id,
                     UserId = userId,
                     Category = inventory.Category,
-                    Name = inventory.Name
+                    Name = inventory.Name,
+                    ItemCount = 1
+
                 }).ToListAsync();
+
+            foreach (var inventory in inventories)
+            {
+                inventory.ItemCount = await context.Items.Where(x => x.UserId == userId && x.InventoryId == inventory.InventoryId).CountAsync();
+            }
+            
 
             return inventories;
         }
