@@ -4,7 +4,13 @@ import { BsBoxSeam } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
-export default function InventoryBox({id, category, name, itemCount}) {
+export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setTargetInventory}) {
+  const SetFunctions = () => {
+    console.log("Jghkjl")
+    setDeletePopUp(true);
+    setTargetInventory(id);
+  }
+
   return (
     <div className="inventory-box" key={id}>
         <section className='inventory-header'>
@@ -18,7 +24,7 @@ export default function InventoryBox({id, category, name, itemCount}) {
                     <HiOutlinePencilSquare />
                 </button>
 
-                <button>
+                <button onClick={()=> SetFunctions()}>
                     <FaRegTrashAlt />
                 </button>
             </div>

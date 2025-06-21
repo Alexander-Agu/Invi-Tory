@@ -5,7 +5,8 @@ import InventoryBox from '../InventoryBox/InventoryBox';
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
 import { useOutletContext, useParams } from 'react-router-dom';
 import InventoryPopup from '../InventoryPopup/InventoryPopup';
-import { GetAllInventoryAsync } from '../../api/InventoryApi';
+import { DeleteInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
+import Popup from '../Popup/Popup';
 
 
 export default function InventoryHome({}) {
@@ -14,6 +15,38 @@ export default function InventoryHome({}) {
     const [inventoryAvailable, setInventoryAvailable] = useState(false);
     const [inventories, setInventories] = useState([]);
     const {userId} = useParams();
+    const [targetInventory, setTargetInventory] = useState(0);
+    const [deletePopup, setDeletePopup] = useState(false);
+
+    const deleteButtons = [
+        {
+            "buttonId": 1,
+            "name": "Cancel",
+            "color": "lightgreen",
+            "fontColor": "white",
+            "execute": setInventoryPopUp,
+            // "arguments": [false]
+        },
+        {
+            "buttonId": 2,
+            "name": "Delete",
+            "color": "white",
+            "fontColor": "black",
+            "execute": async function  (userId) {
+                try {
+                    console.log(targetInventory);
+                    const res =  await DeleteInventoryAsync(userId, targetInventory);
+                    console.log(res)
+                    location.reload();
+                    setInventoryPopUp(false)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            // "arguments": []
+        }
+    ]
 
 
     useEffect(()=>{
@@ -69,6 +102,8 @@ export default function InventoryHome({}) {
                         category={category}
                         itemCount={itemCount}
                         name={name}
+                        setDeletePopUp={setDeletePopup}
+                        setTargetInventory={setTargetInventory}
                     />
                 })
             }
@@ -79,6 +114,13 @@ export default function InventoryHome({}) {
         }
         {
             inventoryPopup? <InventoryPopup setInventoryPopUp={setInventoryPopUp} /> : <p></p>
+        }
+        {
+            deletePopup? 
+                <Popup message={"Are you sure you want to delete your inventory?"} 
+                buttons={deleteButtons}
+                popup={setDeletePopup}
+            /> : <p></p>
         }
 
         
