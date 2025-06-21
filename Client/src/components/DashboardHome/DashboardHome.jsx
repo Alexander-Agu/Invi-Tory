@@ -29,7 +29,6 @@ export default function DashboardHome() {
 
     const fetchData = async () => {
       try {
-        // Execute all requests in parallel
         const [inventoryRes, itemRes, inventoriesRes, recentActivitiesRes] = await Promise.all([
           GetInventoryCountAsync(userId),
           GetItemCountAsync(userId),
@@ -128,7 +127,7 @@ export default function DashboardHome() {
                     recentActivities.map(x => {
                       const {recentActivityId, request, type, name} = x;
 
-                      return <RecentActivity
+                      return <RecentActivity key={recentActivityId}
                         id={recentActivityId}
                         request={type}
                         type={request}

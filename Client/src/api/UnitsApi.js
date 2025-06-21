@@ -14,8 +14,8 @@ export const GetInventoryCountAsync = async (userId) => {
 
 export const GetItemCountAsync = async (userId) => {
     try {
-        const res = await axios.get(`https://localhost:7216/api/Unit/get-all-units/${userId}`);
-        return res.data.length;
+        const res = await axios.get(`https://localhost:7216/api/Unit/get-item-unit/${userId}`);
+        return res.data.itemUnit;
     } catch (error) {
        console.log(error); 
     }
