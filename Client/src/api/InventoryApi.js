@@ -11,3 +11,24 @@ export const GetAllInventoryAsync = async (userId) => {
         console.log(error);
     }
 }
+
+
+// Delete inventory
+export const DeleteInventoryAsync = async (userId, inventoryId) => {
+    try {
+       let res = await axios.delete(`https://localhost:7216/api/Inventory/delete-inventory/${userId}/${inventoryId}`)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// Create Inventory
+export const CreateInventoryAsync = async (userId, body) => {
+    try {
+        const res = await axios.post(`https://localhost:7216/api/Inventory/create-iventory/${userId}`, body)
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -1,10 +1,30 @@
 import React, { useState } from 'react'
 import "./inventoryPopup.css"
 import InputBox from '../../UI/InputBox/InputBox';
+import { CreateInventoryAsync } from '../../api/InventoryApi';
+import { useParams } from 'react-router-dom';
 
 export default function InventoryPopup({setInventoryPopUp}) {
   const [inventoryName, setInventoryName] = useState("");
   const [category, setCategory] = useState("");
+  const { userId } = useParams();
+
+  // Create inventory
+  const CreateInventory = async (userId) => {
+    let body = {
+        "name": inventoryName,
+        "category": category
+    };
+
+    try {
+        const res = await CreateInventoryAsync(userId, body);
+        console.log(res);
+        location.reload();
+        setInventoryPopUp(false)
+    } catch (error) {
+        console.log(error);
+    }
+  }
 
   return (
     <div className="inventory-popup" onClick={()=> setInventoryPopUp(false)}>
@@ -33,7 +53,7 @@ export default function InventoryPopup({setInventoryPopUp}) {
 
             <div className="inventory-buttons">
                 <button style={{"backgroundColor": "white", "color": "black"}} onClick={()=> setInventoryPopUp(false)}>Cancel</button>
-                <button style={{"backgroundColor": "lightgreen", "color": "white"}}>Create</button>
+                <button style={{"backgroundColor": "lightgreen", "color": "white"}} onClick={()=> CreateInventory(userId)}>Create</button>
             </div>
         </div>
     </div>
