@@ -7,6 +7,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import InventoryPopup from '../InventoryPopup/InventoryPopup';
 import { DeleteInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
 import Popup from '../Popup/Popup';
+import { deleteButtons } from '../DashboardHome/DashHomeTools';
 
 
 export default function InventoryHome({}) {
@@ -17,33 +18,6 @@ export default function InventoryHome({}) {
     const {userId} = useParams();
     const [targetInventory, setTargetInventory] = useState(0);
     const [deletePopup, setDeletePopup] = useState(false);
-
-    const deleteButtons = [
-        {
-            "buttonId": 1,
-            "name": "Cancel",
-            "color": "lightgreen",
-            "fontColor": "white",
-            "execute": setInventoryPopUp
-        },
-        {
-            "buttonId": 2,
-            "name": "Delete",
-            "color": "white",
-            "fontColor": "black",
-            "execute": async function  (userId) {
-                try {
-                    console.log(targetInventory);
-                    const res =  await DeleteInventoryAsync(userId, targetInventory);
-                    location.reload();
-                    setInventoryPopUp(false)
-
-                } catch (error) {
-                    console.log(error)
-                }
-            }
-        }
-    ]
 
 
     useEffect(()=>{
@@ -116,7 +90,7 @@ export default function InventoryHome({}) {
             deletePopup? 
                 <Popup message={"Are you sure you want to delete your inventory?"} 
                 inputs={[]}
-                buttons={deleteButtons}
+                buttons={deleteButtons(setDeletePopup, userId, targetInventory)}
                 popup={setDeletePopup}
             /> : <p></p>
         }
