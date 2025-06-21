@@ -7,7 +7,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import InventoryPopup from '../InventoryPopup/InventoryPopup';
 import { DeleteInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
 import Popup from '../Popup/Popup';
-import { deleteButtons } from '../DashboardHome/DashHomeTools';
+import { deleteButtons, updateButtons, updateInputBoxes } from '../DashboardHome/DashHomeTools';
 
 
 export default function InventoryHome({}) {
@@ -18,6 +18,12 @@ export default function InventoryHome({}) {
     const {userId} = useParams();
     const [targetInventory, setTargetInventory] = useState(0);
     const [deletePopup, setDeletePopup] = useState(false);
+    
+    // For the update request
+    const [updatePopup, setUpdatePopup] = useState(false);
+    const [updateBody, setUpdateBody] = useState({});
+    const [updateName, setUpdateName] = useState("");
+    const [updateCategory, setUpdateCategory] = useState("");
 
 
     useEffect(()=>{
@@ -73,6 +79,9 @@ export default function InventoryHome({}) {
                         category={category}
                         itemCount={itemCount}
                         name={name}
+                        setUpdateName={setUpdateName}
+                        setUpdateCategory={setUpdateCategory}
+                        setUpdatePopup={setUpdatePopup}
                         setDeletePopUp={setDeletePopup}
                         setTargetInventory={setTargetInventory}
                     />
@@ -93,6 +102,15 @@ export default function InventoryHome({}) {
                 buttons={deleteButtons(setDeletePopup, userId, targetInventory)}
                 popup={setDeletePopup}
             /> : <p></p>
+        }
+        {
+            updatePopup? <Popup 
+                    message={"Update Inventory"}
+                    inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory)}
+                    buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory})}
+                    popup={setUpdatePopup}
+                />
+            : <p></p>
         }
 
         

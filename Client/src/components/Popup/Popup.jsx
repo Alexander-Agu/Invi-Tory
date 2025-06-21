@@ -1,6 +1,7 @@
 import React from 'react'
 import "./popup.css"
 import { useParams } from 'react-router-dom';
+import InputBox from '../../UI/InputBox/InputBox';
 
 export default function Popup({message, inputs, buttons, popup}) {
   const { userId } = useParams();
@@ -13,7 +14,16 @@ export default function Popup({message, inputs, buttons, popup}) {
             <div className="popup-inputs">
                 {
                     inputs.map(x => {
-                        return <p></p>
+                        const {inputBoxId, title, input, setInput} = x
+                        return <InputBox key={inputBoxId}
+                            title={title}
+                            input={input}
+                            setInput={setInput}
+                            placeHolder={input}
+                            required={false}
+                            checkValid={0}
+                            boxValue={1}
+                        />
                     })
                 }
             </div>

@@ -32,3 +32,13 @@ export const CreateInventoryAsync = async (userId, body) => {
         console.log(error);
     }
 }
+
+
+// Update inventory
+export const UpdateInventoryAsync = async (userId, inventoryId, body) => {
+    try {
+        const res = await axios.put(`https://localhost:7216/api/Inventory/update-inventory/${userId}/${inventoryId}`, body)
+    } catch (error) {
+        console.log(error);
+    }
+}
