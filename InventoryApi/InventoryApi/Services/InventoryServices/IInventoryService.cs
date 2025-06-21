@@ -1,4 +1,5 @@
-﻿using InventoryApi.Models.InventoryTypeDtos;
+﻿using InventoryApi.Models.InventoryDtos;
+using InventoryApi.Models.InventoryTypeDtos;
 
 namespace InventoryApi.Services.InventoryServices
 {
@@ -13,8 +14,11 @@ namespace InventoryApi.Services.InventoryServices
         // Delete all Inventory
         //Task<bool> DeleteAllInventoryAsync(int userId);
 
-        // Update Inventory
+        // Update Inventory name
         Task<bool> UpdateInventoryNameAsync(int userId, int inventoryId, SetInventoryDto request);
+
+        // Update Inventory
+        Task<bool> UpdateInventoryAsync(int userId, int inventoryId, UpdateInventoryDto request);
 
         // Get Inventory
         Task<InventoryDto> GetInventoryAsync(int userId, int inventoryId);

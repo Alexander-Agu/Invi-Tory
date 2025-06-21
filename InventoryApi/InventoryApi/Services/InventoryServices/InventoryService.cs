@@ -2,6 +2,7 @@
 using System.Diagnostics.Metrics;
 using InventoryApi.Entities;
 using InventoryApi.Mappings;
+using InventoryApi.Models.InventoryDtos;
 using InventoryApi.Models.InventoryTypeDtos;
 using InventoryApi.Models.RecentActivityDtos;
 using InventoryApi.Repository;
@@ -87,6 +88,8 @@ namespace InventoryApi.Services.InventoryServices
             return inventory.ToDto();
         }
 
+
+        // Update inventory name
         public async Task<bool> UpdateInventoryNameAsync(int userId, int inventoryId, SetInventoryDto request)
         {
             Inventory? inventory = await context.Inventory.Where(x => x.UserId == userId && x.Id == inventoryId)
@@ -98,6 +101,25 @@ namespace InventoryApi.Services.InventoryServices
             await AddRecentActivity(userId, inventory.Name, "Inventory", "Update");
 
             return true;
+        }
+
+
+        // Update inventory
+        public async Task<bool> UpdateInventoryAsync(int userId, int inventoryId, UpdateInventoryDto request)
+        {
+            Inventory? inventory = await context.Inventory.Where(x => x.UserId == userId && x.Id == inventoryId)
+                .FirstOrDefaultAsync();
+            if (inventory == null) return false;
+
+            inventory.Name = request.Name;
+            inventory.Category = request.Category;
+
+            inventory.Name = request.Name;
+            await context.SaveChangesAsync();
+            await AddRecentActivity(userId, inventory.Name, "Inventory", "Update");
+
+            return true;
+
         }
 
 

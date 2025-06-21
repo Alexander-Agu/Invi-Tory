@@ -1,4 +1,5 @@
 ﻿using InventoryApi.Entities;
+using InventoryApi.Models.InventoryDtos;
 using InventoryApi.Models.InventoryTypeDtos;
 using InventoryApi.Services.InventoryServices;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,16 @@ namespace InventoryApi.Controllers
         public async Task<ActionResult<bool>> UpdateInventoryName(int userId, int inventoryId, [FromBody] SetInventoryDto request)
         {
             bool inventoryUpdated = await inventoryService.UpdateInventoryNameAsync(userId, inventoryId, request);
+            if (!inventoryUpdated) return BadRequest("Inventory not updated");
+
+            return Ok("Inventory Updated");
+        }
+
+
+        [HttpPut("update-inventory/{userId}/{inventoryId}")]
+        public async Task<ActionResult<bool>> UpdateInventory(int userId, int inventoryId, [FromBody] UpdateInventoryDto request)
+        {
+            bool inventoryUpdated = await inventoryService.UpdateInventoryAsync(userId, inventoryId, request);
             if (!inventoryUpdated) return BadRequest("Inventory not updated");
 
             return Ok("Inventory Updated");

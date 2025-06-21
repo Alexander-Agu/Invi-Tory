@@ -1,4 +1,5 @@
 ﻿using InventoryApi.Entities;
+using InventoryApi.Models.InventoryDtos;
 using InventoryApi.Models.InventoryTypeDtos;
 
 namespace InventoryApi.Mappings
@@ -6,6 +7,15 @@ namespace InventoryApi.Mappings
     public static class InventoryMapping
     {
         public static Inventory ToEntity(this CreateInventoryDto request)
+        {
+            return new Inventory
+            {
+                Name = request.Name,
+                Category = request.Category
+            };
+        }
+
+        public static Inventory ToEntity(this UpdateInventoryDto request)
         {
             return new Inventory
             {
