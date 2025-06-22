@@ -4,7 +4,7 @@ import { BsBoxSeam } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
-export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setUpdatePopup, setUpdateName, setUpdateCategory, setUpdateBody, setTargetInventory}) {
+export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setUpdatePopup, setUpdateName, setUpdateCategory, setTargetInventory}) {
   const DeleteButton = () => {
     console.log("Jghkjl")
     setDeletePopUp(true);
@@ -16,7 +16,6 @@ export default function InventoryBox({id, category, name, itemCount, setDeletePo
     setTargetInventory(id);
     setUpdateName(name);
     setUpdateCategory(category);
-    // setUpdateBody({"name": name, "category": category});
   }
 
   return (

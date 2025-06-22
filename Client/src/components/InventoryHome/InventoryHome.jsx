@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./inventoryHome.css";
-import { FaPlus } from "react-icons/fa";
+
 import InventoryBox from '../InventoryBox/InventoryBox';
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
 import { useOutletContext, useParams } from 'react-router-dom';
@@ -8,6 +8,7 @@ import InventoryPopup from '../InventoryPopup/InventoryPopup';
 import { DeleteInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
 import Popup from '../Popup/Popup';
 import { deleteButtons, updateButtons, updateInputBoxes } from '../DashboardHome/DashHomeTools';
+import DashHeader from '../DashHeader/DashHeader';
 
 
 export default function InventoryHome({}) {
@@ -55,20 +56,15 @@ export default function InventoryHome({}) {
         };
     },[userId]);
     
+    
   return (
     <article className="inventory-home">
-
-        <section className='inventory-top-section'>
-            <div className="inventory-intro">
-                <h1>My Inventories</h1>
-                <p>Manage and organize your inventory collections</p>
-            </div>
-
-            <button className='inventory-btn' onClick={()=> setInventoryPopUp(true)}>
-                <FaPlus />
-                <p>Create Inventory</p>
-            </button>
-        </section>
+        <DashHeader 
+            title={"My Inventories"}
+            message={"Manage and organize your inventory collections"}
+            buttonName={"Create Inventory"}
+            execute={setInventoryPopUp}
+        />
 
         <section className='inventory-bottom-section'>
             {
@@ -90,12 +86,15 @@ export default function InventoryHome({}) {
         </section>
 
         {
+            // LOGOUT POPUP
             logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp} /> : <p></p>
         }
         {
+            // ADD INVENTORY POPUP
             inventoryPopup? <InventoryPopup setInventoryPopUp={setInventoryPopUp} /> : <p></p>
         }
         {
+            // DELETE INVENTORY POPUP
             deletePopup? 
                 <Popup message={"Are you sure you want to delete your inventory?"} 
                 inputs={[]}
@@ -104,6 +103,7 @@ export default function InventoryHome({}) {
             /> : <p></p>
         }
         {
+            // UPDATE INVENTORY POPUP
             updatePopup? <Popup 
                     message={"Update Inventory"}
                     inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory)}
@@ -113,7 +113,6 @@ export default function InventoryHome({}) {
             : <p></p>
         }
 
-        
     </article>
   )
 }

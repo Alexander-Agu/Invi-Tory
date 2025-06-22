@@ -3,14 +3,14 @@ import "./dashboardHome.css"
 import DashCard from '../DashCard/DashCard'
 import RecentActivity from '../../UI/RecentActivity/RecentActivity'
 import InventoryStat from '../../UI/InventoryStat/InventoryStat'
-import { FiBox } from "react-icons/fi";
-import { IoIosTimer } from "react-icons/io";
 import NotFound from '../../UI/NotFound/NotFound'
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp'
 import { useOutletContext, useParams } from 'react-router-dom'
 import { GetInventoryCountAsync, GetItemCountAsync } from '../../api/UnitsApi'
 import { GetAllInventoryAsync } from '../../api/InventoryApi'
 import { GetAllUserRecentActivity } from '../../api/RecentActivityApi'
+import DashHeader from '../DashHeader/DashHeader'
+import { dashboardData } from './DashHomeTools'
 
 export default function DashboardHome() {
   const [noInventory, setNoInventory] = useState(true);
@@ -63,6 +63,7 @@ export default function DashboardHome() {
     };
   }, [userId]);
 
+
   if (error) {
     return <div className="error-message">Error: {error}</div>;
   }
@@ -73,35 +74,31 @@ export default function DashboardHome() {
         <h1>LOADING...</h1>
       ) : (
         <>
-          <article className='dash-intro'>
-            <h1>Welcome {name}</h1>
-            <p>Here's what's happening with your inventory today</p>
-          </article>
+          <DashHeader 
+              title={`Welcome ${name}`}
+              message={"Here's what's happening with your inventory today"}
+              buttonName={""}
+              execute={false}
+          />
 
           <article className='dash-sum-stats'>
-            <DashCard 
-              title={"Total Inventory"} 
-              icon={<FiBox style={{color: "#60a5fa", fontSize: "1.2rem"}} />} 
-              total={inventoryCount} 
-              type={"Inventories"} 
-            />
-            <DashCard 
-              title={"Total Items"} 
-              icon={<FiBox style={{color: "red", fontSize: "1.2rem"}} />} 
-              total={itemCount} 
-              type={"Items"} 
-            />
-            <DashCard 
-              title={"Days using app"} 
-              icon={<IoIosTimer style={{color: "pink", fontSize: "1.2rem"}} />} 
-              total={7} 
-              type={"Days"} 
-            />
+            {
+              dashboardData(inventoryCount, itemCount).map(x => {
+                const { title, icon, total, type } = x;
+                return <DashCard 
+                  title={title} 
+                  icon={icon} 
+                  total={total} 
+                  type={type} 
+                />
+              })
+            }
           </article>
 
           <article className='dash-individual-stats'>
             <section className='inventory-stats'>
               <h2>Inventory Breakdown</h2>
+              
               {noInventory ? (
                 <NotFound text={"No Inventory"} />
               ) : (
@@ -119,6 +116,7 @@ export default function DashboardHome() {
 
             <section className='recent-activities'>
               <h2>Recent Activity</h2>
+              
               {noRecentActivity ? (
                 <NotFound text={"No Recent Activity"} />
               ) : (
