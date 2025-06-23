@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Filter Container */
+.filter-container{
+    width: 100%;
+    padding: 2rem;
+
+    color: #9ca3af;
+    font-size: 2rem;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+/* Responsive */
+@media screen and (max-width: 570px) {
+    .filter-container {
+        font-size: 1rem;
+
+        gap: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .filter-container {
+        font-size: 0.8rem;
+
+        gap: 0.5rem;
+    }
+}
+
+/* Category Filter */
+#category-filter{
+    width: 120px;
+    height: 30px;
+
+    outline: none;
+    border: none;
+}
+
+select option{
+    background-color: transparent;
+}
+/* Responsive */
+@media screen and (max-width: 570px) {
+    #category-filter{
+        width: 90px;
+        height: 20px;
+    }
+}
+@media screen and (max-width: 330px) {
+    #category-filter{
+        width: 70px;
+        height: 20px;
+    }
+}

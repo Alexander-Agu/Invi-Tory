@@ -9,6 +9,7 @@ import { DeleteInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryA
 import Popup from '../Popup/Popup';
 import { deleteButtons, updateButtons, updateInputBoxes } from '../DashboardHome/DashHomeTools';
 import DashHeader from '../DashHeader/DashHeader';
+import Filter from '../Filter/Filter';
 
 
 export default function InventoryHome({}) {
@@ -18,6 +19,7 @@ export default function InventoryHome({}) {
     const [inventories, setInventories] = useState([]);
     const {userId} = useParams();
     const [targetInventory, setTargetInventory] = useState(0);
+    const [targetCategory, setTargetCategory] = useState("all");
     const [deletePopup, setDeletePopup] = useState(false);
     
     // For the update request
@@ -26,7 +28,7 @@ export default function InventoryHome({}) {
     const [updateName, setUpdateName] = useState("");
     const [updateCategory, setUpdateCategory] = useState("");
 
-
+    console.log(targetCategory)
     useEffect(()=>{
         let isMounted = true;
 
@@ -65,6 +67,8 @@ export default function InventoryHome({}) {
             buttonName={"Create Inventory"}
             execute={setInventoryPopUp}
         />
+
+        <Filter categories={inventories} targetCategory={setTargetCategory} />
 
         <section className='inventory-bottom-section'>
             {
