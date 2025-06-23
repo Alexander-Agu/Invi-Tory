@@ -1,6 +1,7 @@
 import React from 'react'
 import "./filter.css"
 import { FaFilter } from "react-icons/fa";
+import { GetInventory } from '../../tools/Filter';
 
 export default function Filter({categories, targetCategory, }) {
   return (
@@ -12,10 +13,10 @@ export default function Filter({categories, targetCategory, }) {
         <select name="categories" id="category-filter" onChange={(e)=> targetCategory(e.target.value)}>
           <option value="all">All</option>
           {
-            categories.map(x => {
-              const {inventoryId, category} = x;
+            GetInventory(categories).map(x => {
+              // const [category] = x;
               
-              return <option key={inventoryId} value={category}>{category}</option>
+              return <option key={x} value={x}>{x}</option>
             })
           }
         </select>

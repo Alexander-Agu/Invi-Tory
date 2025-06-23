@@ -42,3 +42,15 @@ export const UpdateInventoryAsync = async (userId, inventoryId, body) => {
         console.log(error);
     }
 }
+
+
+// Filter inventories
+export const FilterInventoryAsync = async (userId, body) => {
+    try {
+        const res = await axios.get(`https://localhost:7216/api/Inventory/filter-inventory/${userId}`, body);
+
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    }
+}

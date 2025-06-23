@@ -5,11 +5,12 @@ import InventoryBox from '../InventoryBox/InventoryBox';
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
 import { useOutletContext, useParams } from 'react-router-dom';
 import InventoryPopup from '../InventoryPopup/InventoryPopup';
-import { DeleteInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
+import { DeleteInventoryAsync, FilterInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
 import Popup from '../Popup/Popup';
 import { deleteButtons, updateButtons, updateInputBoxes } from '../DashboardHome/DashHomeTools';
 import DashHeader from '../DashHeader/DashHeader';
 import Filter from '../Filter/Filter';
+import { FilterInventories } from '../../tools/Filter';
 
 
 export default function InventoryHome({}) {
@@ -17,6 +18,7 @@ export default function InventoryHome({}) {
     const [inventoryPopup, setInventoryPopUp] = useState(false);
     const [inventoryAvailable, setInventoryAvailable] = useState(false);
     const [inventories, setInventories] = useState([]);
+    const [filteredInventory, setFilteredInventory] = useState([]);
     const {userId} = useParams();
     const [targetInventory, setTargetInventory] = useState(0);
     const [targetCategory, setTargetCategory] = useState("all");
@@ -40,6 +42,7 @@ export default function InventoryHome({}) {
 
                 if (isMounted){
                     setInventories(inventoriesRes)
+                    setFilteredInventory(inventoriesRes);
                 }
             } catch (error) {
                 if (isMounted){
@@ -57,6 +60,26 @@ export default function InventoryHome({}) {
             isMounted = false;
         };
     },[userId]);
+
+
+    useEffect(()=> {
+        const filterInventory = async ()=> {
+            try {
+                // const res = await FilterInventoryAsync(userId, {"category": targetCategory})
+                const res = FilterInventories(inventories, targetCategory);
+
+                setFilteredInventory(res);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        if (inventories.length > 0) {
+            filterInventory();
+        }
+
+        // FilterInventory()
+    }, [targetCategory, inventories])
     
     
   return (
@@ -72,7 +95,7 @@ export default function InventoryHome({}) {
 
         <section className='inventory-bottom-section'>
             {
-                inventories.map(x => {
+                filteredInventory.map(x => {
                     const {category, inventoryId, itemCount, name} = x;
                     return <InventoryBox 
                         id={inventoryId}
