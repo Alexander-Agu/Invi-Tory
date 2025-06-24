@@ -19,7 +19,7 @@ export default function InventoryPopup({setInventoryPopUp}) {
     try {
         const res = await CreateInventoryAsync(userId, body);
         console.log(res);
-        location.reload();
+        // location.reload();
         setInventoryPopUp(false)
     } catch (error) {
         console.log(error);

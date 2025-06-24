@@ -47,7 +47,7 @@ export const deleteButtons = (setInventoryPopUp, userId, targetInventory)=> {
             "execute": async function  () {
                 try {
                     const res =  await DeleteInventoryAsync(userId, targetInventory);
-                    location.reload();
+                    // location.reload();
                     setInventoryPopUp(false)
 
                 } catch (error) {

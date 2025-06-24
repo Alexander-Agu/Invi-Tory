@@ -14,10 +14,10 @@ import { FilterInventories } from '../../tools/Filter';
 
 
 export default function InventoryHome({}) {
-    const { logoutPopUp, setLogoutPopUp} = useOutletContext();
+    const { logoutPopUp, setLogoutPopUp, inventories } = useOutletContext();
     const [inventoryPopup, setInventoryPopUp] = useState(false);
     const [inventoryAvailable, setInventoryAvailable] = useState(false);
-    const [inventories, setInventories] = useState([]);
+    
     const [filteredInventory, setFilteredInventory] = useState([]);
     const {userId} = useParams();
     const [targetInventory, setTargetInventory] = useState(0);
@@ -41,7 +41,7 @@ export default function InventoryHome({}) {
                 ]);
 
                 if (isMounted){
-                    setInventories(inventoriesRes)
+                    // setInventories(inventoriesRes)
                     setFilteredInventory(inventoriesRes);
                 }
             } catch (error) {
@@ -91,7 +91,7 @@ export default function InventoryHome({}) {
             execute={setInventoryPopUp}
         />
 
-        <Filter categories={inventories} targetCategory={setTargetCategory} />
+        <Filter inventories={inventories} targetCategory={setTargetCategory} />
 
         <section className='inventory-bottom-section'>
             {
