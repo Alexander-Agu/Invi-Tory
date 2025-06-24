@@ -7,6 +7,7 @@
         public string Tag { get; set; } = string.Empty;
         public decimal Value { get; set; }
         public DateOnly CreatedAt { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+        //public DateOnly ExpiryDate { get; set; }
 
 
         // Relationships

@@ -11,6 +11,7 @@ namespace InventoryApi.Mappings
             {
                 Name = request.Name,
                 Tag = request.Tag,
+                Value = request.Value
             };
         }
 
@@ -23,7 +24,8 @@ namespace InventoryApi.Mappings
                 InventoryId = item.InventoryId,
                 Name = item.Name,
                 Tag = item.Tag,
-
+                Value = item.Value,
+                CreatedAt = item.CreatedAt,
             };
         }
     }

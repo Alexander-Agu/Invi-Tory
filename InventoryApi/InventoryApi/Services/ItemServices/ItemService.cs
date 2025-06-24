@@ -15,6 +15,8 @@ namespace InventoryApi.Services.ItemServices
             // Check if inventory exists
             if (!await CheckInventory(userId, inventoryId)) return null;
 
+            //if (request.ExpiryDate)
+
             Item item = request.ToEntity();
             item.InventoryId = inventoryId;
             item.UserId = userId;
@@ -24,7 +26,15 @@ namespace InventoryApi.Services.ItemServices
             await AddItemUnit(userId, inventoryId);
             await AddRecentActivity(userId, item.Name, "Item", "Create");
 
-            return item.ToDto();
+            Inventory? inventory = await context.Inventory.Where(x => x.Id == item.InventoryId && x.UserId == item.UserId)
+                .FirstOrDefaultAsync();
+            if (inventory is null) return null;
+
+            ItemDto itemDto = item.ToDto();
+            itemDto.InventoryName = inventory.Name;
+            itemDto.InventoryCategory = inventory.Category;
+
+            return itemDto;
         }
 
 
@@ -48,7 +58,31 @@ namespace InventoryApi.Services.ItemServices
 
 
         // Gets all user item
-        public async Task<List<ItemDto>> GetAllItemsAsync(int userId, int inventoryId)
+        public async Task<List<ItemDto>> GetAllItemsAsync(int userId)
+        {
+            List<ItemDto> items = await context.Items.Where(i => i.UserId == userId)
+                .Select(item => new ItemDto
+                {
+                    InventoryId = item.InventoryId,
+                    ItemId = item.Id,
+                    Name = item.Name,
+                    Tag = item.Tag
+                }).ToListAsync();
+
+
+            foreach (var item in items)
+            {
+                Inventory? inventory = await context.Inventory.Where(x => x.Id == item.InventoryId)
+                    .FirstOrDefaultAsync();
+                item.InventoryName = inventory.Name;
+                item.InventoryCategory = inventory.Category;
+            }
+
+            return items;
+        }
+
+
+        public async Task<List<ItemDto>> GetAllInventoryItemsAsync(int userId, int inventoryId)
         {
             if (!await CheckInventory(userId, inventoryId)) return null;
 
@@ -61,6 +95,16 @@ namespace InventoryApi.Services.ItemServices
                     Tag = item.Tag
                 }).ToListAsync();
 
+
+            foreach (var item in items)
+            {
+                Inventory? inventory = await context.Inventory.Where(x => x.Id == item.InventoryId)
+                    .FirstOrDefaultAsync();
+
+                item.InventoryName = inventory.Name;
+                item.InventoryCategory = inventory.Category;
+            }
+
             return items;
         }
 
@@ -69,8 +113,17 @@ namespace InventoryApi.Services.ItemServices
         public async Task<ItemDto> GetItemAsync(int userId, int inventoryId, int itemId)
         {
             Item? item = await GetItem(userId, inventoryId, itemId);
+            if (item is null) return null;
 
-            return item is null? null : item.ToDto();
+            Inventory? inventory = await context.Inventory.Where(x => x.Id == item.InventoryId && x.UserId == item.UserId)
+                .FirstOrDefaultAsync();
+            if (inventory is null) return null;
+
+            ItemDto itemDto = item.ToDto();
+            itemDto.InventoryName = inventory.Name;
+            itemDto.InventoryCategory = inventory.Category;
+
+            return itemDto;
         }
 
 
