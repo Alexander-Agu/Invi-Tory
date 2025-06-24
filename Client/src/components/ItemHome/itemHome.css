@@ -1,0 +1,28 @@
+
+
+
+/* Item home container */
+.item-home {
+    width: 85%;
+    min-height: 100dvh;
+
+    background-color: #111827;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Responsive */
+@media screen and (max-width: 1300px) {
+    .item-home {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .item-home {
+        width: 100%;
+    }
+}
