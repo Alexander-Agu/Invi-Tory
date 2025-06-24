@@ -13,9 +13,9 @@ export const sidebarLinks = [
         name: "Inventory",
         icon: <RiBox2Line className='dash-link-icon' />
     },
-    // {
-    //     path: "#",
-    //     name: "Items",
-    //     icon: <RiDropboxLine className='dash-link-icon' />
-    // },
+    {
+        path: "items",
+        name: "Items",
+        icon: <RiDropboxLine className='dash-link-icon' />
+    },
 ]

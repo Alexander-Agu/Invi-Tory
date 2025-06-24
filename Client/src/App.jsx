@@ -7,6 +7,7 @@ import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DashboardHome from './components/DashboardHome/DashboardHome';
 import InventoryHome from './components/InventoryHome/InventoryHome';
+import ItemHome from './components/ItemHome/ItemHome';
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +39,10 @@ function App() {
         {
           path: "/dashboard/:userId/inventory",
           element: <InventoryHome />
+        },
+        {
+          path: "/dashboard/:userId/items",
+          element: <ItemHome />
         }
       ]
     }
