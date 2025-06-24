@@ -10,6 +10,7 @@ namespace InventoryApi.Services.RecentActivityServices
         public async Task<List<RecentActivityDto>> GetAllRecentActivitiesAsync(int userId)
         {
             DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+            List<RecentActivityDto>? reverse = new();
             List<RecentActivityDto>? recentActivities = await context.RecentActivities.Where(x => x.UserId == userId)
                 .Select(activity => new RecentActivityDto
                 {
@@ -25,9 +26,15 @@ namespace InventoryApi.Services.RecentActivityServices
                 recentActivities is null ||
                 !await context.Users.Where(x => x.Id == userId).AnyAsync()
             ) return null;
+            else
+            {
+                foreach(RecentActivityDto activity in recentActivities.Reverse<RecentActivityDto>())
+                {
+                    reverse.Add(activity);
+                }
+            }
 
-
-            return recentActivities;
+            return reverse;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace InventoryApi.Services.InventoryServices
             if (user == null) return null;
 
             // Do not allow user to add an inventory with the same Inventory Name
-            if (await context.Inventory.Where(n => n.Name == request.Name).AnyAsync()) return null;
+            if (await context.Inventory.Where(n => n.Name == request.Name ).AnyAsync()) return null;
 
 
             Inventory inventory = request.ToEntity();
@@ -78,7 +78,7 @@ namespace InventoryApi.Services.InventoryServices
         }
 
 
-        // Get user user Inventory
+        // Get user Inventory
         public async Task<InventoryDto> GetInventoryAsync(int userId, int inventoryId)
         {
             Inventory? inventory = await context.Inventory.Where(x => x.UserId == userId && x.Id == inventoryId)
@@ -120,6 +120,52 @@ namespace InventoryApi.Services.InventoryServices
 
             return true;
 
+        }
+
+
+        // Filter inventory by category
+        public async Task<List<InventoryDto>> FilterInventoryByCategoryAsync(int userId, FilterInventoryDto filter)
+        {
+            if (!await FindUser(userId)) return null;
+
+
+            List<Item> items = await context.Items.Where(x => x.UserId == userId).ToListAsync();
+            List<InventoryDto> inventories;
+
+
+            if (filter.Category.ToLower() == "all")
+            {
+                inventories = await context.Inventory.Where(x => x.UserId == userId)
+                    .Select(inventory => new InventoryDto
+                    {
+                        InventoryId = inventory.Id,
+                        UserId = userId,
+                        Category = inventory.Category,
+                        Name = inventory.Name,
+                        ItemCount = 1
+
+                    }).ToListAsync();
+            } else
+            { // Filter only when neccesary
+                inventories = await context.Inventory.Where(x => x.UserId == userId && x.Category.ToLower() == filter.Category.ToLower())
+                    .Select(inventory => new InventoryDto
+                    {
+                        InventoryId = inventory.Id,
+                        UserId = userId,
+                        Category = inventory.Category,
+                        Name = inventory.Name,
+                        ItemCount = 1
+
+                    }).ToListAsync();
+            }
+
+
+            foreach (var inventory in inventories)
+            {
+                inventory.ItemCount = await context.Items.Where(x => x.UserId == userId && x.InventoryId == inventory.InventoryId).CountAsync();
+            }
+
+            return inventories;
         }
 
 

@@ -65,6 +65,7 @@ namespace InventoryApi.Controllers
         }
 
 
+        // Updating the inventory
         [HttpPut("update-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> UpdateInventory(int userId, int inventoryId, [FromBody] UpdateInventoryDto request)
         {
@@ -72,6 +73,16 @@ namespace InventoryApi.Controllers
             if (!inventoryUpdated) return BadRequest("Inventory not updated");
 
             return Ok("Inventory Updated");
+        }
+
+
+        // Filtering the inventory by category
+        [HttpGet("filter-inventory/{userId}")]
+        public async Task<ActionResult<List<InventoryDto>>> FiilterInventoryByCategory(int userId, [FromBody] FilterInventoryDto request)
+        {
+            List<InventoryDto> inventories = await inventoryService.FilterInventoryByCategoryAsync(userId, request);
+            
+            return inventories;
         }
     }
 }

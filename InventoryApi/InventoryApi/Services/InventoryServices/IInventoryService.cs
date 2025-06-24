@@ -26,6 +26,7 @@ namespace InventoryApi.Services.InventoryServices
         // Get all Inventory
         Task<List<InventoryDto>> GetAllInventoryAsync(int userId);
 
-
+        // Filter inventory
+        Task<List<InventoryDto>> FilterInventoryByCategoryAsync(int userId, FilterInventoryDto filter);
     }
 }
