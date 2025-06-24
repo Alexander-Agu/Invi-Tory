@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import "./itemHome.css"
 import DashHeader from '../DashHeader/DashHeader'
 import FilterItem from '../FilterItem/FilterItem';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import ItemCard from '../ItemCard/ItemCard';
+import { GetAllItemsAsync } from '../../api/ItemApi';
+import { FilterItems } from '../../tools/Filter';
+
 
 export default function ItemHome() {
   // Filtering conditions
@@ -12,23 +15,63 @@ export default function ItemHome() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const { logoutPopUp, setLogoutPopUp, inventories } = useOutletContext();
+  const { userId } = useParams();
   const [loadingItems, setLoadingItems] = useState(true);
 
+  // Fetch data from backend
   useEffect(()=>{
-    let isMounted = false;
+    let isMounted = true;
 
     const FetchData = async ()=> {
       try {
-        // const res = await 
+
+        if (isMounted){
+          const res = await GetAllItemsAsync(userId)
+          console.log(res);
+          setItems(res);
+          setFilteredItems(res);
+        }
+
       } catch (error) {
+
         console.log(error);
+
       } finally{
-        setLoadingItems(false);
+
+        if (isMounted){
+          setLoadingItems(false);
+        }
+
       }
     }
-  },[]);
 
 
+    if (isMounted) FetchData();
+
+
+    return () => {
+      isMounted = false;
+    }
+  },[userId]);
+
+
+  // Filter items
+  useEffect(()=>{
+    const filterItems = async ()=> {
+      try {
+        // const res = await FilterInventoryAsync(userId, {"category": targetCategory})
+        const res = FilterItems(items, targetCategory, targetInventoryName);
+        // console.log(res)
+        setFilteredItems(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    if (items.length > 0) {
+      filterItems();
+    }
+  },[userId, items, targetCategory, targetInventoryName])
 
   return (
     <article className='item-home'>
@@ -42,17 +85,25 @@ export default function ItemHome() {
 
         <FilterItem 
           inventories={inventories} 
-          targetCategory={targetCategory}
-          targetInventoryName={targetInventoryName} 
+          targetCategory={setTargetCategory}
+          targetInventoryName={setTargetInventoryName}
+          category={targetCategory}
         />
 
         <section className='item-bottom'>
-          <ItemCard id={1} name={"Alex"} category={"Money"} inventoryName={"A lot"} createdAt={"2003"}/>
-          <ItemCard id={1} name={"Alex"} category={"Money"} inventoryName={"A lot"} createdAt={"2003"}/>
-          <ItemCard id={1} name={"Alex"} category={"Money"} inventoryName={"A lot"} createdAt={"2003"}/>
-          <ItemCard id={1} name={"Alex"} category={"Money"} inventoryName={"A lot"} createdAt={"2003"}/>
-          <ItemCard id={1} name={"Alex"} category={"Money"} inventoryName={"A lot"} createdAt={"2003"}/>
-          <ItemCard id={1} name={"Alex"} category={"Money"} inventoryName={"A lot"} createdAt={"2003"}/>
+          {
+            filteredItems.map(x => {
+              const { itemId, inventoryId, name, tag, value, createdAt, inventoryCategory, inventoryName } = x;
+
+              return <ItemCard
+                id={itemId}
+                name={name}
+                category={inventoryCategory}
+                inventoryName={inventoryName}
+                createdAt={createdAt}
+              />
+            })
+          }
         </section>
         
     </article>

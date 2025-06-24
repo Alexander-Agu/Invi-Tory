@@ -60,7 +60,7 @@ export default function Dashboard() {
       isMounted = false;
     };
 
-  },[userId, inventories]);
+  },[userId]);
 
   if (dashboardLoad === false){
     return (
