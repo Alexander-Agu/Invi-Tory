@@ -11,7 +11,8 @@ namespace InventoryApi.Mappings
             {
                 Name = request.Name,
                 Tag = request.Tag,
-                Value = request.Value
+                Value = request.Value,
+                CreatedAt = DateOnly.FromDateTime(DateTime.Today)
             };
         }
 

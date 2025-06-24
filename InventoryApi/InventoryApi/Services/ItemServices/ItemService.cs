@@ -66,7 +66,8 @@ namespace InventoryApi.Services.ItemServices
                     InventoryId = item.InventoryId,
                     ItemId = item.Id,
                     Name = item.Name,
-                    Tag = item.Tag
+                    Tag = item.Tag,
+                    CreatedAt = item.CreatedAt,
                 }).ToListAsync();
 
 
