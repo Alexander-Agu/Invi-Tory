@@ -32,6 +32,7 @@ export default function InventoryPopup({setInventoryPopUp}) {
             <h2 className='inventory-popup-h2'>Create your inventory box</h2>
             {/* <p></p> */}
             <InputBox 
+                type={"text"}
                 title={"Inventory Name"}
                 input={inventoryName}
                 setInput={setInventoryName}
@@ -42,6 +43,7 @@ export default function InventoryPopup({setInventoryPopUp}) {
             />
 
             <InputBox 
+                type={"text"}
                 title={"Category Type"}
                 input={category}
                 setInput={setCategory}

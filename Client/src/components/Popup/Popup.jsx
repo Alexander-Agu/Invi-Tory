@@ -14,8 +14,9 @@ export default function Popup({message, inputs, buttons, popup}) {
             <div className="popup-inputs">
                 {
                     inputs.map(x => {
-                        const {inputBoxId, title, input, setInput} = x
+                        const {type, inputBoxId, title, input, setInput} = x
                         return <InputBox key={inputBoxId}
+                            type={type}
                             title={title}
                             input={input}
                             setInput={setInput}

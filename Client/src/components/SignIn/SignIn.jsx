@@ -40,6 +40,7 @@ export default function SignIn() {
         />
 
         <InputBox 
+            type={"text"}
             boxValue={1}
             checkValid={validate}
             title={"Email"}
@@ -48,6 +49,7 @@ export default function SignIn() {
             placeHolder={"doe@gmail.com"}
         />
         <InputBox 
+            type={"password"}
             boxValue={2}
             checkValid={validate}
             title={"Password"}

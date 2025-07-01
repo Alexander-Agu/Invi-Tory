@@ -4,7 +4,7 @@ import { FaStarOfLife } from "react-icons/fa6";
 import Input from '../Input/Input';
 import InputTitle from '../InputTitle/InputTitle';
 
-export default function InputBox({title, input, setInput, placeHolder, checkValid, boxValue, required}) {
+export default function InputBox({type, title, input, setInput, placeHolder, checkValid, boxValue, required}) {
   return (
     <div className="input-box-container">
         <InputTitle 
@@ -13,7 +13,7 @@ export default function InputBox({title, input, setInput, placeHolder, checkVali
         />
 
         <Input 
-          type={"text"}
+          type={type}
           input={input}
           setInput={setInput}
           placeHolder={placeHolder}

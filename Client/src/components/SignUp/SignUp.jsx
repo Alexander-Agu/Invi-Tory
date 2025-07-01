@@ -52,6 +52,7 @@ export default function SignUp() {
         />
         <section className='sign-up-names'>
             <InputBox 
+                type={"text"}
                 required={true}
                 checkValid={checkValid}
                 boxValue={1}
@@ -62,6 +63,7 @@ export default function SignUp() {
             />
 
             <InputBox 
+                type={"text"}
                 required={false}
                 checkValid={checkValid}
                 boxValue={-1}
@@ -74,6 +76,7 @@ export default function SignUp() {
 
         <section className='sign-up-crit-info'>
             <InputBox 
+                type={"text"}
                 required={true}
                 checkValid={checkValid}
                 boxValue={2}
@@ -83,6 +86,7 @@ export default function SignUp() {
                 placeHolder={"ajsdjhb024"}
             />
             <InputBox 
+                type={"text"}
                 required={true}
                 checkValid={checkValid}
                 boxValue={3}
@@ -92,6 +96,7 @@ export default function SignUp() {
                 placeHolder={"doe@gmail.com"}
             />
             <InputBox
+                type={"password"}
                 required={true}
                 checkValid={checkValid}
                 boxValue={4}
@@ -101,6 +106,7 @@ export default function SignUp() {
                 placeHolder={"Create a strong password"}
             />
             <InputBox 
+                type={"password"}
                 required={true}
                 checkValid={checkValid}
                 boxValue={5}

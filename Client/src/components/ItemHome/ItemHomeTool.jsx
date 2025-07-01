@@ -65,12 +65,14 @@ export const updateItemButtons = (setUpdateItemPopUp, userId, targetItemId, targ
 export const updateItemInputBoxes = (name, setName, tag, setTag) => {
     return [
         {
+            "type": "text",
             "inputBoxId": 1,
             "title": "Name",
             "input": name,
             "setInput": setName
         },
         {
+            "type": "text",
             "inputBoxId": 2,
             "title": "Tag",
             "input": tag,

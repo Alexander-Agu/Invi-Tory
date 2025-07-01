@@ -92,12 +92,14 @@ export const updateButtons = (setInventoryPopUp, userId, targetInventory, body)=
 export const updateInputBoxes = (name, setName, category, setCategory) => {
     return [
         {
+            "type": "text",
             "inputBoxId": 1,
             "title": "Name",
             "input": name,
             "setInput": setName
         },
         {
+            "type": "text",
             "inputBoxId": 2,
             "title": "Category",
             "input": category,
