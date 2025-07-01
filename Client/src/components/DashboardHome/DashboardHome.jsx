@@ -82,7 +82,7 @@ export default function DashboardHome() {
             {
               dashboardData(inventoryCount, itemCount).map(x => {
                 const { title, icon, total, type } = x;
-                return <DashCard 
+                return <DashCard key={type}
                   title={title} 
                   icon={icon} 
                   total={total} 

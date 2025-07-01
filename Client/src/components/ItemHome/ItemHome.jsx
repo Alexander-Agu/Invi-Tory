@@ -42,8 +42,7 @@ export default function ItemHome() {
       try {
 
         if (isMounted){
-          const res = await GetAllItemsAsync(userId)
-          console.log(res);
+          const res = await GetAllItemsAsync(userId);
           setItems(res);
           setFilteredItems(res);
         }

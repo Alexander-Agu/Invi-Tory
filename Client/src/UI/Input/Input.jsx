@@ -2,7 +2,8 @@ import React from 'react'
 import "./input.css"
 
 export default function Input({type, input, setInput, placeHolder, requiredInput, inputValue}) {
-    console.log(requiredInput + " " + inputValue)
+
+  
   return <input className='input' 
     type={type} 
     onChange={e => setInput(e.target.value)}

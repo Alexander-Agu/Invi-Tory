@@ -10,6 +10,7 @@ export default function SignIn() {
     const [passcode, setPasscode] = useState("");
     const [validate, setValidate] = useState(0);
     let body = {"email": email, "password": passcode};
+    const [buttonClicked, setButtonClicked] = useState(false);
 
 
     const Login = async (body) => {
@@ -20,6 +21,7 @@ export default function SignIn() {
         if (result === true){
             try {
                 let res = await LoginUserAsync(body);
+                console.log("Clicked")
 
                 localStorage.setItem('user', JSON.stringify(res));
                 window.location = `dashboard/${res.userId}`;

@@ -13,6 +13,7 @@ export default function SignUp() {
     const [passcode, setPasscode] = useState("");
     const [confirm, setConfirm] = useState("");
     const [checkValid, setCheckValid] = useState(0);
+    const [buttonClicked, setButtonClicked] = useState(false);
 
     let body = {
     "firstname": firstname,
@@ -27,20 +28,25 @@ export default function SignUp() {
 
     const RegisterUser = async ()=> {
         let result = ValidateSigningForm(body)
+        let clicked = buttonClicked
         setCheckValid(result);
 
 
-        if (result === true){
-            try {
-                const res = await RegisterUserAsync(body)
+        if (clicked === false){ // Ensuring request is only made once
+            if (result === true){
+                try {
+                    console.log("Clicked!")
+                    const res = await RegisterUserAsync(body)
 
-                localStorage.setItem('user', JSON.stringify(res));
-                window.location = `dashboard/${res.userId}`
-            } catch (error) {
-                console.log(error)
-            }
-        } else if(result === 6) alert("Make a stronger password");
-        else if (result === 7) alert ("Password does not match");
+                    localStorage.setItem('user', JSON.stringify(res));
+                    setButtonClicked(true);
+                    window.location = `dashboard/${res.userId}`
+                } catch (error) {
+                    console.log(error)
+                }
+            } else if(result === 6) alert("Make a stronger password");
+            else if (result === 7) alert ("Password does not match");
+        }
 
     }
 

@@ -7,7 +7,6 @@ export const GetAllUserRecentActivity = async (userId) => {
     try {
         
         const res = await axios.get(`https://localhost:7216/api/RecentActivity/get-recent-activity/${userId}`);
-        console.log(res.data)
         return res.data;
     } catch (error) {
         console.log(error);

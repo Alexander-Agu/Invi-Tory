@@ -5,9 +5,9 @@ import InventoryBox from '../InventoryBox/InventoryBox';
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
 import { useOutletContext, useParams } from 'react-router-dom';
 import InventoryPopup from '../InventoryPopup/InventoryPopup';
-import { DeleteInventoryAsync, FilterInventoryAsync, GetAllInventoryAsync } from '../../api/InventoryApi';
+import { GetAllInventoryAsync } from '../../api/InventoryApi';
 import Popup from '../Popup/Popup';
-import { deleteButtons, updateButtons, updateInputBoxes } from '../DashboardHome/DashHomeTools';
+import { CreateButtons, CreateInputs, deleteButtons, updateButtons, updateInputBoxes } from '../InventoryHome/InvitoryHomeTool';
 import DashHeader from '../DashHeader/DashHeader';
 import Filter from '../Filter/Filter';
 import { FilterInventories } from '../../tools/Filter';
@@ -23,6 +23,10 @@ export default function InventoryHome({}) {
     const [targetInventory, setTargetInventory] = useState(0);
     const [targetCategory, setTargetCategory] = useState("all");
     const [deletePopup, setDeletePopup] = useState(false);
+
+    // Create inventory
+      const [inventoryName, setInventoryName] = useState("");
+      const [category, setCategory] = useState("");
     
     // For the update request
     const [updatePopup, setUpdatePopup] = useState(false);
@@ -30,7 +34,7 @@ export default function InventoryHome({}) {
     const [updateName, setUpdateName] = useState("");
     const [updateCategory, setUpdateCategory] = useState("");
 
-    console.log(targetCategory)
+    
     useEffect(()=>{
         let isMounted = true;
 
@@ -41,7 +45,6 @@ export default function InventoryHome({}) {
                 ]);
 
                 if (isMounted){
-                    // setInventories(inventoriesRes)
                     setFilteredInventory(inventoriesRes);
                 }
             } catch (error) {
@@ -118,7 +121,12 @@ export default function InventoryHome({}) {
         }
         {
             // ADD INVENTORY POPUP
-            inventoryPopup? <InventoryPopup setInventoryPopUp={setInventoryPopUp} /> : <p></p>
+            inventoryPopup? <Popup 
+                message={"Create Inventory"}
+                inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory)}
+                buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category})}
+                popup={setInventoryPopUp}
+            /> : <p></p>
         }
         {
             // DELETE INVENTORY POPUP

@@ -19,7 +19,7 @@ export default function Features() {
                 features.map(x => {
                     const {icon, title, description} = x;
 
-                    return <Card
+                    return <Card key={title}
                         icon={icon}
                         title={title}
                         content={description}

@@ -6,7 +6,6 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 
 export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setUpdatePopup, setUpdateName, setUpdateCategory, setTargetInventory}) {
   const DeleteButton = () => {
-    console.log("Jghkjl")
     setDeletePopUp(true);
     setTargetInventory(id);
   }

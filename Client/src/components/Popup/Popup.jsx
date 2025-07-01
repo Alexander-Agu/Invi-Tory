@@ -14,13 +14,13 @@ export default function Popup({message, inputs, buttons, popup}) {
             <div className="popup-inputs">
                 {
                     inputs.map(x => {
-                        const {type, inputBoxId, title, input, setInput} = x
+                        const {type, inputBoxId, title, input, setInput, placeHolder} = x
                         return <InputBox key={inputBoxId}
                             type={type}
                             title={title}
                             input={input}
                             setInput={setInput}
-                            placeHolder={input}
+                            placeHolder={placeHolder}
                             required={false}
                             checkValid={0}
                             boxValue={1}

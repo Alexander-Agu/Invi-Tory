@@ -65,7 +65,7 @@ export default function Dashboard() {
   if (dashboardLoad === false){
     return (
       <main className='dashboardContainer'>
-          <Sidebar setLogoutPopUp={setLogoutPopUp} />
+          <Sidebar setLogoutPopUp={setLogoutPopUp} name={name} />
           <Outlet className="sa" context={{ logoutPopUp, setLogoutPopUp, name, inventories, setInventories }} />
       </main>
     )

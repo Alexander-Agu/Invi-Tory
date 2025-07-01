@@ -8,7 +8,7 @@ import { sidebarLinks } from './Links';
 
 
 
-function Sidebar({setLogoutPopUp}) {
+function Sidebar({setLogoutPopUp, name}) {
   return <>
   <input type="checkbox" style={{display: "none"}} id='sidebar' />
     <section className='sidebarContainer'>
@@ -30,7 +30,7 @@ function Sidebar({setLogoutPopUp}) {
         </nav>
 
         <div className="sidebarFooter">
-            <AccountNav name={"Alexander"} link={"#"} />
+            <AccountNav name={name} link={"#"} />
             <button className='logoutButton' onClick={()=> setLogoutPopUp(true)}>
                 <BiLogOut />
                 <p>Logout</p>
