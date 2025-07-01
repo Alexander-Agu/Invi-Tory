@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.input-title{
+    color: white;
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+@media screen and (max-width: 400px) {
+    .input-box-container h2 {
+        font-size: 0.6rem;
+    }
+}
