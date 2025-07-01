@@ -1,5 +1,6 @@
 ﻿using InventoryApi.Models.ItemDtos;
 using InventoryApi.Services.ItemServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApi.Controllers
@@ -9,6 +10,7 @@ namespace InventoryApi.Controllers
     public class ItemController(IItemService itemService) : Controller
     {
         // Creates user item
+        [Authorize]
         [HttpPost("create-item/{userId}/{inventoryId}")]
         public async Task<ActionResult<ItemDto>> CreateItem(int userId, int inventoryId, [FromBody] CreateItemDto request)
         {
@@ -20,6 +22,7 @@ namespace InventoryApi.Controllers
 
 
         // Delete Item
+        [Authorize]
         [HttpDelete("delete-item/{userId}/{inventoryId}/{itemId}")]
         public async Task<ActionResult<bool>> DeleteItem(int userId, int inventoryId, int itemId)
         {
@@ -31,6 +34,7 @@ namespace InventoryApi.Controllers
 
 
         // Get all user Items
+        [Authorize]
         [HttpGet("get-all-items/{userId}")]
         public async Task<ActionResult<List<ItemDto>>> GetAllItems(int userId)
         {
@@ -42,6 +46,7 @@ namespace InventoryApi.Controllers
 
 
         // Get all inventory Items
+        [Authorize]
         [HttpGet("get-all-inventory-items/{userId}/{inventoryId}")]
         public async Task<ActionResult<List<ItemDto>>> GetAllInventoryItems(int userId, int inventoryId)
         {
@@ -53,6 +58,7 @@ namespace InventoryApi.Controllers
 
 
         // Get user item
+        [Authorize]
         [HttpGet("get-item/{userId}/{inventoryId}/{itemId}")]
         public async Task<ActionResult<ItemDto>> GetItem(int userId, int inventoryId, int itemId)
         {
@@ -64,6 +70,7 @@ namespace InventoryApi.Controllers
 
 
         // Update item
+        [Authorize]
         [HttpPut("update-item/{userId}/{inventoryId}/{itemId}")]
         public async Task<ActionResult<bool>> UpdateItem(int userId, int inventoryId, int itemId, [FromBody] SetItemDto request)
         {

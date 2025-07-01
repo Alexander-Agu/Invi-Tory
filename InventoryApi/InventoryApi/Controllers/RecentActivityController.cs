@@ -1,5 +1,6 @@
 ﻿using InventoryApi.Models.RecentActivityDtos;
 using InventoryApi.Services.RecentActivityServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApi.Controllers
@@ -9,6 +10,7 @@ namespace InventoryApi.Controllers
     public class RecentActivityController(IRecentActivityService recentActivity) : Controller
     {
         // Return all user recent activity
+        [Authorize]
         [HttpGet("get-recent-activity/{userId}")]
         public async Task<ActionResult<List<RecentActivityDto>>> GetAllRecentActivities(int userId)
         {

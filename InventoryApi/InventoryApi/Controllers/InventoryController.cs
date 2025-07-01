@@ -2,6 +2,7 @@
 using InventoryApi.Models.InventoryDtos;
 using InventoryApi.Models.InventoryTypeDtos;
 using InventoryApi.Services.InventoryServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApi.Controllers
@@ -11,6 +12,7 @@ namespace InventoryApi.Controllers
     public class InventoryController(IInventoryService inventoryService) : Controller
     {
         // Creates user inventory
+        [Authorize]
         [HttpPost("create-iventory/{userId}")]
         public async Task<ActionResult<InventoryDto>> CreateInventory(int userId, [FromBody] CreateInventoryDto request)
         {
@@ -22,6 +24,7 @@ namespace InventoryApi.Controllers
 
 
         // Delete user inventory
+        [Authorize]
         [HttpDelete("delete-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> DeleteInventory(int userId, int inventoryId)
         {
@@ -34,6 +37,7 @@ namespace InventoryApi.Controllers
 
 
         // Get all user inventory
+        [Authorize]
         [HttpGet("get-inventory/{userId}")]
         public async Task<ActionResult<List<InventoryDto>>> GetAllInventory(int userId)
         {
@@ -44,6 +48,7 @@ namespace InventoryApi.Controllers
 
 
         // Get user inventory
+        [Authorize]
         [HttpGet("get-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<InventoryDto>> GetInventory(int userId, int inventoryId)
         {
@@ -55,6 +60,7 @@ namespace InventoryApi.Controllers
 
 
         // Update inventory name
+        [Authorize]
         [HttpPut("update-inventory-name/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> UpdateInventoryName(int userId, int inventoryId, [FromBody] SetInventoryDto request)
         {
@@ -66,6 +72,7 @@ namespace InventoryApi.Controllers
 
 
         // Updating the inventory
+        [Authorize]
         [HttpPut("update-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> UpdateInventory(int userId, int inventoryId, [FromBody] UpdateInventoryDto request)
         {
@@ -77,6 +84,7 @@ namespace InventoryApi.Controllers
 
 
         // Filtering the inventory by category
+        [Authorize]
         [HttpGet("filter-inventory/{userId}")]
         public async Task<ActionResult<List<InventoryDto>>> FiilterInventoryByCategory(int userId, [FromBody] FilterInventoryDto request)
         {

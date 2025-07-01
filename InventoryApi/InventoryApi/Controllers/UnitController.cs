@@ -1,5 +1,6 @@
 ﻿using InventoryApi.Models.UnitDtos;
 using InventoryApi.Services.UnitServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApi.Controllers
@@ -9,6 +10,7 @@ namespace InventoryApi.Controllers
     public class UnitController(IUnitService unitService) : Controller
     {
         // Get a list of all user units
+        [Authorize]
         [HttpGet("get-all-units/{userId}")]
         public async Task<ActionResult<List<UnitDto>>> GetAllUserUnits(int userId)
         {
@@ -20,6 +22,7 @@ namespace InventoryApi.Controllers
 
 
         // Get the sum of inventory units
+        [Authorize]
         [HttpGet("get-inventory-unit/{userId}")]
         public async Task<ActionResult<InventoryUnitDto>> GetAllUserInventoryCountAsync(int userId)
         {
@@ -31,6 +34,7 @@ namespace InventoryApi.Controllers
 
 
         // Get all items the user has across all inventory
+        [Authorize]
         [HttpGet("get-item-unit/{userId}")]
         public async Task<ActionResult<ItemUnitDto>> GetAllUserItemCountAsync(int userId)
         {
@@ -42,6 +46,7 @@ namespace InventoryApi.Controllers
 
 
         // Get unit data
+        [Authorize]
         [HttpGet("get-unit/{userId}/{inventoryId}")]
         public async Task<ActionResult<UnitDto>> GetUnitAsync(int userId, int inventoryId)
         {

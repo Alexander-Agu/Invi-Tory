@@ -1,14 +1,21 @@
-﻿using InventoryApi.Entities;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using InventoryApi.Entities;
 using InventoryApi.Mappings;
 using InventoryApi.Models.UserDtos;
 using InventoryApi.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace InventoryApi.Services.UserServices
 {
-    public class UserService(InvitoryContext context) : IUserService
+    public class UserService(InvitoryContext context, IConfiguration configuration) : IUserService
     {
+
         // Creates user account
         public async Task<UserDto> RegisterUserAsync(CreateUserDto request)
         {
@@ -30,6 +37,9 @@ namespace InventoryApi.Services.UserServices
 
             await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
+
+            user.Token = CreateUserToken(user);
+            await CreateAndSaveUserRefreshToken(user);
             
             return user.ToDto();
         }
@@ -44,6 +54,9 @@ namespace InventoryApi.Services.UserServices
 
             // If password is wrong
             if (!ValidatePasswordLogin(user, request.Password)) return null;
+
+            user.Token = CreateUserToken(user);
+            await CreateAndSaveUserRefreshToken(user);
 
             return user.ToDto();
         }
@@ -206,5 +219,70 @@ namespace InventoryApi.Services.UserServices
             if (new PasswordHasher<User>().VerifyHashedPassword(user, user.HashedPassword, password) == PasswordVerificationResult.Failed) return false;
             return true;
         }
+
+
+        // Create user token  
+        public string CreateUserToken(User user)
+        {
+            // User info  
+            var claims = new List<Claim> {
+                   new Claim(ClaimTypes.Name, user.Firstname),
+                   new Claim(ClaimTypes.NameIdentifier, user.Id + "")
+               };
+
+            // Signing key  
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(configuration.GetValue<string>("AppSettings:Token")!)
+            );
+
+            // Signing credentials  
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+
+            // Token description  
+            var tokenDescriptor = new JwtSecurityToken(
+                issuer: configuration.GetValue<string>("AppSettings:Issuer"),
+                audience: configuration.GetValue<string>("AppSettings:Audience"),
+                claims: claims,
+                expires: DateTime.UtcNow.AddDays(3),
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+        }
+
+        // REFRESH TOKENS  
+
+        // Creates a refresh token  
+        public string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
+        }
+
+
+        // Create user refreshToken
+        public async Task<string> CreateAndSaveUserRefreshToken(User user)
+        {
+            string refreshToken = GenerateRefreshToken();
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryDate = DateTime.UtcNow.AddDays(7);
+            await context.SaveChangesAsync();
+
+            return refreshToken;
+        }
+
+
+        // Validate user refresh token
+        public async Task<User?> ValidatUserRefreshTokenAysnc(int userId, string RefreshToken)
+        {
+            var user = await context.Users.FindAsync(userId);
+            if (user == null || user.RefreshToken != RefreshToken || user.RefreshTokenExpiryDate <= DateTime.UtcNow) return null;
+
+            return user;
+
+        }
+
     }
 }

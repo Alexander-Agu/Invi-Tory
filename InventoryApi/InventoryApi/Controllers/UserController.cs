@@ -1,6 +1,7 @@
 ﻿using InventoryApi.Entities;
 using InventoryApi.Models.UserDtos;
 using InventoryApi.Services.UserServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApi.Controllers
@@ -31,7 +32,9 @@ namespace InventoryApi.Controllers
         }
 
 
+        
         // Deletes user account
+        [Authorize]
         [HttpDelete("delete/{userId}")]
         public async Task<ActionResult<bool>> DeleteAccount(int userId)
         {
@@ -44,6 +47,7 @@ namespace InventoryApi.Controllers
 
 
         // Updates basic user information
+        [Authorize]
         [HttpPut("update-basic/{userId}")]
         public async Task<ActionResult<bool>> UpdateBasicInformation(int userId, SetUserInfoDto request)
         {
@@ -55,6 +59,7 @@ namespace InventoryApi.Controllers
 
 
         // Update username
+        [Authorize]
         [HttpPut("update-username/{userId}")]
         public async Task<ActionResult<bool>> UpdateUsername(int userId, UsernameDto request)
         {
@@ -66,6 +71,7 @@ namespace InventoryApi.Controllers
 
 
         // Update email
+        [Authorize]
         [HttpPut("update-email/{userId}")]
         public async Task<ActionResult<bool>> UpdateEmail(int userId, EmailDto request)
         {
@@ -77,6 +83,7 @@ namespace InventoryApi.Controllers
 
 
         // Update password
+        [Authorize]
         [HttpPut("update-password/{userId}")]
         public async Task<ActionResult<bool>> UpdatePassword(int userId, PasswordDto request)
         {
@@ -88,6 +95,7 @@ namespace InventoryApi.Controllers
 
 
         // Get user information
+        [Authorize]
         [HttpGet("get-user/{userId}")]
         public async Task<ActionResult<UserDto>> GetUser(int userId)
         {
