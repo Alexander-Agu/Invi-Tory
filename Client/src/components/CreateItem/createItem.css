@@ -4,7 +4,7 @@
 .createitem-container{
     min-height: 100dvh;
     width: 100%;
-    padding: 1rem;
+    /* padding: 1rem; */
 
     position: fixed;
     right: 0;
@@ -19,11 +19,11 @@
 
     display: grid;
     place-content: center;
-    
 }
 .create-item-app {
     width: 500px;
-    margin: auto;
+    min-height: 400px;
+    /* margin: auto; */
     background-color: #374151;
     /* gray-700 */
     padding: 2rem;

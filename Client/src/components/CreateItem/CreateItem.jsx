@@ -1,53 +1,79 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./createItem.css"
 import InputBox from '../../UI/InputBox/InputBox'
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+import { GetInventoryNamesAndId } from '../../tools/Filter';
+import { CreateItemAsync } from '../../api/ItemApi';
 
 
-export default function CreateItem() {
+export default function CreateItem({setCreateItem}) {
     const [itemName, setItemName] = useState("");
-    const [inventoryName, setInventoryName] = useState("");
+    const [tag, setTag] = useState("");
+    const [value, setValue] = useState();
+    const [expiryDate, setExpiryDate] = useState("yyyy/mm/dd");
+    const [inventoryId, setInventoryId] = useState("");
     const { logoutPopUp, setLogoutPopUp, inventories } = useOutletContext();
+    const { userId } = useParams();
+
+
+    let body = {
+        "name": itemName,
+        "tag": tag,
+        "value": value
+    };
+
+    const CreateItem = async (e)=> { // Creates item
+        try {
+            const res = await CreateItemAsync(userId, inventoryId, body)
+            location.reload();
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
   return (
-    <div className="createitem-container">
+    <div className="createitem-container" onClick={()=> setCreateItem(false)}>
 
-        <div class="create-item-app">
+        <div className="create-item-app" onClick={(e) => e.stopPropagation()}>
             <h2>Add New Item</h2>
             <form>
                 <div>
-                    <label for="name">Item Name *</label>
-                    <input type="text" id="name" placeholder="Enter item name" />
+                    <label htmlFor="name">Item Name *</label>
+                    <input onChange={e => setItemName(e.target.value)} type="text" id="name" placeholder="Enter item name" value={itemName} />
                 </div>
 
                 <div>
-                    <label for="tag">Tag *</label>
-                    <input type="text" id="tag" placeholder="Enter item tag" />
+                    <label htmlFor="tag">Tag</label>
+                    <input onChange={e => setTag(e.target.value)}  type="text" id="tag" placeholder="Enter item tag" value={tag} />
                 </div>
 
                 <div>
-                    <label for="tag">Value</label>
-                    <input type="text" id="tag" placeholder="Enter unit price" />
+                    <label htmlFor="tag">Value</label>
+                    <input onChange={e => setValue(e.target.value)}  type="number" id="tag" placeholder="Enter unit price" value={value} />
                 </div>
 
                 <div>
-                    <label for="inventory">Inventory *</label>
-                    <select id="inventory">
+                    <label htmlFor="inventory">Inventory *</label>
+                    <select id="inventory" onChange={e => setInventoryId(e.target.value)}>
                     <option value="">Select inventory</option>
-                    <option value="Pantry">Pantry</option>
-                    <option value="Freezer">Freezer</option>
-                    <option value="Fridge">Fridge</option>
+                    {
+                        GetInventoryNamesAndId(inventories).map(x => {
+                            const [id, name] = x;
+
+                            return <option key={id} value={id}>{name}</option>
+                        })
+                    }
                     </select>
                 </div>
 
-                <div>
-                    <label for="expiry">Expiry Date (Optional)</label>
-                    <input type="date" id="expiry" />
-                </div>
+                {/* <div>
+                    <label htmlFor="expiry">Expiry Date (Optional)</label>
+                    <input onChange={e => setExpiryDate(e.target.value)}  type="date" id="expiry" value={expiryDate} />
+                </div> */}
 
-                <div class="actions">
-                    <button type="button" class="btn btn-outline">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Item</button>
+                <div className="actions">
+                    <button type="button" className="btn btn-outline" onClick={()=> setCreateItem(false)}>Cancel</button>
+                    <button type="submit" className="btn btn-primary" onClick={(e)=> CreateItem(e)}>Add Item</button>
                 </div>
             </form>
         </div>
