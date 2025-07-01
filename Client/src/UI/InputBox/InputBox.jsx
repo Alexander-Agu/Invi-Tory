@@ -1,21 +1,24 @@
 import React from 'react'
 import "./inputBox.css"
 import { FaStarOfLife } from "react-icons/fa6";
+import Input from '../Input/Input';
+import InputTitle from '../InputTitle/InputTitle';
 
 export default function InputBox({title, input, setInput, placeHolder, checkValid, boxValue, required}) {
   return (
     <div className="input-box-container">
-        <h2>
-            {title} {required? <FaStarOfLife  style={{"color": "red", "fontSize": "5px"}}/> : <p></p>}
-        </h2>
+        <InputTitle 
+          title={title}
+          required={required}
+        />
 
-        <input
-            style={{"border": checkValid === boxValue? "1px solid red": "1px solid #4b5563"}} 
-            className='input-box'
-            type="text" 
-            onChange={e => setInput(e.target.value)} 
-            value={input} 
-            placeholder={placeHolder} 
+        <Input 
+          type={"text"}
+          input={input}
+          setInput={setInput}
+          placeHolder={placeHolder}
+          requiredInput={checkValid}
+          inputValue={boxValue}
         />
     </div>
   )
