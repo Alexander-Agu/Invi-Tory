@@ -1,4 +1,5 @@
-﻿using InventoryApi.Models.ItemDtos;
+﻿using System.Security.Claims;
+using InventoryApi.Models.ItemDtos;
 using InventoryApi.Services.ItemServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,10 @@ namespace InventoryApi.Controllers
         [HttpPost("create-item/{userId}/{inventoryId}")]
         public async Task<ActionResult<ItemDto>> CreateItem(int userId, int inventoryId, [FromBody] CreateItemDto request)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             ItemDto itemDto = await itemService.CreateItemAsync(userId, inventoryId, request);
             if (null == itemDto) return BadRequest("Inventory not fount");
 
@@ -26,6 +31,10 @@ namespace InventoryApi.Controllers
         [HttpDelete("delete-item/{userId}/{inventoryId}/{itemId}")]
         public async Task<ActionResult<bool>> DeleteItem(int userId, int inventoryId, int itemId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             bool itemDeleted = await itemService.DeleteItemAsync(userId, inventoryId, itemId);
             if (!itemDeleted) return BadRequest("Item not found");
 
@@ -38,6 +47,10 @@ namespace InventoryApi.Controllers
         [HttpGet("get-all-items/{userId}")]
         public async Task<ActionResult<List<ItemDto>>> GetAllItems(int userId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             List<ItemDto> items = await itemService.GetAllItemsAsync(userId);
             if (null == items) return BadRequest("Found No Items");
 
@@ -50,6 +63,10 @@ namespace InventoryApi.Controllers
         [HttpGet("get-all-inventory-items/{userId}/{inventoryId}")]
         public async Task<ActionResult<List<ItemDto>>> GetAllInventoryItems(int userId, int inventoryId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             List<ItemDto> items = await itemService.GetAllInventoryItemsAsync(userId, inventoryId);
             if (null == items) return BadRequest("Inventory not found");
 
@@ -62,6 +79,10 @@ namespace InventoryApi.Controllers
         [HttpGet("get-item/{userId}/{inventoryId}/{itemId}")]
         public async Task<ActionResult<ItemDto>> GetItem(int userId, int inventoryId, int itemId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             ItemDto? item = await itemService.GetItemAsync(userId, inventoryId, itemId);
             if (item == null) return BadRequest("Item not fount");
 
@@ -74,6 +95,10 @@ namespace InventoryApi.Controllers
         [HttpPut("update-item/{userId}/{inventoryId}/{itemId}")]
         public async Task<ActionResult<bool>> UpdateItem(int userId, int inventoryId, int itemId, [FromBody] SetItemDto request)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             bool itemUpdated = await itemService.UpdateItemAsync(userId, inventoryId, itemId, request);
             if (!itemUpdated) return BadRequest("Item not updated");
 

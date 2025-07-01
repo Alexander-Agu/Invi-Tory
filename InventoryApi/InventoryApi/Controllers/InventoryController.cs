@@ -1,4 +1,5 @@
-﻿using InventoryApi.Entities;
+﻿using System.Security.Claims;
+using InventoryApi.Entities;
 using InventoryApi.Models.InventoryDtos;
 using InventoryApi.Models.InventoryTypeDtos;
 using InventoryApi.Services.InventoryServices;
@@ -16,6 +17,10 @@ namespace InventoryApi.Controllers
         [HttpPost("create-iventory/{userId}")]
         public async Task<ActionResult<InventoryDto>> CreateInventory(int userId, [FromBody] CreateInventoryDto request)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             InventoryDto? inventory = await inventoryService.CreateInventoryAsync(userId, request);
             if (inventory == null) return BadRequest("Inventory already exists");
 
@@ -28,6 +33,10 @@ namespace InventoryApi.Controllers
         [HttpDelete("delete-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> DeleteInventory(int userId, int inventoryId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             bool inventoryDeleted = await inventoryService.DeleteInventoryAsync(userId, inventoryId);
 
             if (!inventoryDeleted) return BadRequest("Inventory not found");
@@ -41,6 +50,10 @@ namespace InventoryApi.Controllers
         [HttpGet("get-inventory/{userId}")]
         public async Task<ActionResult<List<InventoryDto>>> GetAllInventory(int userId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             List<InventoryDto>? inventory = await inventoryService.GetAllInventoryAsync(userId);
 
             return Ok(inventory);
@@ -52,6 +65,10 @@ namespace InventoryApi.Controllers
         [HttpGet("get-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<InventoryDto>> GetInventory(int userId, int inventoryId)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             InventoryDto inventory = await inventoryService.GetInventoryAsync(userId,inventoryId);
             if (inventory == null) return BadRequest("Inventory not found");
 
@@ -64,6 +81,10 @@ namespace InventoryApi.Controllers
         [HttpPut("update-inventory-name/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> UpdateInventoryName(int userId, int inventoryId, [FromBody] SetInventoryDto request)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             bool inventoryUpdated = await inventoryService.UpdateInventoryNameAsync(userId, inventoryId, request);
             if (!inventoryUpdated) return BadRequest("Inventory not updated");
 
@@ -76,6 +97,10 @@ namespace InventoryApi.Controllers
         [HttpPut("update-inventory/{userId}/{inventoryId}")]
         public async Task<ActionResult<bool>> UpdateInventory(int userId, int inventoryId, [FromBody] UpdateInventoryDto request)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             bool inventoryUpdated = await inventoryService.UpdateInventoryAsync(userId, inventoryId, request);
             if (!inventoryUpdated) return BadRequest("Inventory not updated");
 
@@ -88,6 +113,10 @@ namespace InventoryApi.Controllers
         [HttpGet("filter-inventory/{userId}")]
         public async Task<ActionResult<List<InventoryDto>>> FiilterInventoryByCategory(int userId, [FromBody] FilterInventoryDto request)
         {
+            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            if (tokenUserId != userId) return Forbid();
+
+
             List<InventoryDto> inventories = await inventoryService.FilterInventoryByCategoryAsync(userId, request);
             
             return inventories;
