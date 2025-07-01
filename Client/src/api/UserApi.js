@@ -1,9 +1,19 @@
 import axios from 'axios';
 
+
+const token = JSON.parse(localStorage.getItem("user")).accessToken;
+
+const api = axios.create({
+    baseURL: "https://localhost:7216/api",
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
 // Creating user account
 export const RegisterUserAsync = async (body)=> {
     try {
-        const response = await axios.post("https://localhost:7216/api/User/register", body);
+        const response = await api.post("/User/register", body);
 
         return await response.data;
     } catch (error) {
@@ -15,7 +25,7 @@ export const RegisterUserAsync = async (body)=> {
 // Log user in
 export const LoginUserAsync = async (body) => {
     try {
-        const res = await axios.post("https://localhost:7216/api/User/login", body);
+        const res = await api.post("/User/login", body);
 
         return await res.data;
     } catch (error) {
@@ -27,7 +37,7 @@ export const LoginUserAsync = async (body) => {
 // Getting user information
 export const FetchUserAsync = async (id) => {
     try {
-        const res = await axios.get(`https://localhost:7216/api/User/get-user/${id}`);
+        const res = await api.get(`/User/get-user/${id}`);
 
         return await res.data;
     } catch (error) {

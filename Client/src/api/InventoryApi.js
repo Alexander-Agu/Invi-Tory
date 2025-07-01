@@ -1,10 +1,18 @@
 import axios from "axios";
 
+const token = JSON.parse(localStorage.getItem("user")).accessToken;
+
+const api = axios.create({
+    baseURL: "https://localhost:7216/api",
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
 
 // Getting all user inventory
 export const GetAllInventoryAsync = async (userId) => {
     try {
-        const res = await axios.get(`https://localhost:7216/api/Inventory/get-inventory/${userId}`);
+        const res = await api.get(`/Inventory/get-inventory/${userId}`);
         return res.data;
     } catch (error) {
         console.log(error);
@@ -15,7 +23,7 @@ export const GetAllInventoryAsync = async (userId) => {
 // Delete inventory
 export const DeleteInventoryAsync = async (userId, inventoryId) => {
     try {
-       let res = await axios.delete(`https://localhost:7216/api/Inventory/delete-inventory/${userId}/${inventoryId}`)
+       let res = await api.delete(`/Inventory/delete-inventory/${userId}/${inventoryId}`)
     } catch (error) {
         console.log(error);
     }
@@ -25,7 +33,7 @@ export const DeleteInventoryAsync = async (userId, inventoryId) => {
 // Create Inventory
 export const CreateInventoryAsync = async (userId, body) => {
     try {
-        const res = await axios.post(`https://localhost:7216/api/Inventory/create-iventory/${userId}`, body)
+        const res = await api.post(`/Inventory/create-iventory/${userId}`, body)
         return res.data;
     } catch (error) {
         console.log(error);
@@ -36,7 +44,7 @@ export const CreateInventoryAsync = async (userId, body) => {
 // Update inventory
 export const UpdateInventoryAsync = async (userId, inventoryId, body) => {
     try {
-        const res = await axios.put(`https://localhost:7216/api/Inventory/update-inventory/${userId}/${inventoryId}`, body)
+        const res = await api.put(`/Inventory/update-inventory/${userId}/${inventoryId}`, body)
     } catch (error) {
         console.log(error);
     }
@@ -46,7 +54,7 @@ export const UpdateInventoryAsync = async (userId, inventoryId, body) => {
 // Filter inventories
 export const FilterInventoryAsync = async (userId, body) => {
     try {
-        const res = await axios.get(`https://localhost:7216/api/Inventory/filter-inventory/${userId}`, body);
+        const res = await api.get(`/Inventory/filter-inventory/${userId}`, body);
 
         return res.data;
     } catch (error) {
