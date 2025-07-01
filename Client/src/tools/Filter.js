@@ -22,7 +22,7 @@ export const GetUniqueInventory = (inventories) => {
 }
 
 
-// Return a list of inventory names
+// Return a list of inventory names based of the category
 export const GetInventoryNames = (inventories, targetInventory) => {
     let inventoryNames = [];
 
@@ -35,6 +35,22 @@ export const GetInventoryNames = (inventories, targetInventory) => {
             if (x.category.toLowerCase() === targetInventory.toLowerCase()) inventoryNames.push(x.name);
         })
     }
+
+    return inventoryNames;
+}
+
+// Return a list of inventory names
+export const GetInventoryNamesAndId = (inventories) => {
+    let inventoryNames = [];
+
+    inventories.map(x => {
+        let inventory = []
+
+        inventory.push(x.inventoryId);
+        inventory.push(x.name);
+
+        inventoryNames.push(inventory)
+    })
 
     return inventoryNames;
 }
