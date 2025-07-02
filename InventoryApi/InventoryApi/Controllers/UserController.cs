@@ -130,5 +130,17 @@ namespace InventoryApi.Controllers
             return Ok(user);
         }
 
+
+        // Get days user been using app
+        [Authorize]
+        [HttpGet("get-days/{userId}")]
+        public async Task<ActionResult<int>> GetDaysUserUsingApp(int userId)
+        {
+            int days = await userService.GetUserDaysUsingAppAsync(userId);
+            if (days == 0) return BadRequest("User not found");
+
+            return Ok(days);
+        }
+
     }
 }

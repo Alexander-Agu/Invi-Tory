@@ -151,7 +151,30 @@ namespace InventoryApi.Services.UserServices
             User? user = await context.Users.FindAsync(userId);
             if (user is null) return null;
 
-            return user.ToGetUserDto();
+
+            GetUserDto getUserDto = user.ToGetUserDto();
+            DateOnly joinedDate = user.CreatedAt;
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.UtcNow);
+
+            int days = currentDate.DayNumber - joinedDate.DayNumber + 1;
+            getUserDto.Days = days;
+
+            return getUserDto;
+        }
+
+
+        // Get user date using the app
+        public async Task<int> GetUserDaysUsingAppAsync(int userId)
+        {
+            User? user = await context.Users.FindAsync(userId);
+            if (user is null) return 0;
+
+            DateOnly joinedDate = user.CreatedAt;
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.UtcNow);
+
+            int days = joinedDate.DayNumber - currentDate.DayNumber;
+
+            return days;
         }
 
 

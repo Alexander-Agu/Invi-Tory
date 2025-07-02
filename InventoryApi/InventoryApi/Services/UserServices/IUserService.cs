@@ -28,5 +28,8 @@ namespace InventoryApi.Services.UserServices
 
         // Get user
         Task<GetUserDto> GetUserAsync(int userId);
+
+        // Get user days of using app
+        Task<int> GetUserDaysUsingAppAsync(int userId);
     }
 }
