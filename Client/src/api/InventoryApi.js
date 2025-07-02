@@ -1,6 +1,15 @@
 import axios from "axios";
 
-const token = JSON.parse(localStorage.getItem("user")).accessToken;
+let getToken;
+try {
+    const userFromStorage = localStorage.getItem("user");
+    getToken = userFromStorage ? JSON.parse(userFromStorage) : null;
+} catch (e) {
+    getToken = null;
+    console.error("Invalid JSON in localStorage 'user':", e);
+}
+
+let token = getToken?.accessToken || "";
 
 const api = axios.create({
     baseURL: "https://localhost:7216/api",

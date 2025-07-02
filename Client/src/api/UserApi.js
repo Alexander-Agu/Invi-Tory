@@ -1,7 +1,19 @@
 import axios from 'axios';
 
+// const getToken = JSON.parse(localStorage.getItem("user"));
 
-const token = JSON.parse(localStorage.getItem("user")).accessToken;
+
+let getToken;
+try {
+    const userFromStorage = localStorage.getItem("user");
+    getToken = userFromStorage ? JSON.parse(userFromStorage) : null;
+} catch (e) {
+    getToken = null;
+    console.error("Invalid JSON in localStorage 'user':", e);
+}
+
+let token = getToken?.accessToken || "";
+
 
 const api = axios.create({
     baseURL: "https://localhost:7216/api",
@@ -13,7 +25,7 @@ const api = axios.create({
 // Creating user account
 export const RegisterUserAsync = async (body)=> {
     try {
-        const response = await api.post("/User/register", body);
+        const response = await axios.post("https://localhost:7216/api/User/register", body);
 
         return await response.data;
     } catch (error) {
@@ -25,7 +37,7 @@ export const RegisterUserAsync = async (body)=> {
 // Log user in
 export const LoginUserAsync = async (body) => {
     try {
-        const res = await api.post("/User/login", body);
+        const res = await axios.post("https://localhost:7216/api/User/login", body);
 
         return await res.data;
     } catch (error) {
