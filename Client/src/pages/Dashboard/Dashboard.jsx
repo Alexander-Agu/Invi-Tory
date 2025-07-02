@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [logoutPopUp, setLogoutPopUp] = useState(false);
   const [dashboardLoad, setDashboardLoad] = useState(true);
   const [name, setName] = useState("");
+  const [days, setDays] = useState(1);
   const { userId } = useParams();
   const [inventories, setInventories] = useState([]);
 
@@ -23,6 +24,7 @@ export default function Dashboard() {
         let res = await FetchUserAsync(userId);
 
         setName(res.firstname);
+        setDays(res.days);
       } catch (error) {
         console.log(error);
       } finally{
@@ -66,7 +68,7 @@ export default function Dashboard() {
     return (
       <main className='dashboardContainer'>
           <Sidebar setLogoutPopUp={setLogoutPopUp} name={name} />
-          <Outlet className="sa" context={{ logoutPopUp, setLogoutPopUp, name, inventories, setInventories }} />
+          <Outlet className="sa" context={{ logoutPopUp, setLogoutPopUp, name, days, inventories, setInventories }} />
       </main>
     )
   } else{

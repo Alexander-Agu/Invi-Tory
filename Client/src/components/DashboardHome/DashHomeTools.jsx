@@ -4,7 +4,7 @@ import { IoIosTimer } from "react-icons/io";
 
 
 // Dashboard card data
-export const dashboardData = (inventoryCount, itemCount) => {
+export const dashboardData = (inventoryCount, itemCount, days) => {
     return [
         {
             "title": "Total Inventory",
@@ -21,7 +21,7 @@ export const dashboardData = (inventoryCount, itemCount) => {
         {
             "title": "Days using app",
             "icon": <IoIosTimer style={{color: "pink", fontSize: "1.2rem"}} />,
-            "total": 1,
+            "total": days,
             "type": "Days"
         },
     ]

@@ -32,16 +32,17 @@ export default function SignUp() {
         setCheckValid(result);
 
 
-        if (clicked === false){ // Ensuring request is only made once
+        if (clicked === false || buttonClicked === false){ // Ensuring request is only made once
             if (result === true){
+                setButtonClicked(true);
                 try {
                     console.log("Clicked!")
                     const res = await RegisterUserAsync(body)
 
                     localStorage.setItem('user', JSON.stringify(res));
-                    setButtonClicked(true);
                     window.location = `dashboard/${res.userId}`
                 } catch (error) {
+                    setButtonClicked(false);
                     console.log(error)
                 }
             } else if(result === 6) alert("Make a stronger password");

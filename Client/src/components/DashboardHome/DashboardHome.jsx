@@ -15,7 +15,7 @@ import { dashboardData } from './DashHomeTools'
 export default function DashboardHome() {
   const [noInventory, setNoInventory] = useState(true);
   const [noRecentActivity, setNoRecentActivity] = useState(false);
-  const { logoutPopUp, setLogoutPopUp, name, inventories } = useOutletContext();
+  const { logoutPopUp, setLogoutPopUp, name, days, inventories } = useOutletContext();
   const [inventoryCount, setInventoryCount] = useState(0);
   const [itemCount, setItemCount] = useState(0);
   const [recentActivities, setRecentActivities] = useState([]);
@@ -80,7 +80,7 @@ export default function DashboardHome() {
 
           <article className='dash-sum-stats'>
             {
-              dashboardData(inventoryCount, itemCount).map(x => {
+              dashboardData(inventoryCount, itemCount, days).map(x => {
                 const { title, icon, total, type } = x;
                 return <DashCard key={type}
                   title={title} 
