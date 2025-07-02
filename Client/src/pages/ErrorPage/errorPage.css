@@ -83,7 +83,8 @@
     justify-content: center;
     gap: 1.5rem;
 }
-.errorApp a{
+.errorFooter button,
+.errorFooter a{
     width: 140px;
     height: 50px;
 
@@ -121,7 +122,8 @@
 }
 /* Responsive */
 @media screen and (max-width: 540px) {
-    .errorFooter a{
+    .errorFooter a,
+    .errorFooter button{
         width: 100px;
         height: 40px;
 

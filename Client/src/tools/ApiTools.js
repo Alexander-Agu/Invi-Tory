@@ -12,3 +12,18 @@ export const GetToken = () => {
 
     return token
 }
+
+export const GetUserId = () => {
+    let getToken;
+    try {
+        const userFromStorage = localStorage.getItem("user");
+        getToken = userFromStorage ? JSON.parse(userFromStorage) : null;
+    } catch (e) {
+        getToken = null;
+        console.error("Invalid JSON in localStorage 'user':", e);
+    }
+
+    let token = getToken?.userId || "";
+
+    return token
+}

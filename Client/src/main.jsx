@@ -8,6 +8,6 @@ import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ErrorPage />
+    <App />
   </StrictMode>
 )

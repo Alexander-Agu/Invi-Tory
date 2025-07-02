@@ -8,13 +8,19 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import DashboardHome from './components/DashboardHome/DashboardHome';
 import InventoryHome from './components/InventoryHome/InventoryHome';
 import ItemHome from './components/ItemHome/ItemHome';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 function App() {
   const router = createBrowserRouter([
     {
     path: "/",
     element: <Home />,
-    
+    errorElement: <ErrorPage 
+        // link={"/"}
+        title={"Page Not Found"}
+        message={"Sorry, the page you're looking for doesn't exist. It might have been moved, deleted, or the URL was typed incorrectly."}
+        type={"404"}
+      />
     },
     {
       path: "/register",
@@ -44,7 +50,13 @@ function App() {
           path: "/dashboard/:userId/items",
           element: <ItemHome />
         }
-      ]
+      ],
+      errorElement: <ErrorPage 
+        // link={"/dashboard/:userId"}
+        title={"Page Not Found"}
+        message={"Sorry, the page you're looking for doesn't exist. It might have been moved, deleted, or the URL was typed incorrectly."}
+        type={"404"}
+      />
     }
 ]);
 
