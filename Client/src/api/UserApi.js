@@ -1,18 +1,8 @@
 import axios from 'axios';
+import { GetToken } from '../tools/ApiTools';
 
-// const getToken = JSON.parse(localStorage.getItem("user"));
 
-
-let getToken;
-try {
-    const userFromStorage = localStorage.getItem("user");
-    getToken = userFromStorage ? JSON.parse(userFromStorage) : null;
-} catch (e) {
-    getToken = null;
-    console.error("Invalid JSON in localStorage 'user':", e);
-}
-
-let token = getToken?.accessToken || "";
+let token = GetToken();
 
 
 const api = axios.create({

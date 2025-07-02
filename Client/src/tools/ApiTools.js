@@ -1,4 +1,4 @@
-const GetToken = () => {
+export const GetToken = () => {
     let getToken;
     try {
         const userFromStorage = localStorage.getItem("user");
