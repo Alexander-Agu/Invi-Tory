@@ -11,12 +11,14 @@ import { CreateButtons, CreateInputs, deleteButtons, updateButtons, updateInputB
 import DashHeader from '../DashHeader/DashHeader';
 import Filter from '../Filter/Filter';
 import { FilterInventories } from '../../tools/Filter';
+import LoadScreen from '../../pages/LoadScreen/LoadScreen';
 
 
 export default function InventoryHome({}) {
     const { logoutPopUp, setLogoutPopUp, inventories } = useOutletContext();
     const [inventoryPopup, setInventoryPopUp] = useState(false);
     const [inventoryAvailable, setInventoryAvailable] = useState(false);
+    const [load,setLoad] = useState(true);
     
     const [filteredInventory, setFilteredInventory] = useState([]);
     const {userId} = useParams();
@@ -53,7 +55,7 @@ export default function InventoryHome({}) {
                 }
             } finally{
                 if (isMounted){
-
+                    setLoad(false);
                 }
             }
         }
@@ -87,67 +89,71 @@ export default function InventoryHome({}) {
     
   return (
     <article className="inventory-home">
-        <DashHeader 
-            title={"My Inventories"}
-            message={"Manage and organize your inventory collections"}
-            buttonName={"Create Inventory"}
-            execute={setInventoryPopUp}
-        />
-
-        <Filter inventories={inventories} targetCategory={setTargetCategory} />
-
-        <section className='inventory-bottom-section'>
-            {
-                filteredInventory.map(x => {
-                    const {category, inventoryId, itemCount, name} = x;
-                    return <InventoryBox 
-                        id={inventoryId}
-                        category={category}
-                        itemCount={itemCount}
-                        name={name}
-                        setUpdateName={setUpdateName}
-                        setUpdateCategory={setUpdateCategory}
-                        setUpdatePopup={setUpdatePopup}
-                        setDeletePopUp={setDeletePopup}
-                        setTargetInventory={setTargetInventory}
-                    />
-                })
-            }
-        </section>
-
         {
-            // LOGOUT POPUP
-            logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp} /> : <p></p>
-        }
-        {
-            // ADD INVENTORY POPUP
-            inventoryPopup? <Popup 
-                message={"Create Inventory"}
-                inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory)}
-                buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category})}
-                popup={setInventoryPopUp}
-            /> : <p></p>
-        }
-        {
-            // DELETE INVENTORY POPUP
-            deletePopup? 
-                <Popup message={"Are you sure you want to delete your inventory?"} 
-                inputs={[]}
-                buttons={deleteButtons(setDeletePopup, userId, targetInventory)}
-                popup={setDeletePopup}
-            /> : <p></p>
-        }
-        {
-            // UPDATE INVENTORY POPUP
-            updatePopup? <Popup 
-                    message={"Update Inventory"}
-                    inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory)}
-                    buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory})}
-                    popup={setUpdatePopup}
+            load? <LoadScreen /> :
+            <>
+                <DashHeader 
+                    title={"My Inventories"}
+                    message={"Manage and organize your inventory collections"}
+                    buttonName={"Create Inventory"}
+                    execute={setInventoryPopUp}
                 />
-            : <p></p>
-        }
 
+                <Filter inventories={inventories} targetCategory={setTargetCategory} />
+
+                <section className='inventory-bottom-section'>
+                    {
+                        filteredInventory.map(x => {
+                            const {category, inventoryId, itemCount, name} = x;
+                            return <InventoryBox 
+                                id={inventoryId}
+                                category={category}
+                                itemCount={itemCount}
+                                name={name}
+                                setUpdateName={setUpdateName}
+                                setUpdateCategory={setUpdateCategory}
+                                setUpdatePopup={setUpdatePopup}
+                                setDeletePopUp={setDeletePopup}
+                                setTargetInventory={setTargetInventory}
+                            />
+                        })
+                    }
+                </section>
+
+                {
+                    // LOGOUT POPUP
+                    logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp} /> : <p></p>
+                }
+                {
+                    // ADD INVENTORY POPUP
+                    inventoryPopup? <Popup 
+                        message={"Create Inventory"}
+                        inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory)}
+                        buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category})}
+                        popup={setInventoryPopUp}
+                    /> : <p></p>
+                }
+                {
+                    // DELETE INVENTORY POPUP
+                    deletePopup? 
+                        <Popup message={"Are you sure you want to delete your inventory?"} 
+                        inputs={[]}
+                        buttons={deleteButtons(setDeletePopup, userId, targetInventory)}
+                        popup={setDeletePopup}
+                    /> : <p></p>
+                }
+                {
+                    // UPDATE INVENTORY POPUP
+                    updatePopup? <Popup 
+                            message={"Update Inventory"}
+                            inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory)}
+                            buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory})}
+                            popup={setUpdatePopup}
+                        />
+                    : <p></p>
+                }
+            </>
+        }
     </article>
   )
 }

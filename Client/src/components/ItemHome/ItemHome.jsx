@@ -10,6 +10,7 @@ import CreateItem from '../CreateItem/CreateItem';
 import LogoutPopUp from '../LogoutPopUp/LogoutPopUp';
 import Popup from '../Popup/Popup';
 import { deleteItemButtons, updateItemButtons, updateItemInputBoxes } from './ItemHomeTool';
+import LoadScreen from '../../pages/LoadScreen/LoadScreen';
 
 
 export default function ItemHome() {
@@ -89,72 +90,77 @@ export default function ItemHome() {
 
   return (
     <article className='item-home'>
-        <DashHeader 
-            title={"My Items"}
-            message={"Manage all your inventory items"}
-            buttonName={"Create Item"}
-            execute={setCreateItemPopup}
-        />
+      {
+        loadingItems? <LoadScreen /> :
+        <>
+          <DashHeader 
+              title={"My Items"}
+              message={"Manage all your inventory items"}
+              buttonName={"Create Item"}
+              execute={setCreateItemPopup}
+          />
 
 
-        <FilterItem 
-          inventories={inventories} 
-          targetCategory={setTargetCategory}
-          targetInventoryName={setTargetInventoryName}
-          category={targetCategory}
-        />
+          <FilterItem 
+            inventories={inventories} 
+            targetCategory={setTargetCategory}
+            targetInventoryName={setTargetInventoryName}
+            category={targetCategory}
+          />
 
-        <section className='item-bottom'>
+          <section className='item-bottom'>
+            {
+              filteredItems.map(x => {
+                const { itemId, inventoryId, name, tag, value, createdAt, inventoryCategory, inventoryName } = x;
+
+                return <ItemCard
+                  id={itemId}
+                  inventoryId={inventoryId}
+                  name={name}
+                  category={inventoryCategory}
+                  inventoryName={inventoryName}
+                  createdAt={createdAt}
+                  setTargetInventoryId={setTargetInventoryId}
+                  setTargetItemId={setTargetItemId}
+                  setDeleteItemPopup={setDeleteItemPopup}
+                  setUpdatePopup={setUpdatePopup}
+                  setUpdateName={setUpdateName}
+                  setUpdateTag={setUpdateTag}
+                  tag={tag}
+                />
+              })
+            }
+          </section>
+
           {
-            filteredItems.map(x => {
-              const { itemId, inventoryId, name, tag, value, createdAt, inventoryCategory, inventoryName } = x;
-
-              return <ItemCard
-                id={itemId}
-                inventoryId={inventoryId}
-                name={name}
-                category={inventoryCategory}
-                inventoryName={inventoryName}
-                createdAt={createdAt}
-                setTargetInventoryId={setTargetInventoryId}
-                setTargetItemId={setTargetItemId}
-                setDeleteItemPopup={setDeleteItemPopup}
-                setUpdatePopup={setUpdatePopup}
-                setUpdateName={setUpdateName}
-                setUpdateTag={setUpdateTag}
-                tag={tag}
-              />
-            })
+            // LOGOUT POPUP
+            logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp} /> : <p></p>
           }
-        </section>
 
-        {
-          // LOGOUT POPUP
-          logoutPopUp? <LogoutPopUp setLogoutPopUp={setLogoutPopUp} /> : <p></p>
-        }
+          { // CREATE ITEM POPUP
+            createItemPopup? <CreateItem setCreateItem={setCreateItemPopup} />: <p></p>
+          }
 
-        { // CREATE ITEM POPUP
-          createItemPopup? <CreateItem setCreateItem={setCreateItemPopup} />: <p></p>
-        }
-
-        { // DELETE ITEM POPUP
-          deleteItemPopup? 
-            <Popup message={"Are you sure you want to delete your inventory?"} 
-            inputs={[]}
-            buttons={deleteItemButtons(setDeleteItemPopup, userId, targetInventoryId, targetItemId)}
-            popup={setDeleteItemPopup}
-          /> : <p></p>
-        }
-        {
-          // UPDATE INVENTORY POPUP
-          updatePopup? <Popup 
-              message={"Update Item"}
-              inputs={updateItemInputBoxes(updateName, setUpdateName, updateTag, setUpdateTag)}
-              buttons={updateItemButtons(setUpdatePopup, userId, targetItemId, targetInventoryId, {"name": updateName, "tag": updateTag})}
-              popup={setUpdatePopup}
-            />
-          : <p></p>
-        }
+          { // DELETE ITEM POPUP
+            deleteItemPopup? 
+              <Popup message={"Are you sure you want to delete your inventory?"} 
+              inputs={[]}
+              buttons={deleteItemButtons(setDeleteItemPopup, userId, targetInventoryId, targetItemId)}
+              popup={setDeleteItemPopup}
+            /> : <p></p>
+          }
+          {
+            // UPDATE INVENTORY POPUP
+            updatePopup? <Popup 
+                message={"Update Item"}
+                inputs={updateItemInputBoxes(updateName, setUpdateName, updateTag, setUpdateTag)}
+                buttons={updateItemButtons(setUpdatePopup, userId, targetItemId, targetInventoryId, {"name": updateName, "tag": updateTag})}
+                popup={setUpdatePopup}
+              />
+            : <p></p>
+          }
+        </>
+      }
         
     </article>
   )

@@ -11,6 +11,8 @@ import { GetAllInventoryAsync } from '../../api/InventoryApi'
 import { GetAllUserRecentActivity } from '../../api/RecentActivityApi'
 import DashHeader from '../DashHeader/DashHeader'
 import { dashboardData } from './DashHomeTools'
+import ErrorPage from "../../pages/ErrorPage/ErrorPage"
+import LoadScreen from '../../pages/LoadScreen/LoadScreen'
 
 export default function DashboardHome() {
   const [noInventory, setNoInventory] = useState(true);
@@ -62,13 +64,13 @@ export default function DashboardHome() {
 
 
   if (error) {
-    return <div className="error-message">Error: {error}</div>;
+    return <ErrorPage title={"Bad Request"} message={error} type={400}/>;
   }
 
   return (
     <section className='dashboardHome'>
       {dasHomeLoad ? (
-        <h1>LOADING...</h1>
+        <div> <LoadScreen /> </div>
       ) : (
         <>
           <DashHeader 
