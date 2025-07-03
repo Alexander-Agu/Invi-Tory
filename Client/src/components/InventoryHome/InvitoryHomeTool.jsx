@@ -6,14 +6,14 @@ export const deleteButtons = (setInventoryPopUp, userId, targetInventory)=> {
         {
             "buttonId": 1,
             "name": "Cancel",
-            "color": "lightgreen",
-            "fontColor": "white",
+            "color": "white",
+            "fontColor": "black",
             "execute": setInventoryPopUp
         },
         {
             "buttonId": 2,
             "name": "Delete",
-            "color": "white",
+            "color": "red",
             "fontColor": "black",
             "execute": async function  () {
                 try {
@@ -94,7 +94,7 @@ export const CreateButtons = (setInventoryPopUp, userId, body)=> {
         },
         {
             "buttonId": 2,
-            "name": "Update",
+            "name": "Create",
             "color": "#2563eb",
             "fontColor": "white",
             "execute": async function  () {

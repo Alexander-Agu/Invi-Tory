@@ -14,7 +14,7 @@ export default function ErrorPage({type, title, message}) {
         <div className="errorApp">
 
           <div className="errorHeader">
-            <h1>{tp[0]}<span>{tp[1]}</span>{tp[3]}</h1>
+            <h1>{tp[0]}<span>{tp[1]}</span>{tp[2]}</h1>
 
             <h2>{title}</h2>
 

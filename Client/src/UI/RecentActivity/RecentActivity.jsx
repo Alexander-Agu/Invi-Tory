@@ -13,12 +13,12 @@ export default function RecentActivity({id, request, type, name}) {
   
   return (
     <div className="recent-activity" key={id}>
-        <div>
+        {/* <div>
             {icon}
-        </div>
+        </div> */}
         
 
-        <p className='recent-type'>{request}</p>
+        <p className='recent-type'>{`${request}d`}</p>
         <p> {type}</p>
         <p style={{
             color: "#60a5fa"

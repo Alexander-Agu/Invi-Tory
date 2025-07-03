@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./popup.css"
 import { useParams } from 'react-router-dom';
 import InputBox from '../../UI/InputBox/InputBox';
 
 export default function Popup({message, inputs, buttons, popup}) {
   const { userId } = useParams();
+  const [accomodateRedBTN, setAccomodateRedBTN] = useState(false)
 
   return (
     <div className="popup-container" onClick={()=> popup(false)}>
-        <div className="popup-app" onClick={(e) => e.stopPropagation()}>
+        <div className="popup-app" onClick={(e) => e.stopPropagation()} style={{"backgroundColor": inputs.length === 0? "#111827": "#374151"}}>
             <h1 className='popup-message'>{message}</h1>
 
             <div className="popup-inputs">
@@ -36,7 +37,7 @@ export default function Popup({message, inputs, buttons, popup}) {
 
                         buttons.map(x => {
                             const {buttonId, name, color, fontColor, execute} = x;
-
+                            
                             return <button 
                                     key={buttonId} 
                                     onClick={()=> name === "Cancel"? popup(false): execute(userId)}

@@ -8,14 +8,14 @@ export const deleteItemButtons = (setItemPopup, userId, targetInventory, targetI
         {
             "buttonId": 1,
             "name": "Cancel",
-            "color": "lightgreen",
-            "fontColor": "white",
+            "color": "white",
+            "fontColor": "black",
             "execute": setItemPopup
         },
         {
             "buttonId": 2,
             "name": "Delete",
-            "color": "white",
+            "color": "red",
             "fontColor": "black",
             "execute": async function  () {
                 try {

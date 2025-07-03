@@ -8,6 +8,11 @@ import Footer from '../../components/Footer/Footer'
 import "./home.css"
 
 export default function Home() {
+  /* 
+    If localStorage contains previos user data:
+      When user opens is directed to the landing page remove the user data
+  */
+  localStorage.setItem("user", undefined);
   return <>
     <Header />
     <Hero />

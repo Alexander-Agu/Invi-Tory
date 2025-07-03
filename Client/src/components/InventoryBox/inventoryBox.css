@@ -7,8 +7,8 @@
     min-height: 20rem; */
     padding: 1rem;
 
-    background-color: #1f2937;
-    border: 1px solid #374151;
+    background-color: #6b72801c;
+    border: 1px solid #4b5563;
     border-radius: 5px;
     aspect-ratio: 1 / 1;
 
@@ -16,6 +16,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
+} .inventory-box:hover{
+    background-color: #4b556365;
 }
 
 .inventory-icon{
