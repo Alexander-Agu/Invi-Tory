@@ -12,14 +12,6 @@ namespace InventoryApi.Mappings
                 Id = request.Id,
                 UserId = request.UserId,
                 InventoryId = request.InventoryId,
-                UnitsPurchased = request.UnitsPurchased,
-                UnitsRemaining = request.UnitsRemaining,
-                UnitsSold = request.UnitsSold,
-                TotalPurchaceCost = request.TotalPurchaceCost,
-                WeightedAvarage = request.WeightedAvarage,
-                ClosingStock = request.ClosingStock,
-                Period = request.Period,
-                CreatedAt = request.CreatedAt,
             };
         }
     }
