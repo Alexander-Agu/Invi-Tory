@@ -6,6 +6,7 @@ using InventoryApi.Models.InventoryDtos;
 using InventoryApi.Models.InventoryTypeDtos;
 using InventoryApi.Models.RecentActivityDtos;
 using InventoryApi.Repository;
+using InventoryApi.Services.InventoryValuationServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryApi.Services.InventoryServices
@@ -23,6 +24,8 @@ namespace InventoryApi.Services.InventoryServices
             if (await context.Inventory.Where(n => n.Name == request.Name ).AnyAsync()) return null;
 
 
+
+
             Inventory inventory = request.ToEntity();
             inventory.UserId = userId;
 
@@ -30,6 +33,11 @@ namespace InventoryApi.Services.InventoryServices
             await context.SaveChangesAsync();
             await AddUnit(userId, inventory.Id, inventory.Name);
             await AddRecentActivity(userId, inventory.Name, "Inventory", "Create");
+
+            InventoryValuation inventoryValuation = CreateInventoryValuationData(inventory);
+            await context.inventoryValuations.AddAsync(inventoryValuation);
+            await context.SaveChangesAsync();
+
 
             return inventory.ToDto();
         }
@@ -64,7 +72,8 @@ namespace InventoryApi.Services.InventoryServices
                     UserId = userId,
                     Category = inventory.Category,
                     Name = inventory.Name,
-                    ItemCount = 1
+                    ItemCount = 1,
+                    SharedCosts = inventory.SharedCost,
 
                 }).ToListAsync();
 
@@ -107,14 +116,27 @@ namespace InventoryApi.Services.InventoryServices
         // Update inventory
         public async Task<bool> UpdateInventoryAsync(int userId, int inventoryId, UpdateInventoryDto request)
         {
+            // Checking if the inventory exists
             Inventory? inventory = await context.Inventory.Where(x => x.UserId == userId && x.Id == inventoryId)
                 .FirstOrDefaultAsync();
             if (inventory == null) return false;
 
+            // Because InvantoryValuation gets created when inventory gets created it should be found if inventory is also found
+            InventoryValuation? inventoryValuation = await context.inventoryValuations.Where(x => x.UserId == userId && x.InventoryId == inventoryId)
+                .FirstOrDefaultAsync();
+            if (inventoryValuation == null) return false;
+
+
+            // Updat if values are not empty and not the same
             if (!string.IsNullOrEmpty(request.Name)) inventory.Name = request.Name;
             if (!string.IsNullOrEmpty(request.Category)) inventory.Category = request.Category;
+            if (request.SharedCosts != inventory.SharedCost)
+            {
+                inventory.SharedCost = request.SharedCosts;
+                inventoryValuation.SharedCost = request.SharedCosts;
+            };
 
-            inventory.Name = request.Name;
+
             await context.SaveChangesAsync();
             await AddRecentActivity(userId, inventory.Name, "Inventory", "Update");
 
@@ -231,6 +253,20 @@ namespace InventoryApi.Services.InventoryServices
 
             await context.RecentActivities.AddAsync(recentActivity);
             await context.SaveChangesAsync();
+        }
+
+
+        // Create Inventory Valuation data
+        public InventoryValuation CreateInventoryValuationData(Inventory inventory)
+        {
+            return new InventoryValuation
+            {
+                InventoryId = inventory.Id,
+                UserId = inventory.UserId,
+                SharedCost = inventory.SharedCost,
+                CreatedAt = DateOnly.FromDateTime(DateTime.Today),
+                UpdatedDate = DateOnly.FromDateTime(DateTime.Today),
+            };
         }
     }
 }
