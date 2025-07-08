@@ -11,7 +11,8 @@ namespace InventoryApi.Mappings
             return new Inventory
             {
                 Name = request.Name,
-                Category = request.Category
+                Category = request.Category,
+                SharedCost = request.SharedCosts
             };
         }
 
@@ -20,7 +21,8 @@ namespace InventoryApi.Mappings
             return new Inventory
             {
                 Name = request.Name,
-                Category = request.Category
+                Category = request.Category,
+                SharedCost = request.SharedCosts,
             };
         }
 
@@ -31,7 +33,8 @@ namespace InventoryApi.Mappings
                 InventoryId = request.Id,
                 UserId = request.UserId,
                 Name = request.Name,
-                Category = request.Category
+                Category = request.Category,
+                SharedCosts = request.SharedCost
             };
         }
     }
