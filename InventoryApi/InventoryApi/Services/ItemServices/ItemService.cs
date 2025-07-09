@@ -4,6 +4,7 @@ using InventoryApi.Models.ItemDtos;
 using InventoryApi.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace InventoryApi.Services.ItemServices
 {
@@ -15,7 +16,6 @@ namespace InventoryApi.Services.ItemServices
             // Check if inventory exists
             if (!await CheckInventory(userId, inventoryId)) return null;
 
-            //if (request.ExpiryDate)
 
             Item item = request.ToEntity();
             item.InventoryId = inventoryId;
@@ -26,9 +26,15 @@ namespace InventoryApi.Services.ItemServices
             await AddItemUnit(userId, inventoryId);
             await AddRecentActivity(userId, item.Name, "Item", "Create");
 
+            // Check if inventory exists
             Inventory? inventory = await context.Inventory.Where(x => x.Id == item.InventoryId && x.UserId == item.UserId)
                 .FirstOrDefaultAsync();
             if (inventory is null) return null;
+
+
+            // Add item valuation
+            await AddItemValuationCalcAsync(inventory, userId, item);
+
 
             ItemDto itemDto = item.ToDto();
             itemDto.InventoryName = inventory.Name;
@@ -41,11 +47,20 @@ namespace InventoryApi.Services.ItemServices
         // Delete item
         public async Task<bool> DeleteItemAsync(int userId, int inventoryId, int itemId)
         {
+
+
+            // Check if item exists
             Item? item = await context.Items.Where(x => x.Id == itemId && x.UserId == userId && x.InventoryId == inventoryId).FirstOrDefaultAsync();
             if (
                 item is null 
                 ) return false;
 
+            // Check if inventory exists
+            Inventory? inventory = await context.Inventory.Where(x => x.Id == item.InventoryId && x.UserId == item.UserId)
+                .FirstOrDefaultAsync();
+            if (inventory is null) return false;
+
+            await SubtractItemValuationCalcAsync(inventory, userId, item);
             await AddRecentActivity(userId, item.Name, "Item", "Delete");
             await context.Items.Where(u => u.Id == itemId && u.UserId == userId && u.InventoryId == inventoryId)
                 .ExecuteDeleteAsync();
@@ -224,6 +239,82 @@ namespace InventoryApi.Services.ItemServices
 
             await context.RecentActivities.AddAsync(recentActivity);
             await context.SaveChangesAsync();
+        }
+
+
+        // INVENTORY VALUATION CALCULATIONS
+
+
+        // Calculate the weighted avarage
+        public decimal CalculateWeightedAvarage(decimal totalPurchaseCost, decimal SharedCosts, int quintity)
+        {
+            return  Math.Round((totalPurchaseCost + SharedCosts) / quintity, 2);
+        }
+
+        // Calculate closing stock
+        public decimal CalculateClosingStock(decimal WeightedAvarage, int quintity)
+        {
+            return Math.Round(WeightedAvarage * quintity, 2);
+        }
+
+
+        public async Task<bool> AddItemValuationCalcAsync(Inventory inventory, int userId, Item item)
+        {
+            // Check if inventoryValuation exists
+            InventoryValuation? inventoryValuation = await context.inventoryValuations.Where(x => x.UserId == userId && inventory.Id == x.InventoryId)
+                .FirstOrDefaultAsync();
+            if (inventoryValuation is null) return false;
+
+            inventoryValuation.Quintity += 1;
+            inventoryValuation.TotalPurchaceCost += Math.Round(item.Value, 2);
+
+            
+            decimal WeightedAvarage = CalculateWeightedAvarage(inventoryValuation.TotalPurchaceCost, inventoryValuation.SharedCost, inventoryValuation.Quintity);
+            inventoryValuation.WeightedAvarage = Math.Round(WeightedAvarage, 2);
+            inventoryValuation.ClosingStock = Math.Round(WeightedAvarage * inventoryValuation.Quintity, 2);
+
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+
+        //public async Task<bool> UpdateItemValuationCalcAsync(Inventory inventory, int userId, Item item)
+        //{
+        //    // Check if inventoryValuation exists
+        //    InventoryValuation? inventoryValuation = await context.inventoryValuations.Where(x => x.UserId == userId && inventory.Id == x.InventoryId)
+        //        .FirstOrDefaultAsync();
+        //    if (inventoryValuation is null) return false;
+
+        //    inventoryValuation.TotalPurchaceCost -= Math.Round(item.Value, 2);
+
+
+        //    decimal WeightedAvarage = CalculateWeightedAvarage(inventoryValuation.TotalPurchaceCost, inventoryValuation.SharedCost, inventoryValuation.Quintity);
+        //    inventoryValuation.WeightedAvarage = Math.Round(WeightedAvarage, 2);
+        //    inventoryValuation.ClosingStock = Math.Round(WeightedAvarage * inventoryValuation.Quintity, 2);
+
+        //    await context.SaveChangesAsync();
+
+        //    return true;
+        //}
+
+
+        public async Task<bool> SubtractItemValuationCalcAsync(Inventory inventory, int userId, Item item)
+        {
+            // Check if inventoryValuation exists
+            InventoryValuation? inventoryValuation = await context.inventoryValuations.Where(x => x.UserId == userId && inventory.Id == x.InventoryId)
+                .FirstOrDefaultAsync();
+            if (inventoryValuation is null) return false;
+
+            inventoryValuation.Quintity -= 1;
+            inventoryValuation.TotalPurchaceCost -= Math.Round(item.Value, 2);
+
+            inventoryValuation.ClosingStock = Math.Round(CalculateClosingStock(inventoryValuation.WeightedAvarage, inventoryValuation.Quintity), 2);
+
+            await context.SaveChangesAsync();
+
+            return true;
+
         }
     }
 }

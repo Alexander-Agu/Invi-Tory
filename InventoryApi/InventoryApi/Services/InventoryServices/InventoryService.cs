@@ -134,6 +134,9 @@ namespace InventoryApi.Services.InventoryServices
             {
                 inventory.SharedCost = request.SharedCosts;
                 inventoryValuation.SharedCost = request.SharedCosts;
+
+                inventoryValuation.WeightedAvarage = CalculateWeightedAvarage(inventoryValuation.TotalPurchaceCost, inventoryValuation.SharedCost, inventoryValuation.Quintity);
+                inventoryValuation.ClosingStock = inventoryValuation.WeightedAvarage * inventoryValuation.Quintity;
             };
 
 
@@ -267,6 +270,13 @@ namespace InventoryApi.Services.InventoryServices
                 CreatedAt = DateOnly.FromDateTime(DateTime.Today),
                 UpdatedDate = DateOnly.FromDateTime(DateTime.Today),
             };
+        }
+
+
+        // Calculate the weighted avarage
+        public decimal CalculateWeightedAvarage(decimal totalPurchaseCost, decimal SharedCosts, int quintity)
+        {
+            return (totalPurchaseCost + SharedCosts) / quintity;
         }
     }
 }
