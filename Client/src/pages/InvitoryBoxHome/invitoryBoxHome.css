@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+
+/* Invitory box container */
+.invitory-box-home-container{
+    width: 100%;
+    min-height: 100dvh;
+    padding: 2rem;
+
+    background-color: hsl(215, 25%, 12%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* Invitory box app */
+.invitory-box-home-app{
+    width: 1300px;
+}
+
+
+/* Invitory box header */
+.invitory-box-header{
+    width: 100%;
+    height: 100%;
+
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Invitory box nav */
+.invitory-box-nav{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.2rem;
+}
+
+.invi-box-home-link{
+    font-size: 1.2rem;
+    color: hsl(215, 20%, 65%);
+    transition: 200ms;
+}
+.invi-box-home-link:hover{
+    transform: translateX(-10px);
+    color: hsl(213, 94%, 68%);
+    transition: 200ms;
+}
+
+.invi-box-logo{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.9rem;
+}
+
+.invi-box-icon{
+    width: 60px;
+    height: 60px;
+
+    background-color: hsl(213, 94%, 68%);
+    font-size: 2rem;
+    color: white;
+    border-radius: 8px;
+
+    display: grid;
+    place-items: center;
+}
+
+.invi-box-title h2{
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.invi-box-title p{
+    font-size: 1rem;
+    font-weight: 400;
+    color: hsl(215, 20%, 65%);
+}
+
+
+/* Invitory buttons*/
+.invi-box-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+}
+
+.invi-box-buttons button{
+    height: 50px;
+    width: 50px;
+
+    outline: none;
+    border: none;
+    border-radius: 8px;
+
+    background-color: hsla(210, 20%, 80%, 0.315);
+    color: white;
+    font-size: 1.2rem;
+    border: 1px solid hsl(213, 94%, 68%);
+
+    display: grid;
+    place-items: center;
+}
+
+
+/* Invitory box footer */
+.invitory-box-footer{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.invi-box-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.invi-box-left{
+    width: 49%;
+}
+
+.invi-box-right{
+    width: 49%;
+}
