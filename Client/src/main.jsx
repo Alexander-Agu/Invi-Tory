@@ -9,6 +9,6 @@ import InvitoryBoxHome from './pages/InvitoryBoxHome/InvitoryBoxHome.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <InvitoryBoxHome />
   </StrictMode>
 )

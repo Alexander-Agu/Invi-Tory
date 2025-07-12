@@ -1,0 +1,61 @@
+
+
+
+/* Item box container */
+.item-box-container{
+    width: 20rem;
+    min-height: 20rem;
+    padding: 1rem;
+
+    background-color: #1f2937;
+    border: 1px solid #374151;
+}
+
+
+/* Item box header */
+.item-box-header{
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-box-icon{
+    width: 40px;
+    height: 40px;
+    padding: 1rem;
+
+    background-color: #2563eb;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.5rem;
+
+    font-size: 1.2rem;
+    color: white;
+
+    display: grid;
+    place-content: center;
+}
+
+.item-box-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.item-box-buttons button{
+    width: 40px;
+    height: 40x;
+    padding: 0.5rem;
+
+    display: grid;
+    place-items: center;
+
+    border: none;
+    background-color: transparent;
+    outline: none;
+
+    font-size: 1.2rem;
+}

@@ -1,54 +1,54 @@
-import React from 'react'
-import { FaArrowLeft } from "react-icons/fa6";
-import { FiBox } from "react-icons/fi";
-import { useParams } from 'react-router-dom'
-import { FaPenToSquare } from "react-icons/fa6";
-import { FaTrash } from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
+import { FaArrowLeft } from "react-icons/fa";
 import "./invitoryBoxHome.css"
-import BoxDetails from '../../components/BoxDetails/BoxDetails';
+import { HiMiniPencilSquare } from "react-icons/hi2";
+import { FaTrash } from "react-icons/fa";
+import BoxDetails from "../../components/BoxDetails/BoxDetails";
+import { FiBox } from "react-icons/fi";
+import ItemBox from '../../components/ItemBox/ItemBox';
 
 export default function InvitoryBoxHome() {
-    const { userId } = useParams();
+  // const { userId } = useParams();
+  const [items, setItems] = useState([]);
+  const [loadItems, setLoadingItems] = useState();
+
 
   return (
-    <main className='invitory-box-home-container'>
-        <div className="invitory-box-home-app">
-            <div className="invitory-box-header">
-                <nav className='invitory-box-nav'>
-                    <a className='invi-box-home-link' href={`dashboard/${userId}`}><FaArrowLeft /></a>
+    <main className='invi-box-container'>
 
-                    <div className="invi-box-logo">
-                        <div className='invi-box-icon'>
-                            <FiBox />   
-                        </div>
-                        
+      <nav className='invi-box-navbar'>
+        <div className="invi-box-nav-intro">
+          <a href={`dashboard/${1}`} > <FaArrowLeft /> <span>Back to Inventories</span></a>
 
-                        <div className="invi-box-title">
-                            <h2>Laptops</h2>
-                            <p>Inventory Details</p>
-                        </div>
-                    </div>
-                </nav>
-
-                <div className="invi-box-buttons">
-                    <button><FaPenToSquare /></button>
-                    <button><FaTrash /></button>
-                </div>
-
-            </div>
-
-            <div className="invitory-box-footer">
-                <div className="invi-box-details">
-                    <div className="invi-box-left">
-                        <BoxDetails />
-                    </div>
-
-                    <div className="invi-box-right">
-                        <BoxDetails />
-                    </div>
-                </div>
-            </div>
+          <h2 className='invi-box-title'>Laptops Details</h2>
         </div>
+
+        <div className="invi-box-nav-buttons">
+          <button><HiMiniPencilSquare /></button>
+          <button><FaTrash /></button>
+        </div>
+      </nav>
+
+
+      <article className='invi-box-details'>
+        <section className='invi-box-left-details'>
+          <BoxDetails />
+        </section>
+
+        <section className='invi-box-right-details'>
+          <BoxDetails />
+        </section>
+      </article>
+
+
+      <article className='invi-box-items'>
+        <h2><FiBox style={{"color": "#2563eb"}} /> <span>Items in Laptops {`(${5})`} items</span></h2>
+
+        <section className=''>
+          <ItemBox />
+        </section>
+      </article>
+
     </main>
   )
 }

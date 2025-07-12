@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
 
 
-/* Invitory box container */
-.invitory-box-home-container{
+
+/* Invitory box home container */
+.invi-box-container{
     width: 100%;
     min-height: 100dvh;
     padding: 2rem;
 
-    background-color: hsl(215, 25%, 12%);
+    background-color: #111827;
 
     display: flex;
     flex-direction: column;
@@ -16,124 +17,202 @@
 }
 
 
-/* Invitory box app */
-.invitory-box-home-app{
-    width: 1300px;
-}
-
-
-/* Invitory box header */
-.invitory-box-header{
+/* Invitory box navbar */
+.invi-box-navbar{
     width: 100%;
-    height: 100%;
 
-    font-family: "Lexend", sans-serif;
+    font-family: "TikTok Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-
+    font-variation-settings:
+    "slnt" 0,
+    "wdth" 100;
+    
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
-
-/* Invitory box nav */
-.invitory-box-nav{
-    width: 100%;
-    height: 100%;
-
+.invi-box-nav-intro{
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1.2rem;
+    gap: 0.5rem;
 }
 
-.invi-box-home-link{
-    font-size: 1.2rem;
-    color: hsl(215, 20%, 65%);
-    transition: 200ms;
-}
-.invi-box-home-link:hover{
-    transform: translateX(-10px);
-    color: hsl(213, 94%, 68%);
-    transition: 200ms;
-}
+.invi-box-navbar a{
+    padding: 0.8rem;
+    text-decoration: none;
+    color: #9ca3af;
 
-.invi-box-logo{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.9rem;
-}
-
-.invi-box-icon{
-    width: 60px;
-    height: 60px;
-
-    background-color: hsl(213, 94%, 68%);
-    font-size: 2rem;
-    color: white;
     border-radius: 8px;
 
-    display: grid;
-    place-items: center;
-}
-
-.invi-box-title h2{
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-}
-
-.invi-box-title p{
-    font-size: 1rem;
-    font-weight: 400;
-    color: hsl(215, 20%, 65%);
-}
-
-
-/* Invitory buttons*/
-.invi-box-buttons{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.9rem;
+    gap: 0.5rem;
+
+    transition: ease-in-out 200ms;
+}
+.invi-box-navbar a:hover{
+    background-color: #374151;
+    border-color: #374151;
+    color: white;
+
+    transition: ease-in-out 200ms;
 }
 
-.invi-box-buttons button{
-    height: 50px;
-    width: 50px;
+.invi-box-navbar h2{
+    padding: 0.5rem;
 
+    border-left: 1px solid #9ca3af;
+    color: white;
+    font-size: 2rem;
+}
+
+.invi-box-nav-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.invi-box-nav-buttons button{
+    width: 50px;
+    height: 50px;
+
+    font-size: 1.5rem;
+    background-color: transparent;
     outline: none;
     border: none;
-    border-radius: 8px;
-
-    background-color: hsla(210, 20%, 80%, 0.315);
     color: white;
-    font-size: 1.2rem;
-    border: 1px solid hsl(213, 94%, 68%);
 
     display: grid;
     place-items: center;
 }
 
+.invi-box-nav-buttons button:first-child:hover{
+    color: #10b981;
+}
+.invi-box-nav-buttons button:last-child:hover{
+    color: red;
+}
+/* Responsive */
+@media screen and (max-width: 700px) {
+    .invi-box-navbar h2{
+        font-size: 1.3rem;
 
-/* Invitory box footer */
-.invitory-box-footer{
-    width: 100%;
-    margin-top: 30px;
+        display: grid;
+        place-items: center;
+    }
+}
+@media screen and (max-width: 590px) {
+    .invi-box-nav-intro{
+        padding: 1rem;
+    }
+    .invi-box-navbar a span{
+        display: none;
+    }
+
+    .invi-box-nav-buttons button{
+        width: 30px;
+        height: 30px;
+
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 590px) {
+    .invi-box-navbar h2{
+        font-size: 1rem;
+    }
 }
 
+
+/* Invitory box details */
 .invi-box-details{
+    width: 100%;
+    margin-top: 30px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.invi-box-left{
+.invi-box-left-details{
     width: 49%;
 }
 
-.invi-box-right{
+.invi-box-right-details{
     width: 49%;
+}
+/* Responsive */
+@media screen and (max-width: 930px) {
+    .invi-box-details {
+        flex-direction: column;
+        gap: 1rem;
+
+        /* width: 90%; */
+    }
+
+    .invi-box-left-details {
+        width: 95%;
+    }
+
+    .invi-box-right-details {
+        width: 95%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .invi-box-left-details {
+        width: 100%;
+    }
+
+    .invi-box-right-details {
+        width: 100%;
+    }
+}
+
+
+/* Invitory box items */
+.invi-box-items{
+    width: 100%;
+    margin-top: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.invi-box-items h2{
+    color: white;
+
+    font-size: 2rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+    "slnt" 0,
+    "wdth" 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+/* Responsive */
+@media screen and (max-width: 500px) {
+    .invi-box-items h2{
+        font-size: 1.5rem;
+    }
+}
+@media screen and (max-width: 400px) {
+    .invi-box-items h2{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 350px) {
+    .invi-box-items h2{
+        font-size: 1rem;
+    }
 }
