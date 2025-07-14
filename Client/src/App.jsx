@@ -9,6 +9,7 @@ import DashboardHome from './components/DashboardHome/DashboardHome';
 import InventoryHome from './components/InventoryHome/InventoryHome';
 import ItemHome from './components/ItemHome/ItemHome';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
+import InventoryBoxHome from "./pages/InvitoryBoxHome/InvitoryBoxHome";
 
 function App() {
   const router = createBrowserRouter([
@@ -57,6 +58,10 @@ function App() {
         message={"Sorry, the page you're looking for doesn't exist. It might have been moved, deleted, or the URL was typed incorrectly."}
         type={"404"}
       />
+    },
+    {
+      path: "/dashboard/:userId/inventory/:inventoryId",
+      element: <InventoryBoxHome />
     }
 ]);
 

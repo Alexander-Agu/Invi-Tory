@@ -3,8 +3,12 @@ import "./inventoryBox.css"
 import { BsBoxSeam } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { Link, useParams } from 'react-router-dom';
+
 
 export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setUpdatePopup, setUpdateName, setUpdateCategory, setTargetInventory}) {
+  const { userId } = useParams();
+
   const DeleteButton = () => {
     setDeletePopUp(true);
     setTargetInventory(id);
@@ -18,7 +22,7 @@ export default function InventoryBox({id, category, name, itemCount, setDeletePo
   }
 
   return (
-    <div className="inventory-box" key={id}>
+    <Link to={`/dashboard/${userId}/inventory/${id}`} className="inventory-box" key={id}>
         <section className='inventory-header'>
             <div className='inventory-icon' >
                 <BsBoxSeam  />
@@ -45,6 +49,6 @@ export default function InventoryBox({id, category, name, itemCount, setDeletePo
             <p>{itemCount}</p>
             <p>Items</p>
         </section>
-    </div>
+    </Link>
   )
 }

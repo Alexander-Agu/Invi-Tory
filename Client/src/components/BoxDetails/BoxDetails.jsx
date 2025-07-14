@@ -2,45 +2,25 @@ import React from 'react'
 import { FaCalculator } from "react-icons/fa";
 import "./boxDetails.css"
 
-export default function BoxDetails() {
+export default function BoxDetails({icon, title, data}) {
+    console.log(data)
   return (
     <article className='box-details-app'>
         <div className="box-detail-header">
-            <FaCalculator style={{"color": "#10b981", "fontSize": "1.5rem"}} />
-            <h2>Inventory Valuation (Weighted Average)</h2>
+            {icon}
+            <h2>{title}</h2>
         </div>
 
         <div className="box-detail-container">
-            <div className="box-details">
-                <p className='detail-title'>Quantity:</p>
+            {
+                data.map(x => {
+                    return  <div className="box-details">
+                        <p className='detail-title'>{x[0]}</p>
 
-                <p className='detail-info'><span>zar</span> 45,000.00</p>
-            </div>
-            <div className="box-details">
-                <p className='detail-title'>Quantity:</p>
-
-                <p className='detail-info'><span>zar</span> 45,000.00</p>
-            </div>
-            <div className="box-details">
-                <p className='detail-title'>Quantity:</p>
-
-                <p className='detail-info'><span>zar</span> 45,000.00</p>
-            </div>
-            <div className="box-details">
-                <p className='detail-title'>Quantity:</p>
-
-                <p className='detail-info'><span>zar</span> 45,000.00</p>
-            </div>
-            <div className="box-details">
-                <p className='detail-title'>Quantity:</p>
-
-                <p className='detail-info'><span>zar</span> 45,000.00</p>
-            </div>
-            <div className="box-details">
-                <p className='detail-title'>Quantity:</p>
-
-                <p className='detail-info'><span>zar</span> 45,000.00</p>
-            </div>
+                        <p className='detail-info'>{x[1]}</p>
+                    </div>
+                })
+            }
         </div>
     </article>
   )
