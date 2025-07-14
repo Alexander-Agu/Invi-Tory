@@ -22,7 +22,7 @@ export default function InventoryBox({id, category, name, itemCount, setDeletePo
   }
 
   return (
-    <Link to={`/dashboard/${userId}/inventory/${id}`} className="inventory-box" key={id}>
+    <Link style={{"textDecoration": "none"}} to={`/dashboard/${userId}/inventory/${id}`} className="inventory-box" key={id}>
         <section className='inventory-header'>
             <div className='inventory-icon' >
                 <BsBoxSeam  />

@@ -7,6 +7,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import InventoryHome from '../../components/InventoryHome/InventoryHome';
 import { GetAllInventoryAsync } from '../../api/InventoryApi';
 import ItemHome from '../../components/ItemHome/ItemHome';
+import LoadScreen from '../LoadScreen/LoadScreen';
 
 export default function Dashboard() {
   const [logoutPopUp, setLogoutPopUp] = useState(false);
@@ -72,6 +73,6 @@ export default function Dashboard() {
       </main>
     )
   } else{
-    return <h1>LOADING.....</h1>
+    return <LoadScreen />
   }
 }

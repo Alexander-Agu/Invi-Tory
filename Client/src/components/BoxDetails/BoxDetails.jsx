@@ -1,9 +1,8 @@
 import React from 'react'
-import { FaCalculator } from "react-icons/fa";
 import "./boxDetails.css"
 
 export default function BoxDetails({icon, title, data}) {
-    console.log(data)
+    // console.log(data)
   return (
     <article className='box-details-app'>
         <div className="box-detail-header">

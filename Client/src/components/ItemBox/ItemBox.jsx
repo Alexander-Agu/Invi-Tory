@@ -5,7 +5,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { FaTag } from "react-icons/fa";
 import "./itemBox.css";
 
-export default function ItemBox() {
+export default function ItemBox({id, inventoryId, name, tag, inventoryName, createdAt}) {
   return (
     <div className="item-box-container">
 
@@ -26,12 +26,12 @@ export default function ItemBox() {
 
         <div className="item-box-body">
             <div className="item-box-main-body">
-                <h2>MacBook Pro 14</h2>
-                <p><FaTag /> <span>hggbj1762</span></p>
-                <p><FiBox /> <span>Laptops</span></p>
+                <h2>{name}</h2>
+                <p><FaTag /> <span>{tag === ""? <span>No Tah</span> : <span>{tag}</span>}</span></p>
+                <p><FiBox /> <span>{inventoryName}</span></p>
             </div>
 
-            <p>Added: 2024-01-15</p>
+            <p>Added: {createdAt}</p>
         </div>
 
     </div>
