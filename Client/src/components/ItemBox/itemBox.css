@@ -1,14 +1,19 @@
-
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
 
 
 /* Item box container */
 .item-box-container{
-    width: 20rem;
-    min-height: 20rem;
+    /* width: 15rem;
+    min-height: 15rem; */
     padding: 1rem;
 
     background-color: #1f2937;
     border: 1px solid #374151;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
 
@@ -57,5 +62,51 @@
     background-color: transparent;
     outline: none;
 
+    color: white;
     font-size: 1.2rem;
+}
+
+.item-box-buttons .btn-1:hover{
+    color: greenyellow;
+}
+.item-box-buttons .btn-2:hover{
+    color: red;
+}
+
+
+
+/* Item box body */
+.item-box-body{
+    margin-top: 20px;
+    width: 100%;
+    flex: 1;
+
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.item-box-body h2{
+    font-size: 1.2rem;
+}
+
+.item-box-body p{
+    font-size: 1rem;
+    font-weight: 500;
+    color: hsl(215, 20%, 65%);
+}
+
+.item-box-main-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
 }

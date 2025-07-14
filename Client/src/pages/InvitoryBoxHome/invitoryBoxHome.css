@@ -139,6 +139,7 @@
 
 .invi-box-left-details{
     width: 49%;
+    /* border-right: 1px solid gray; */
 }
 
 .invi-box-right-details{
@@ -215,4 +216,14 @@
     .invi-box-items h2{
         font-size: 1rem;
     }
+}
+
+
+/* invi-box-item-container */
+.invi-box-item-container{
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
 }

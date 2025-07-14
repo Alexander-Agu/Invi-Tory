@@ -44,7 +44,11 @@ export default function InvitoryBoxHome() {
       <article className='invi-box-items'>
         <h2><FiBox style={{"color": "#2563eb"}} /> <span>Items in Laptops {`(${5})`} items</span></h2>
 
-        <section className=''>
+        <section className='invi-box-item-container'>
+          <ItemBox />
+          <ItemBox />
+          <ItemBox />
+          <ItemBox />
           <ItemBox />
         </section>
       </article>
