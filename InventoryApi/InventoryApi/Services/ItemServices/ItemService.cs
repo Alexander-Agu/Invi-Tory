@@ -20,6 +20,7 @@ namespace InventoryApi.Services.ItemServices
             Item item = request.ToEntity();
             item.InventoryId = inventoryId;
             item.UserId = userId;
+            item.CreatedAt = DateOnly.FromDateTime(DateTime.Today);
 
             await context.Items.AddAsync(item);
             await context.SaveChangesAsync();

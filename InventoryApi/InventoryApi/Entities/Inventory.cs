@@ -6,6 +6,7 @@
         public string Name { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public decimal SharedCost { get; set; }
+        public DateOnly CreatedAt { get; set; } = DateOnly.FromDateTime(DateTime.Today);
 
 
         // Relationships

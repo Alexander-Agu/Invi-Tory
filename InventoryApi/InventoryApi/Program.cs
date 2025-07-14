@@ -9,6 +9,7 @@ using Scalar.AspNetCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using InventoryApi.Services.InventoryValuationServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,7 @@ builder.Services.AddScoped<IInventoryService , InventoryService>();
 builder.Services.AddScoped<IItemService , ItemService>();
 builder.Services.AddScoped<IUnitService , UnitService>();
 builder.Services.AddScoped<IRecentActivityService , RecentActivityService>();
+builder.Services.AddScoped<IInventoryValuation, InventoryValuationService>();
 
 // Define CORS policy
 builder.Services.AddCors(options =>

@@ -9,7 +9,7 @@
         public decimal WeightedAvarage { get; set; }
         public decimal ClosingStock { get; set; }
         public bool BoughtOrSold { get; set; }
-        public DateOnly CreatedAt { get; set; }
+        public DateOnly CreatedAt { get; set; } = DateOnly.FromDateTime(DateTime.Today);
         public DateOnly UpdatedDate { get; set; }
 
 

@@ -94,7 +94,10 @@ namespace InventoryApi.Services.InventoryServices
                 .FirstOrDefaultAsync();
             if (inventory == null) return null;
 
-            return inventory.ToDto();
+            InventoryDto inventoryDto = inventory.ToDto();
+            inventoryDto.ItemCount = await context.Items.CountAsync(x => x.InventoryId == inventoryId);
+
+            return inventoryDto;
         }
 
 
