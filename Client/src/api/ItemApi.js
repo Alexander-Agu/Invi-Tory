@@ -23,6 +23,17 @@ export const GetAllItemsAsync = async (userId) => {
 }
 
 
+// Get inventory items
+export const GetInventoryItemsAsync = async (userId, inventoryId) => {
+    try {
+        const res = await api.get(`/Item/get-all-inventory-items/${userId}/${inventoryId}`)
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 // Create item
 export const CreateItemAsync = async (userId, inventoryId, body) => {
     try {
