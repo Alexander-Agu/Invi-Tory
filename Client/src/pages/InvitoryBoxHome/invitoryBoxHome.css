@@ -185,6 +185,39 @@
     gap: 1rem;
 }
 
+.invi-box-item-header{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.invi-box-item-header button{
+    width: 160px;
+    height: 40px;
+
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+
+    background-color: #2563eb;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
 .invi-box-items-intro{
     color: white;
 
@@ -202,9 +235,31 @@
     gap: 0.5rem;
 }
 /* Responsive */
-@media screen and (max-width: 500px) {
-    .invi-box-items h2{
+@media screen and (max-width: 850px) {
+    .invi-box-item-header button{
+        width: 120px;
+
+    }
+}
+@media screen and (max-width: 650px) {
+    .invi-box-item-header button{
+        width: 100px;
+        height: 30px;
+
+        font-size: 0.8rem;
+    }
+
+    .invi-box-items-intro{
         font-size: 1.5rem;
+    }
+}
+@media screen and (max-width: 500px) {
+    /* .invi-box-items h2{
+        font-size: 1.2rem;
+    } */
+
+    .invi-box-items-intro{
+        font-size: 1rem;
     }
 }
 @media screen and (max-width: 400px) {

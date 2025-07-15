@@ -136,7 +136,12 @@ export default function InvitoryBoxHome() {
 
 
           <article className='invi-box-items'>
-            <h2 className='invi-box-items-intro'><FiBox style={{"color": "#2563eb"}} /> <span>Items in {data.name} {`(${data.itemCount})`}</span></h2>
+            
+            <div className="invi-box-item-header">
+              <h2 className='invi-box-items-intro'><FiBox style={{"color": "#2563eb"}} /> <span>Items in {data.name} {`(${data.itemCount})`}</span></h2>
+
+              <button>Create Item</button>
+            </div>
 
             <section className='invi-box-item-container'>
               {
