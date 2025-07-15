@@ -249,7 +249,14 @@ namespace InventoryApi.Services.ItemServices
         // Calculate the weighted avarage
         public decimal CalculateWeightedAvarage(decimal totalPurchaseCost, decimal SharedCosts, int quintity)
         {
-            return  Math.Round((totalPurchaseCost + SharedCosts) / quintity, 2);
+            try
+            {
+                return Math.Round((totalPurchaseCost + SharedCosts) / quintity, 2);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         // Calculate closing stock

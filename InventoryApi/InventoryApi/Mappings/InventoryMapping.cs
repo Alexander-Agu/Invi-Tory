@@ -21,8 +21,7 @@ namespace InventoryApi.Mappings
             return new Inventory
             {
                 Name = request.Name,
-                Category = request.Category,
-                SharedCost = request.SharedCosts,
+                Category = request.Category
             };
         }
 

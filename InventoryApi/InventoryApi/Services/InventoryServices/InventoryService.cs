@@ -279,7 +279,15 @@ namespace InventoryApi.Services.InventoryServices
         // Calculate the weighted avarage
         public decimal CalculateWeightedAvarage(decimal totalPurchaseCost, decimal SharedCosts, int quintity)
         {
-            return (totalPurchaseCost + SharedCosts) / quintity;
+            try
+            {
+                return (totalPurchaseCost + SharedCosts) / quintity;
+            }
+            catch
+            {
+                return 0;
+            }
+            
         }
     }
 }
