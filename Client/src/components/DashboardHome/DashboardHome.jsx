@@ -102,13 +102,17 @@ export default function DashboardHome() {
                 <NotFound text={"No Inventory"} />
               ) : (
                 <div className="stats">
-                  {inventories.map((inventory, index) => (
-                    <InventoryStat 
-                      key={`${inventory.name}-${index}`}
-                      name={inventory.name} 
-                      units={inventory.itemCount} 
-                    />
-                  ))}
+                  {
+                    inventories.map(x => {
+                      const {name, itemCount, inventoryId} = x;
+                      return <InventoryStat 
+                        name={name} 
+                        units={itemCount} 
+                        id={inventoryId} 
+                        key={inventoryId} 
+                      />
+                    })
+                  }
                 </div>
               )}
             </section>

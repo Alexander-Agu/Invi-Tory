@@ -24,7 +24,7 @@
 /* Logout App */
 .popup-app {
     width: 500px;
-    height: 400px;
+    min-height: 400px;
     padding: 1rem;
 
     background-color: #374151;

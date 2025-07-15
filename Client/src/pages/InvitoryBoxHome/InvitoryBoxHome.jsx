@@ -9,11 +9,12 @@ import ItemBox from '../../components/ItemBox/ItemBox';
 import { GetInventoryAsync } from '../../api/InventoryApi';
 import { useParams } from 'react-router-dom';
 import LoadScreen from '../LoadScreen/LoadScreen';
-import { parseInventoryData, parseInventoryValuationData } from './InvitoryBoxHomeTools';
+import { deleteButtons, parseInventoryData, parseInventoryValuationData, updateButtons, updateInputBoxes } from './InvitoryBoxHomeTools';
 import { FaCalculator } from "react-icons/fa";
 import { GetInventoryValuationDataAsync } from '../../api/InventoryValuationApi';
 import { BsGraphUpArrow } from "react-icons/bs";
 import { GetInventoryItemsAsync } from '../../api/ItemApi';
+import Popup from '../../components/Popup/Popup';
 
 export default function InvitoryBoxHome() {
   const { userId, inventoryId } = useParams();
@@ -23,6 +24,13 @@ export default function InvitoryBoxHome() {
 
   const [loadData, setLoadData] = useState(true)
   const [loadItems, setLoadingItems] = useState(true);
+
+  const [deletePopup, setDeletePopup] = useState(false);
+  const [updatePopup, setUpdatePopup] = useState(false);
+
+  const [updateName, setUpdateName] = useState("");
+  const [updateCategory, setUpdateCategory] = useState("");
+  const [updateSharedCost, setUpdateSharedCost] = useState(1);
   
 
   useEffect(()=>{
@@ -41,6 +49,10 @@ export default function InvitoryBoxHome() {
         if (isMounted){
           setData(dataRes);
           setValuationData(valuationDataRes);
+
+          setUpdateName(dataRes.name);
+          setUpdateCategory(dataRes.category);
+          setUpdateSharedCost(dataRes.sharedCosts);
         }
       } catch (error) {
         if (isMounted){
@@ -98,8 +110,8 @@ export default function InvitoryBoxHome() {
             </div>
 
             <div className="invi-box-nav-buttons">
-              <button><HiMiniPencilSquare /></button>
-              <button><FaTrash /></button>
+              <button onClick={()=> setUpdatePopup(true)}><HiMiniPencilSquare /></button>
+              <button onClick={()=> setDeletePopup(true)}><FaTrash /></button>
             </div>
           </nav>
 
@@ -124,7 +136,7 @@ export default function InvitoryBoxHome() {
 
 
           <article className='invi-box-items'>
-            <h2><FiBox style={{"color": "#2563eb"}} /> <span>Items in {data.name} {`(${data.itemCount})`}</span></h2>
+            <h2 className='invi-box-items-intro'><FiBox style={{"color": "#2563eb"}} /> <span>Items in {data.name} {`(${data.itemCount})`}</span></h2>
 
             <section className='invi-box-item-container'>
               {
@@ -145,6 +157,23 @@ export default function InvitoryBoxHome() {
         </>
       }
 
+      { // DELETE INVENTORY POPUP
+        deletePopup? <Popup 
+          message={"Are you sure you want to delete your Inventory?"}
+          inputs={[]}
+          buttons={deleteButtons(setDeletePopup, userId, inventoryId)}
+          popup={setDeletePopup}
+        /> : <p></p>
+      }
+
+      { // UPDATE INVENTORY POPUP
+        updatePopup? <Popup 
+          message={"Update Inventory"}
+          inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory, updateSharedCost, setUpdateSharedCost)}
+          buttons={updateButtons(setUpdatePopup, userId, inventoryId, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost})}
+          popup={setUpdatePopup}
+        /> : <p></p>
+      }
     </main>
   )
 }

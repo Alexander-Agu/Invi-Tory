@@ -6,19 +6,25 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { Link, useParams } from 'react-router-dom';
 
 
-export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setUpdatePopup, setUpdateName, setUpdateCategory, setTargetInventory}) {
+export default function InventoryBox({id, category, name, itemCount, setDeletePopUp, setUpdatePopup, setUpdateName, setUpdateCategory, setTargetInventory, sharedCosts, setSharedCosts}) {
   const { userId } = useParams();
 
-  const DeleteButton = () => {
+  const DeleteButton = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
     setDeletePopUp(true);
     setTargetInventory(id);
   }
 
-  const UpdateButton = () => {
+  const UpdateButton = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
     setUpdatePopup(true);
     setTargetInventory(id);
     setUpdateName(name);
     setUpdateCategory(category);
+    setSharedCosts(sharedCosts)
+    console.log(sharedCosts)
   }
 
   return (
@@ -30,11 +36,11 @@ export default function InventoryBox({id, category, name, itemCount, setDeletePo
             
 
             <div className="inventory-buttonss">
-                <button onClick={()=> UpdateButton()}>
+                <button onClick={(e)=> UpdateButton(e)}>
                     <HiOutlinePencilSquare />
                 </button>
 
-                <button onClick={()=> DeleteButton()}>
+                <button onClick={(e)=> DeleteButton(e)}>
                     <FaRegTrashAlt />
                 </button>
             </div>

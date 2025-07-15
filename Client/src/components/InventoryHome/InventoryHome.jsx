@@ -29,12 +29,14 @@ export default function InventoryHome({}) {
     // Create inventory
       const [inventoryName, setInventoryName] = useState("");
       const [category, setCategory] = useState("");
+      const [sharedCost, setSharedCost] = useState(0);
     
     // For the update request
     const [updatePopup, setUpdatePopup] = useState(false);
     const [updateBody, setUpdateBody] = useState({});
     const [updateName, setUpdateName] = useState("");
     const [updateCategory, setUpdateCategory] = useState("");
+    const [updateSharedCost, setUpdateSharedCost] = useState();
 
     
     useEffect(()=>{
@@ -74,6 +76,7 @@ export default function InventoryHome({}) {
                 const res = FilterInventories(inventories, targetCategory);
 
                 setFilteredInventory(res);
+                console.log(inventories[1].sharedCosts)
             } catch (error) {
                 console.log(error)
             }
@@ -104,7 +107,7 @@ export default function InventoryHome({}) {
                 <section className='inventory-bottom-section'>
                     {
                         filteredInventory.map(x => {
-                            const {category, inventoryId, itemCount, name} = x;
+                            const {category, inventoryId, itemCount, name, sharedCosts} = x;
                             return <InventoryBox 
                                 id={inventoryId}
                                 category={category}
@@ -115,6 +118,8 @@ export default function InventoryHome({}) {
                                 setUpdatePopup={setUpdatePopup}
                                 setDeletePopUp={setDeletePopup}
                                 setTargetInventory={setTargetInventory}
+                                sharedCosts={sharedCosts}
+                                setSharedCosts={setUpdateSharedCost}
                             />
                         })
                     }
@@ -128,8 +133,8 @@ export default function InventoryHome({}) {
                     // ADD INVENTORY POPUP
                     inventoryPopup? <Popup 
                         message={"Create Inventory"}
-                        inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory)}
-                        buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category})}
+                        inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory, sharedCost, setSharedCost)}
+                        buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category, "sharedCosts": sharedCost})}
                         popup={setInventoryPopUp}
                     /> : <p></p>
                 }
@@ -146,8 +151,8 @@ export default function InventoryHome({}) {
                     // UPDATE INVENTORY POPUP
                     updatePopup? <Popup 
                             message={"Update Inventory"}
-                            inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory)}
-                            buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory})}
+                            inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory, updateSharedCost, setUpdateSharedCost)}
+                            buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost})}
                             popup={setUpdatePopup}
                         />
                     : <p></p>

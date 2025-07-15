@@ -110,3 +110,7 @@
     align-items: flex-start;
     gap: 0.5rem;
 }
+
+.item-box-main-body h2{
+    color: white;
+}
