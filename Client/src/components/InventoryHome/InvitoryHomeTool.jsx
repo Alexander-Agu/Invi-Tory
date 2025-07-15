@@ -48,8 +48,8 @@ export const updateButtons = (setInventoryPopUp, userId, targetInventory, body)=
             "execute": async function  () {
                 try {
                     const res =  await UpdateInventoryAsync(userId, targetInventory, body);
-                    location.reload();
-                    setInventoryPopUp(false)
+                    // location.reload();
+                    // setInventoryPopUp(false)
                 } catch (error) {
                     console.log(error)
                 }
@@ -60,7 +60,7 @@ export const updateButtons = (setInventoryPopUp, userId, targetInventory, body)=
 
 
 // update input boxes
-export const updateInputBoxes = (name, setName, category, setCategory) => {
+export const updateInputBoxes = (name, setName, category, setCategory, sharedCost, setSharedCost) => {
     return [
         {
             "type": "text",
@@ -77,7 +77,15 @@ export const updateInputBoxes = (name, setName, category, setCategory) => {
             "input": category,
             "setInput": setCategory,
             "placeHolder": category
-        }
+        },
+        {
+            "type": "number",
+            "inputBoxId": 3,
+            "title": "Shared Cost",
+            "input": sharedCost,
+            "setInput": setSharedCost,
+            "placeHolder": sharedCost
+        },
     ]
 }
 
@@ -113,7 +121,7 @@ export const CreateButtons = (setInventoryPopUp, userId, body)=> {
 
 
 // Create Item inputs
-export const CreateInputs = (inventoryName, setInventoryName, inventoryCategory, setInventoryCategory)=> {
+export const CreateInputs = (inventoryName, setInventoryName, inventoryCategory, setInventoryCategory, sharedCosts, setSharedCosts)=> {
     return [
         {
             "type": "text",
@@ -130,6 +138,14 @@ export const CreateInputs = (inventoryName, setInventoryName, inventoryCategory,
             "input": inventoryCategory,
             "setInput": setInventoryCategory,
             "placeHolder": "Inventory category"
+        },
+        {
+            "type": "number",
+            "inputBoxId": 3,
+            "title": "Shared Cost",
+            "input": sharedCosts,
+            "setInput": setSharedCosts,
+            // "placeHolder": "Inventory category"
         }
     ];
 }

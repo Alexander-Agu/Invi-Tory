@@ -1,5 +1,96 @@
+import { CreateInventoryAsync, DeleteInventoryAsync, UpdateInventoryAsync } from "../../api/InventoryApi";
+
+// Delete buttons for the delete endpoint
+export const deleteButtons = (setInventoryPopUp, userId, inventoryId)=> {
+    return [
+        {
+            "buttonId": 1,
+            "name": "Cancel",
+            "color": "white",
+            "fontColor": "black",
+            "execute": setInventoryPopUp
+        },
+        {
+            "buttonId": 2,
+            "name": "Delete",
+            "color": "red",
+            "fontColor": "black",
+            "execute": async function  () {
+                try {
+                    const res =  await DeleteInventoryAsync(userId, inventoryId);
+                    window.history.back();
+                    setInventoryPopUp(false)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+    ]
+}
 
 
+// update buttons for the update endpoint
+export const updateButtons = (setInventoryPopUp, userId, inventoryId, body)=> {
+    return [
+        {
+            "buttonId": 1,
+            "name": "Cancel",
+            "color": "white",
+            "fontColor": "black",
+            "execute": setInventoryPopUp
+        },
+        {
+            "buttonId": 2,
+            "name": "Update",
+            "color": "#2563eb",
+            "fontColor": "white",
+            "execute": async function  () {
+                try {
+                    const res =  await UpdateInventoryAsync(userId, inventoryId, body);
+                    location.reload();
+                    setInventoryPopUp(false)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+    ]
+}
+
+
+// update input boxes
+export const updateInputBoxes = (name, setName, category, setCategory, sharedCost, setSharedCost) => {
+    return [
+        {
+            "type": "text",
+            "inputBoxId": 1,
+            "title": "Name",
+            "input": name,
+            "setInput": setName,
+            "placeHolder": name
+        },
+        {
+            "type": "text",
+            "inputBoxId": 2,
+            "title": "Category",
+            "input": category,
+            "setInput": setCategory,
+            "placeHolder": category
+        },
+        {
+            "type": "number",
+            "inputBoxId": 3,
+            "title": "Shared Cost",
+            "input": sharedCost,
+            "setInput": setSharedCost,
+            "placeHolder": sharedCost
+        },
+    ]
+}
+
+
+// Parses Inventory Data
 export const parseInventoryData = (data) => {
     return [
         [ <span>Name: </span>, data.name ],
@@ -8,6 +99,8 @@ export const parseInventoryData = (data) => {
     ]
 }
 
+
+// Parses Inventory Valuation Data
 export const parseInventoryValuationData = (valuationData) => {
     return [
         [ <span>Quantity: </span>, valuationData.quintity ],

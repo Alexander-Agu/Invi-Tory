@@ -3,6 +3,7 @@
 // Filtering the inventories by category
 export const FilterInventories = (inventories, category) => {
     if (category.toLowerCase() === "all") return inventories;
+    console.log(inventories)
 
     return inventories.filter(inventory => inventory.category.toLowerCase() === category.toLowerCase());
 }
