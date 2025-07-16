@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import { FiBox } from "react-icons/fi";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import { BsFillTrashFill } from "react-icons/bs";
@@ -9,9 +9,11 @@ import { deleteItemButtons, updateItemButtons, updateItemInputBoxes } from './It
 import { useParams } from 'react-router-dom';
 
 export default function ItemBox({id, inventoryId, name, tag, inventoryName, createdAt}) {
+    // Popups
     const [deletePopup, setDeletePopup] = useState(false);
     const [updatePopup, setUpdatePopup] = useState(false);
 
+    // Update item inputs
     const [updateName, setUpdateName] = useState(name);
     const [updateTag, setUpdateTag] = useState(tag);
     const {userId} = useParams();
@@ -44,7 +46,7 @@ export default function ItemBox({id, inventoryId, name, tag, inventoryName, crea
             <p>Added: {createdAt}</p>
         </div>
 
-        {
+        { // DELETE ITEM POPUP
             deletePopup? <Popup
                 message={"Are you sure you want to delete your Item"}
                 inputs={[]}
@@ -53,7 +55,7 @@ export default function ItemBox({id, inventoryId, name, tag, inventoryName, crea
             /> : <p></p>
         }
 
-        {
+        { // UPDATE ITEM POPUP
             updatePopup? <Popup 
                 message={"Update Item"}
                 inputs={updateItemInputBoxes(updateName, setUpdateName, updateTag, setUpdateTag)}
@@ -61,7 +63,6 @@ export default function ItemBox({id, inventoryId, name, tag, inventoryName, crea
                 popup={setUpdatePopup}
             /> : <p></p>
         }
-
     </div>
   )
 }

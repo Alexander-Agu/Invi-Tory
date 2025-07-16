@@ -6,31 +6,40 @@ import { FaTrash } from "react-icons/fa";
 import BoxDetails from "../../components/BoxDetails/BoxDetails";
 import { FiBox } from "react-icons/fi";
 import ItemBox from '../../components/ItemBox/ItemBox';
-import { GetInventoryAsync } from '../../api/InventoryApi';
+import { GetAllInventoryAsync, GetInventoryAsync } from '../../api/InventoryApi';
 import { useParams } from 'react-router-dom';
 import LoadScreen from '../LoadScreen/LoadScreen';
-import { deleteButtons, parseInventoryData, parseInventoryValuationData, updateButtons, updateInputBoxes } from './InvitoryBoxHomeTools';
+import { createItemButtons, createItemInputBoxes, deleteButtons, parseInventoryData, parseInventoryValuationData, updateButtons, updateInputBoxes } from './InvitoryBoxHomeTools';
 import { FaCalculator } from "react-icons/fa";
 import { GetInventoryValuationDataAsync } from '../../api/InventoryValuationApi';
 import { BsGraphUpArrow } from "react-icons/bs";
 import { GetInventoryItemsAsync } from '../../api/ItemApi';
 import Popup from '../../components/Popup/Popup';
+import CreateItem from '../../components/CreateItem/CreateItem';
 
 export default function InvitoryBoxHome() {
   const { userId, inventoryId } = useParams();
   const [data, setData] = useState({});
   const [valuationData, setValuationData] = useState({});
   const [items, setItems] = useState([]);
+  const [inventories, setInventories] = useState([]);
 
   const [loadData, setLoadData] = useState(true)
   const [loadItems, setLoadingItems] = useState(true);
 
+  // POPUPS
   const [deletePopup, setDeletePopup] = useState(false);
   const [updatePopup, setUpdatePopup] = useState(false);
+  const [createItemPopup, setCreateItemPopup] = useState(false);
 
   const [updateName, setUpdateName] = useState("");
   const [updateCategory, setUpdateCategory] = useState("");
   const [updateSharedCost, setUpdateSharedCost] = useState(1);
+
+  // Create item inputs
+  const [createName, setName] = useState("");
+  const [createTag, setTag] = useState("");
+  const [value, setValue] = useState(0);
   
 
   useEffect(()=>{
@@ -41,7 +50,7 @@ export default function InvitoryBoxHome() {
 
         const [dataRes, valuationDataRes] = await Promise.all([
           GetInventoryAsync(userId, inventoryId),
-          GetInventoryValuationDataAsync(userId, inventoryId)
+          GetInventoryValuationDataAsync(userId, inventoryId),
         ])
         console.log(dataRes)
 
@@ -140,7 +149,7 @@ export default function InvitoryBoxHome() {
             <div className="invi-box-item-header">
               <h2 className='invi-box-items-intro'><FiBox style={{"color": "#2563eb"}} /> <span>Items in {data.name} {`(${data.itemCount})`}</span></h2>
 
-              <button>Create Item</button>
+              <button onClick={()=> setCreateItemPopup(true)}>Create Item</button>
             </div>
 
             <section className='invi-box-item-container'>
@@ -177,6 +186,15 @@ export default function InvitoryBoxHome() {
           inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory, updateSharedCost, setUpdateSharedCost)}
           buttons={updateButtons(setUpdatePopup, userId, inventoryId, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost})}
           popup={setUpdatePopup}
+        /> : <p></p>
+      }
+
+      { // CREATE ITEM POPUP
+        createItemPopup? <Popup 
+          message={"Create Item"}
+          inputs={createItemInputBoxes(createName, setName, createTag, setTag, value, setValue, value, setValue)}
+          buttons={createItemButtons(setCreateItemPopup, userId, inventoryId, {"name": createName, "tag": createTag, "value": value})}
+          popup={setCreateItemPopup}
         /> : <p></p>
       }
     </main>

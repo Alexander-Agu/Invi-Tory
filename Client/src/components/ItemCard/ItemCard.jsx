@@ -5,7 +5,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
 export default function ItemCard({id, inventoryId, name, category, inventoryName, createdAt, setTargetInventoryId, setTargetItemId, setDeleteItemPopup, setUpdatePopup, setUpdateName, setUpdateTag, tag}) {
-
+    
     const DeletePopUp = ()=>{
         setDeleteItemPopup(true);
         setTargetInventoryId(inventoryId);
