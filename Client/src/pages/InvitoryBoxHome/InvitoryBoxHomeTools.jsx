@@ -1,4 +1,5 @@
 import { CreateInventoryAsync, DeleteInventoryAsync, UpdateInventoryAsync } from "../../api/InventoryApi";
+import { CreateItemAsync } from "../../api/ItemApi";
 
 // Delete buttons for the delete endpoint
 export const deleteButtons = (setInventoryPopUp, userId, inventoryId)=> {
@@ -88,6 +89,68 @@ export const updateInputBoxes = (name, setName, category, setCategory, sharedCos
         },
     ]
 }
+
+
+
+// buttons for the create item endpoint
+export const createItemButtons = (setCreatePopup, userId, inventoryId, itemId, body)=> {
+    return [
+        {
+            "buttonId": 1,
+            "name": "Cancel",
+            "color": "white",
+            "fontColor": "black",
+            "execute": setCreatePopup
+        },
+        {
+            "buttonId": 2,
+            "name": "Create",
+            "color": "#2563eb",
+            "fontColor": "white",
+            "execute": async function  () {
+                try {
+                    const res =  await CreateItemAsync(userId, inventoryId, itemId, body);
+                    location.reload();
+                    setCreatePopup(false)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+    ]
+}
+
+
+// create item input boxes
+export const createItemInputBoxes = (name, setName, tag, setTag, value, setValue) => {
+    return [
+        {
+            "type": "text",
+            "inputBoxId": 1,
+            "title": "Name",
+            "input": name,
+            "setInput": setName,
+            "placeHolder": name
+        },
+        {
+            "type": "text",
+            "inputBoxId": 2,
+            "title": "Tag",
+            "input": tag,
+            "setInput": setTag,
+            "placeHolder": tag
+        },
+        {
+            "type": "number",
+            "inputBoxId": 3,
+            "title": "Value \ Price",
+            "input": value,
+            "setInput": setValue,
+            "placeHolder": value
+        },
+    ]
+}
+
 
 
 // Parses Inventory Data
