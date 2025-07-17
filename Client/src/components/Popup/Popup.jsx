@@ -8,7 +8,11 @@ export default function Popup({message, inputs, buttons, popup}) {
   const [accomodateRedBTN, setAccomodateRedBTN] = useState(false)
 
   return (
-    <div className="popup-container" onClick={()=> popup(false)}>
+    <div className="popup-container" onClick={(e)=> {
+            popup(false);
+            e.stopPropagation()
+        }}>
+
         <div className="popup-app" onClick={(e) => e.stopPropagation()} style={{"backgroundColor": inputs.length === 0? "#111827": "#374151"}}>
             <h1 className='popup-message'>{message}</h1>
 
