@@ -52,12 +52,12 @@ export default function InvitoryBoxHome() {
           GetInventoryAsync(userId, inventoryId),
           GetInventoryValuationDataAsync(userId, inventoryId),
         ])
-        console.log(dataRes)
 
 
         if (isMounted){
           setData(dataRes);
           setValuationData(valuationDataRes);
+          console.log(items)
 
           setUpdateName(dataRes.name);
           setUpdateCategory(dataRes.category);
@@ -157,12 +157,7 @@ export default function InvitoryBoxHome() {
                 items.map(x => {
                   const {createdAt, inventoryId, inventoryName, itemId, name, tag} = x;
                   return <ItemBox key={itemId} 
-                    id={itemId}
-                    inventoryId={inventoryId}
-                    inventoryName={inventoryName}
-                    name={name}
-                    tag={tag}
-                    createdAt={createdAt}
+                    body={x}
                   />
                 })
               }
