@@ -26,3 +26,13 @@
         width: 100%;
     }
 }
+
+
+.item-home .item-bottom{
+    width: 100%;
+    min-height: 100%;
+    
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+}
