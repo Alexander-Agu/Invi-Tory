@@ -7,11 +7,14 @@ import "./itemBox.css";
 import Popup from '../Popup/Popup';
 import { deleteItemButtons, updateItemButtons, updateItemInputBoxes } from './ItemBoxTools';
 import { useParams } from 'react-router-dom';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
-export default function ItemBox({id, inventoryId, name, tag, inventoryName, createdAt}) {
+export default function ItemBox({body}) {
+    const { name, value, tag, createdAt, itemId, inventoryId, inventoryName} = body;
     // Popups
     const [deletePopup, setDeletePopup] = useState(false);
     const [updatePopup, setUpdatePopup] = useState(false);
+    const [detailPopup, setDetailPopup] = useState(false);
 
     // Update item inputs
     const [updateName, setUpdateName] = useState(name);
@@ -19,12 +22,12 @@ export default function ItemBox({id, inventoryId, name, tag, inventoryName, crea
     const {userId} = useParams();
 
   return (
-    <div className="item-box-container">
+    <div className="item-box-container" onClick={()=> setDetailPopup(true)}>
 
         <div className="item-box-header">
             <div className='item-box-icon'><FiBox /></div>
 
-            <div className="item-box-buttons">
+            <div className="item-box-buttons" onClick={(e)=> e.stopPropagation()}>
                 <button className='btn-1' onClick={()=> setUpdatePopup(true)}>
                     <HiMiniPencilSquare />
                 </button>
@@ -50,7 +53,7 @@ export default function ItemBox({id, inventoryId, name, tag, inventoryName, crea
             deletePopup? <Popup
                 message={"Are you sure you want to delete your Item"}
                 inputs={[]}
-                buttons={deleteItemButtons(setDeletePopup, userId, inventoryId, id)}
+                buttons={deleteItemButtons(setDeletePopup, userId, inventoryId, itemId)}
                 popup={setDeletePopup}
             /> : <p></p>
         }
@@ -59,8 +62,18 @@ export default function ItemBox({id, inventoryId, name, tag, inventoryName, crea
             updatePopup? <Popup 
                 message={"Update Item"}
                 inputs={updateItemInputBoxes(updateName, setUpdateName, updateTag, setUpdateTag)}
-                buttons={updateItemButtons(setUpdatePopup, userId, id, inventoryId, {"name": updateName, "tag": updateTag})}
+                buttons={updateItemButtons(setUpdatePopup, userId, itemId, inventoryId, {"name": updateName, "tag": updateTag})}
                 popup={setUpdatePopup}
+            /> : <p></p>
+        }
+
+        { // SHOW ITEM DETAIL POPUP
+            detailPopup? <ItemDetail 
+                popup={setDetailPopup}
+                name={name}
+                tag={tag}
+                value={value}
+                createdAt={createdAt} 
             /> : <p></p>
         }
     </div>

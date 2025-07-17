@@ -30,7 +30,7 @@ export const deleteItemButtons = (setItemPopup, userId, inventoryId, itemId)=> {
 
 
 // update buttons for the update endpoint
-export const updateItemButtons = (setUpdateItemPopUp, userId, inventoryId, body)=> {
+export const updateItemButtons = (setUpdateItemPopUp, userId, itemId, inventoryId, body)=> {
     return [
         {
             "buttonId": 1,
@@ -46,7 +46,7 @@ export const updateItemButtons = (setUpdateItemPopUp, userId, inventoryId, body)
             "fontColor": "white",
             "execute": async function  () {
                 try {
-                    const res =  await UpdateItemAsync(userId, inventoryId, body);
+                    const res =  await UpdateItemAsync(userId, inventoryId, itemId, body);
                     location.reload();
                     setUpdateItemPopUp(false)
                 } catch (error) {

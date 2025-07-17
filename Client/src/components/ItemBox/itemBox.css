@@ -7,13 +7,15 @@
     min-height: 15rem; */
     padding: 1rem;
 
-    background-color: #1f2937;
+    background-color: #1f2937b7;
     border: 1px solid #374151;
     border-radius: 10px;
 
     display: flex;
     flex-direction: column;
-
+}
+.item-box-container:hover{
+    background-color: #1f2937;
 }
 
 
