@@ -137,13 +137,9 @@
     justify-content: space-between;
 }
 
-.invi-box-left-details{
+.invi-box-right-details, .invi-box-left-details{
     width: 49%;
-    /* border-right: 1px solid gray; */
-}
-
-.invi-box-right-details{
-    width: 49%;
+    min-height: 22rem
 }
 /* Responsive */
 @media screen and (max-width: 930px) {
@@ -156,6 +152,7 @@
 
     .invi-box-left-details {
         width: 95%;
+        min-height: 5rem;
     }
 
     .invi-box-right-details {
