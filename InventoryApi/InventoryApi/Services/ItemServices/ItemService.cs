@@ -40,6 +40,7 @@ namespace InventoryApi.Services.ItemServices
             ItemDto itemDto = item.ToDto();
             itemDto.InventoryName = inventory.Name;
             itemDto.InventoryCategory = inventory.Category;
+            itemDto.CreatedAt = DateOnly.FromDateTime(DateTime.Today);
 
             return itemDto;
         }
@@ -84,6 +85,7 @@ namespace InventoryApi.Services.ItemServices
                     Name = item.Name,
                     Tag = item.Tag,
                     CreatedAt = item.CreatedAt,
+                    Value = item.Value
                 }).ToListAsync();
 
 
@@ -109,7 +111,9 @@ namespace InventoryApi.Services.ItemServices
                     InventoryId = inventoryId,
                     ItemId = item.Id,
                     Name = item.Name,
-                    Tag = item.Tag
+                    Tag = item.Tag,
+                    CreatedAt = item.CreatedAt,
+                    Value = item.Value
                 }).ToListAsync();
 
 
