@@ -38,6 +38,11 @@ export default function InventoryHome({}) {
     const [updateCategory, setUpdateCategory] = useState("");
     const [updateSharedCost, setUpdateSharedCost] = useState();
 
+    // Button clicks check
+    const [deleteButton, setDeleteButton] = useState(false);
+    const [updateButton, setUpdateButton] = useState(false);
+    const [addButton, setAddButton] = useState(false);
+
     
     useEffect(()=>{
         let isMounted = true;
@@ -134,7 +139,7 @@ export default function InventoryHome({}) {
                     inventoryPopup? <Popup 
                         message={"Create Inventory"}
                         inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory, sharedCost, setSharedCost)}
-                        buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category, "sharedCosts": sharedCost})}
+                        buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category, "sharedCosts": sharedCost}, addButton, setAddButton)}
                         popup={setInventoryPopUp}
                     /> : <p></p>
                 }
@@ -143,7 +148,7 @@ export default function InventoryHome({}) {
                     deletePopup? 
                         <Popup message={"Are you sure you want to delete your inventory?"} 
                         inputs={[]}
-                        buttons={deleteButtons(setDeletePopup, userId, targetInventory)}
+                        buttons={deleteButtons(setDeletePopup, userId, targetInventory, deleteButton, setDeleteButton)}
                         popup={setDeletePopup}
                     /> : <p></p>
                 }
@@ -152,7 +157,7 @@ export default function InventoryHome({}) {
                     updatePopup? <Popup 
                             message={"Update Inventory"}
                             inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory, updateSharedCost, setUpdateSharedCost)}
-                            buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost})}
+                            buttons={updateButtons(setUpdatePopup, userId, targetInventory, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost}, updateButton, setUpdateBody)}
                             popup={setUpdatePopup}
                         />
                     : <p></p>

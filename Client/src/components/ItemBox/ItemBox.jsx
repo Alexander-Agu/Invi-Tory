@@ -21,6 +21,10 @@ export default function ItemBox({body}) {
     const [updateTag, setUpdateTag] = useState(tag);
     const {userId} = useParams();
 
+    // Button click checks
+    const [deleteButton, setDeleteButton] = useState(false);
+    const [updateButton, setUpdateButton] = useState(false);
+
   return (
     <div className="item-box-container" onClick={()=> setDetailPopup(true)}>
 
@@ -53,7 +57,7 @@ export default function ItemBox({body}) {
             deletePopup? <Popup
                 message={"Are you sure you want to delete your Item"}
                 inputs={[]}
-                buttons={deleteItemButtons(setDeletePopup, userId, inventoryId, itemId)}
+                buttons={deleteItemButtons(setDeletePopup, userId, inventoryId, itemId, deleteButton, setDeleteButton)}
                 popup={setDeletePopup}
             /> : <p></p>
         }
@@ -62,7 +66,7 @@ export default function ItemBox({body}) {
             updatePopup? <Popup 
                 message={"Update Item"}
                 inputs={updateItemInputBoxes(updateName, setUpdateName, updateTag, setUpdateTag)}
-                buttons={updateItemButtons(setUpdatePopup, userId, itemId, inventoryId, {"name": updateName, "tag": updateTag})}
+                buttons={updateItemButtons(setUpdatePopup, userId, itemId, inventoryId, {"name": updateName, "tag": updateTag}, updateButton, setUpdateButton)}
                 popup={setUpdatePopup}
             /> : <p></p>
         }

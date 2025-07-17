@@ -32,6 +32,7 @@ export default function InvitoryBoxHome() {
   const [updatePopup, setUpdatePopup] = useState(false);
   const [createItemPopup, setCreateItemPopup] = useState(false);
 
+  // Update inventory parameters
   const [updateName, setUpdateName] = useState("");
   const [updateCategory, setUpdateCategory] = useState("");
   const [updateSharedCost, setUpdateSharedCost] = useState(1);
@@ -40,6 +41,11 @@ export default function InvitoryBoxHome() {
   const [createName, setName] = useState("");
   const [createTag, setTag] = useState("");
   const [value, setValue] = useState(0);
+
+  // Button click checks
+  const [deleteButton, setDeleteButton] = useState(false);
+  const [updateButton, setUpdateButton] = useState(false);
+  const [createItemButton, setCreateItemButton] = useState(false);
   
 
   useEffect(()=>{
@@ -170,7 +176,7 @@ export default function InvitoryBoxHome() {
         deletePopup? <Popup 
           message={"Are you sure you want to delete your Inventory?"}
           inputs={[]}
-          buttons={deleteButtons(setDeletePopup, userId, inventoryId)}
+          buttons={deleteButtons(setDeletePopup, userId, inventoryId, deleteButton, setDeleteButton)}
           popup={setDeletePopup}
         /> : <p></p>
       }
@@ -179,7 +185,7 @@ export default function InvitoryBoxHome() {
         updatePopup? <Popup 
           message={"Update Inventory"}
           inputs={updateInputBoxes(updateName, setUpdateName, updateCategory, setUpdateCategory, updateSharedCost, setUpdateSharedCost)}
-          buttons={updateButtons(setUpdatePopup, userId, inventoryId, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost})}
+          buttons={updateButtons(setUpdatePopup, userId, inventoryId, {"name": updateName, "category": updateCategory, "sharedCosts": updateSharedCost}, updateButton, setUpdateButton)}
           popup={setUpdatePopup}
         /> : <p></p>
       }
@@ -188,7 +194,7 @@ export default function InvitoryBoxHome() {
         createItemPopup? <Popup 
           message={"Create Item"}
           inputs={createItemInputBoxes(createName, setName, createTag, setTag, value, setValue, value, setValue)}
-          buttons={createItemButtons(setCreateItemPopup, userId, inventoryId, {"name": createName, "tag": createTag, "value": value})}
+          buttons={createItemButtons(setCreateItemPopup, userId, inventoryId, {"name": createName, "tag": createTag, "value": value}, createItemButton, setCreateItemButton)}
           popup={setCreateItemPopup}
         /> : <p></p>
       }

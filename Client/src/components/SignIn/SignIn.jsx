@@ -12,26 +12,25 @@ export default function SignIn() {
     let body = {"email": email, "password": passcode};
     const [buttonClicked, setButtonClicked] = useState(false);
 
-
     const Login = async (body) => {
-        let result = ValidateLoginForm(body)
-        setValidate(result)
+        let result = ValidateLoginForm(body);
+        setValidate(result);
 
+        if (buttonClicked) return;  // Ensures button is only clickable once
 
         if (result === true){
             try {
+                setButtonClicked(true);
                 let res = await LoginUserAsync(body);
-                console.log("Clicked")
 
                 localStorage.setItem('user', JSON.stringify(res));
                 window.location = `dashboard/${res.userId}`;
             } catch (error) {
                 alert("Invalid email or password");
-                console.log(error);
+                setButtonClicked(false);
             }
         }
-
-    }
+    };
 
 
   return (
@@ -61,7 +60,7 @@ export default function SignIn() {
         />
 
         <section className='sign-in-footer'>
-            <button onClick={()=> Login(body)}>Create Account</button>
+            <button onClick={()=> Login(body)}>Login</button>
 
             <p>
                 Don't have an account? 

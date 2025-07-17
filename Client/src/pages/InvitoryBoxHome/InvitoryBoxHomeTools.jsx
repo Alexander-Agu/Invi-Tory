@@ -2,7 +2,7 @@ import { CreateInventoryAsync, DeleteInventoryAsync, UpdateInventoryAsync } from
 import { CreateItemAsync } from "../../api/ItemApi";
 
 // Delete buttons for the delete endpoint
-export const deleteButtons = (setInventoryPopUp, userId, inventoryId)=> {
+export const deleteButtons = (setInventoryPopUp, userId, inventoryId, deleteButton, setDeleteButton)=> {
     return [
         {
             "buttonId": 1,
@@ -17,12 +17,17 @@ export const deleteButtons = (setInventoryPopUp, userId, inventoryId)=> {
             "color": "red",
             "fontColor": "black",
             "execute": async function  () {
+                if (deleteButton) return;
+                
+
                 try {
+                    setDeleteButton(true)
                     const res =  await DeleteInventoryAsync(userId, inventoryId);
                     window.history.back();
                     setInventoryPopUp(false)
 
                 } catch (error) {
+                    setDeleteButton(false)
                     console.log(error)
                 }
             }
@@ -32,7 +37,7 @@ export const deleteButtons = (setInventoryPopUp, userId, inventoryId)=> {
 
 
 // update buttons for the update endpoint
-export const updateButtons = (setInventoryPopUp, userId, inventoryId, body)=> {
+export const updateButtons = (setInventoryPopUp, userId, inventoryId, body, updateButton, setUpdateButton)=> {
     return [
         {
             "buttonId": 1,
@@ -47,11 +52,15 @@ export const updateButtons = (setInventoryPopUp, userId, inventoryId, body)=> {
             "color": "#2563eb",
             "fontColor": "white",
             "execute": async function  () {
+                if (updateButton) return;
+
                 try {
+                    setUpdateButton(true);
                     const res =  await UpdateInventoryAsync(userId, inventoryId, body);
                     location.reload();
                     setInventoryPopUp(false)
                 } catch (error) {
+                    setUpdateButton(false);
                     console.log(error)
                 }
             }
@@ -93,7 +102,7 @@ export const updateInputBoxes = (name, setName, category, setCategory, sharedCos
 
 
 // buttons for the create item endpoint
-export const createItemButtons = (setCreatePopup, userId, inventoryId, itemId, body)=> {
+export const createItemButtons = (setCreatePopup, userId, inventoryId, itemId, body, createItemButton, setCreateItemButton)=> {
     return [
         {
             "buttonId": 1,
@@ -108,11 +117,16 @@ export const createItemButtons = (setCreatePopup, userId, inventoryId, itemId, b
             "color": "#2563eb",
             "fontColor": "white",
             "execute": async function  () {
+                if (createItemButton) return;
+
+
                 try {
+                    setCreateItemButton(true);
                     const res =  await CreateItemAsync(userId, inventoryId, itemId, body);
                     location.reload();
                     setCreatePopup(false)
                 } catch (error) {
+                    setCreateItemButton(false);
                     console.log(error)
                 }
             }

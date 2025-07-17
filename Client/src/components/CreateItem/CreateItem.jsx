@@ -15,6 +15,8 @@ export default function CreateItem({setCreateItem}) {
     const { logoutPopUp, setLogoutPopUp, inventories } = useOutletContext();
     const { userId } = useParams();
 
+    const [addButton, setAddButton] = useState(false);
+
 
     let body = {
         "name": itemName,
@@ -23,10 +25,14 @@ export default function CreateItem({setCreateItem}) {
     };
 
     const CreateItem = async (e)=> { // Creates item
+        if (addButton) return;
+
         try {
+            setAddButton(true);
             const res = await CreateItemAsync(userId, inventoryId, body)
             location.reload();
         } catch (error) {
+            setAddButton(false);
             console.log(error)
         }
     }

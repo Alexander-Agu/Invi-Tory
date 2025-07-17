@@ -1,7 +1,7 @@
-import { CreateItemAsync, DeleteItemAsync, UpdateItemAsync } from "../../api/ItemApi";
+import { DeleteItemAsync, UpdateItemAsync } from "../../api/ItemApi";
 
 // Delete buttons for the delete endpoint
-export const deleteItemButtons = (setItemPopup, userId, inventoryId, itemId)=> {
+export const deleteItemButtons = (setItemPopup, userId, inventoryId, itemId, deleteButton, setDeleteButton)=> {
     return [
         {
             "buttonId": 1,
@@ -16,11 +16,15 @@ export const deleteItemButtons = (setItemPopup, userId, inventoryId, itemId)=> {
             "color": "red",
             "fontColor": "black",
             "execute": async function  () {
+                if (deleteButton) return;
+
                 try {
+                    setDeleteButton(true);
                     const res =  await DeleteItemAsync(userId, inventoryId, itemId);
                     setItemPopup(false)
                     location.reload();
                 } catch (error) {
+                    setDeleteButton(true);
                     console.log(error)
                 }
             }
@@ -30,7 +34,7 @@ export const deleteItemButtons = (setItemPopup, userId, inventoryId, itemId)=> {
 
 
 // update buttons for the update endpoint
-export const updateItemButtons = (setUpdateItemPopUp, userId, itemId, inventoryId, body)=> {
+export const updateItemButtons = (setUpdateItemPopUp, userId, itemId, inventoryId, body, updateButton, setUpdateButton)=> {
     return [
         {
             "buttonId": 1,
@@ -45,11 +49,15 @@ export const updateItemButtons = (setUpdateItemPopUp, userId, itemId, inventoryI
             "color": "#2563eb",
             "fontColor": "white",
             "execute": async function  () {
+                if (updateButton) return;
+
                 try {
+                    setUpdateButton(true);
                     const res =  await UpdateItemAsync(userId, inventoryId, itemId, body);
                     location.reload();
                     setUpdateItemPopUp(false)
                 } catch (error) {
+                    setUpdateButton(true);
                     console.log(error)
                 }
             }
