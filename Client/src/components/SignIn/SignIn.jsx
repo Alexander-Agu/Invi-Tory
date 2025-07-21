@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SignIntro from '../SignIntro/SignIntro'
 import "./signIn.css"
 import InputBox from '../../UI/InputBox/InputBox';
@@ -27,11 +27,27 @@ export default function SignIn() {
                 window.location = `dashboard/${res.userId}`;
             } catch (error) {
                 alert("Invalid email or password");
+                console.log("Test")
                 setButtonClicked(false);
             }
         }
     };
 
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter" && !buttonClicked) {
+                Login(body);
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [body, buttonClicked]);
 
   return (
     <article className='sign-in-container'>

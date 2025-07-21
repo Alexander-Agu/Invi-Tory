@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./signUp.css"
 import InputBox from '../../UI/InputBox/InputBox';
 import SignIntro from '../SignIntro/SignIntro';
@@ -47,6 +47,22 @@ export default function SignUp() {
         } else if(result === 6) alert("Make a stronger password");
         else if (result === 7) alert ("Password does not match");
     }
+
+    
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter" && !buttonClicked) {
+                RegisterUser();
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [body, buttonClicked]);
 
   return (
     <article className='sign-up-container'>
