@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
+
+
+/* Profile Container */
+.profile-container{
+    width: 100%;
+    min-height: 100dvh;
+    padding: 2rem;
+
+    background-color: #111827;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+
+
+/* Profile app header */
+.profile-header {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.profile-home-btn {
+    width: 100px;
+    height: 40px;
+
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+    font-size: 1.1rem;
+    color: white;
+
+    background-color: #1f2937;
+    border: 1px solid #4b5563;
+    outline: none;
+    border-radius: 6px;
+}
+
+.profile-app-intro {
+    width: 100%;
+
+    text-align: center;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-app-intro h2 {
+    color: white;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+.profile-app-intro p {
+    font-size: 1.2rem;
+    color: #d1d5db;
+    font-weight: bold;
+}
+/* Responsive */
+@media screen and (max-width: 1150px) {
+    .profile-header {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .profile-header {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 850px) {
+    .profile-header {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .profile-app-intro h2{
+        font-size: 1.7rem;
+    }
+
+    .profile-app-intro p{
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Profile App */
+.profile-app{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.profile-app-details {
+    width: 65%;
+    height: 44.5rem;
+
+    border-radius: 6px;
+}
+
+.profile-app-messages {
+    width: 35%;
+    min-height: 100%;
+    padding: 1rem;
+
+    background-color: #1f2937;
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+/* Responsive */
+@media screen and (max-width: 1500px) {
+    .profile-app{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 1150px) {
+    .profile-app{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .profile-app{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 850px) {
+    .profile-app{
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .profile-app-details {
+        height: initial;
+        min-height: 100%;
+    }
+
+    .profile-app-details,
+    .profile-app-messages{
+        width: 100%;
+    }
+}
+
+
+
+/* Delete Card */
+.delete-card{
+    width: 50%;
+    height: 10rem;
+    padding: 2rem;
+
+    border: 1px solid rgb(220, 38, 38);
+    background-color: rgba(119, 25, 25, 0.233);
+    border-radius: 8px;
+
+    color: rgb(248, 113, 113);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.delete-card-info{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+    /* font-size: 1.1rem; */
+}
+
+.delete-card-info p{
+    color: rgb(255, 174, 174);
+    width: 70%;
+}
+
+.delete-button{
+    width: 150px;
+    height: 50px;
+    padding: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+
+    background-color: rgb(220, 38, 38);
+    color: white;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+} .delete-button:hover{
+    background-color: rgb(185, 28, 28);
+}
+/* Responsive */
+@media screen and (max-width: 1500px) {
+    .delete-card {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 1150px) {
+    .delete-card {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .delete-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .delete-card {
+        width: 100%;
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .delete-card-info h2{
+        font-size: 0.9rem;
+    }
+
+    .delete-card-info p{
+        font-size: 0.9rem;
+        width: 90%;
+    }
+
+    .delete-button{
+        flex-direction: column;
+    }
+}

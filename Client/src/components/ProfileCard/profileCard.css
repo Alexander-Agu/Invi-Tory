@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
+
+
+
+/* Profile card container */
+.profile-card-container{
+    width: 100%;
+    min-height: 12rem;
+    padding: 1rem;
+
+    /* background-color: aliceblue; */
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+    
+        border-radius: 8px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.profile-card-message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* .profile-card-message h2{
+    color: white;
+}
+ */
+/* .profile-card-message p{
+    color: #9ca3af;
+} */
