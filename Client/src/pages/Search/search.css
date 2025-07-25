@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
+
+
+
+/* Search Container */
+.search-container{
+    width: 100%;
+    min-height: 100dvh;
+    padding: 2rem;
+
+    background-color: #111827;
+}
+
+
+/* Search Header */
+.search-header{
+    width: 100%;
+
+    color: white;
+    font-size: 1rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.search-header button{
+    width: 100px;
+    height: 40px;
+    padding: 0.5rem;
+
+    color: #d1d5db;
+    font-size: 1rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-header button:hover{
+    background-color: #374151;
+    color: white;
+    transition: 200ms;
+}
