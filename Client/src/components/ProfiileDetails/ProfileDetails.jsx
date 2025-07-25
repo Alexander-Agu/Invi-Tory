@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./profileDetails.css"
 import DetailInfo from '../../UI/DetailInfo/DetailInfo'
-import { profileData } from './ProfileDetailTools'
+import { profileData, updateButtons, updateInputBoxes } from './ProfileDetailTools'
+import { useParams } from 'react-router-dom';
+import Popup from '../Popup/Popup';
 
-export default function ProfileDetails() {
+
+
+export default function ProfileDetails({data}) {
+    const { firstname, lastname, username, email, createdAt, days, } = data;
+    const { userId } = useParams();
+
+    // Triggered button states
+    const [updateButton, setUpdateButton] = useState(false);
+    const [deleteButton, setDeleteButton] = useState(false);
+
+    // Popup states
+    const [updatePopup, setUpdatePopup] = useState(false);
+
+    // Update texts
+    const [updateFirstname, setUpdateFirstname] = useState("");
+    const [updateLastname, setUpdateLastname] = useState("");
+
   return (
     <section className='profile-detail-app'>
 
@@ -11,7 +29,12 @@ export default function ProfileDetails() {
 
             <h2>Account Information</h2>
 
-            <button>
+            <button onClick={()=> {
+                setUpdateFirstname(firstname);
+                setUpdateLastname(lastname);
+                setUpdatePopup(true)
+                }}>
+
                 <p>Edit Profile</p>
             </button>
 
@@ -21,19 +44,19 @@ export default function ProfileDetails() {
         <div className="profile-detail-names">
 
             <div className='detail-initial'>
-                <p>A</p>
+                <p>{firstname[0].toUpperCase()}</p>
             </div>
 
             <div className="detail-names">
-                <h2>Alexander Agu</h2>
-                <p>@alagujhb024</p>
+                <h2>{firstname} {lastname}</h2>
+                <p>{username}</p>
             </div>
 
         </div>
 
         <div className="profile-detail-footer">
             {
-                profileData("agu@gmail.com", "alagujhb024", "2025", 60).map(x => {
+                profileData(email, username, createdAt, days).map(x => {
                     const {icon, name, data} = x;
 
                     return <DetailInfo key={name}
@@ -45,6 +68,15 @@ export default function ProfileDetails() {
             }
         </div>
 
+        {
+            updatePopup? <Popup 
+                message={"Update basic profile information"}
+                inputs={updateInputBoxes(updateFirstname, setUpdateFirstname, updateLastname, setUpdateLastname)}
+                buttons={updateButtons(updatePopup, userId, {"firstname": updateFirstname, "lastname": updateLastname}, updateButton, setUpdateButton)}
+                popup={setUpdatePopup}
+            /> 
+            : <p></p>
+        }
     </section>
   )
 }
