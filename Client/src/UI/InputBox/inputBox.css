@@ -28,3 +28,20 @@
         height: 70px;
     }
 }
+
+.input-box-container div{
+    display: flex;
+
+}
+
+.input-box-container button{
+    padding: 0.2rem;
+    color: white;
+    border: none;
+    border-right: 1px solid #4b5563;
+    border-top: 1px solid #4b5563;
+    border-bottom: 1px solid #4b5563;
+    border-radius: 0px 8px 8px 0px;
+    background-color: #374151;
+    outline: none;
+}

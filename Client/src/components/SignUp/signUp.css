@@ -53,8 +53,8 @@
 @media screen and (max-width: 650px) {
     .sign-up-crit-info{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        /* grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr); */
     }
 }
 
@@ -106,4 +106,45 @@
     .sign-up-footer p{
         font-size: 0.6rem;
     }
+}
+
+
+/* Password Rules */
+.pass-rules{
+    width: 100%;
+
+    color: #d1d5db;
+    font-size: 0.7rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rules{
+    width: 100%;
+    padding-left: 1rem;
+    margin-bottom: 0.6rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
+    gap: 0.2rem;
+}
+/* Responsive */
+@media screen and (max-width: 450px) {
+    .pass-rules{
+        font-size: 0.7rem;
+    }
+
+    .rules{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
 }

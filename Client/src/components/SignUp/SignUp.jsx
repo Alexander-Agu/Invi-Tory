@@ -5,7 +5,7 @@ import SignIntro from '../SignIntro/SignIntro';
 import { RegisterUserAsync } from '../../api/UserApi';
 import { ValidatePassword, ValidateSigningForm } from '../../tools/Validators';
 
-export default function SignUp() {
+export default function SignUp({loadLogin, setLoadLogin}) {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [username, setUsername] = useState("")
@@ -35,12 +35,13 @@ export default function SignUp() {
         if (result === true){
             setButtonClicked(true);
             try {
-                console.log("Clicked!")
+                setLoadLogin(true);
                 const res = await RegisterUserAsync(body)
 
                 localStorage.setItem('user', JSON.stringify(res));
                 window.location = `dashboard/${res.userId}`
             } catch (error) {
+                setLoadLogin(false);
                 setButtonClicked(false);
                 console.log(error)
             }
@@ -115,16 +116,27 @@ export default function SignUp() {
                 setInput={setEmail}
                 placeHolder={"doe@gmail.com"}
             />
-            <InputBox
-                type={"password"}
-                required={true}
-                checkValid={checkValid}
-                boxValue={4}
-                title={"Password"}
-                input={passcode}
-                setInput={setPasscode}
-                placeHolder={"Create a strong password"}
-            />
+
+            <div className="pass-rules">
+                <InputBox
+                    type={"password"}
+                    required={true}
+                    checkValid={checkValid}
+                    boxValue={4}
+                    title={"Password"}
+                    input={passcode}
+                    setInput={setPasscode}
+                    placeHolder={"Create a strong password"}
+                />
+
+                <div className="rules">
+                    <p> - Length at lease 8</p>
+                    <p> - At least 1 Uppercase</p>
+                    <p> - At least 1 Lowercase</p>
+                    <p> - At least 1 Special Character</p>
+                    <p> - At least 1 Number</p>
+                </div>
+            </div>
             <InputBox 
                 type={"password"}
                 required={true}

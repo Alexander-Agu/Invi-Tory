@@ -5,11 +5,13 @@ import InputBox from '../../UI/InputBox/InputBox';
 import { ValidateLoginForm } from '../../tools/Validators';
 import { LoginUserAsync } from '../../api/UserApi';
 
-export default function SignIn() {
+export default function SignIn({loadLogin, setLoadLogin}) {
     const [email, setEmail] = useState("");
     const [passcode, setPasscode] = useState("");
     const [validate, setValidate] = useState(0);
     let body = {"email": email, "password": passcode};
+
+    // Triggered button state
     const [buttonClicked, setButtonClicked] = useState(false);
 
     const Login = async (body) => {
@@ -20,12 +22,14 @@ export default function SignIn() {
 
         if (result === true){
             try {
+                setLoadLogin(true);
                 setButtonClicked(true);
                 let res = await LoginUserAsync(body);
 
                 localStorage.setItem('user', JSON.stringify(res));
                 window.location = `dashboard/${res.userId}`;
             } catch (error) {
+                setLoadLogin(false);
                 alert("Invalid email or password");
                 console.log("Test")
                 setButtonClicked(false);

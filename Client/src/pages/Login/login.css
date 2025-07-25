@@ -1,7 +1,7 @@
 .login{
     width: 100%;
     min-height: 100dvh;
-    padding: 2rem;
+    /* padding: 2rem; */
 
     background: linear-gradient(to bottom right, #111827, #1f2937, #000000);
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@
     background-size: cover;
 
     display: grid;
-    place-content: center;
+    /* place-content: center; */
 }
 /* Responsive */
 /* @media screen and (max-width: 1000px) and (max-height: 500px) {
