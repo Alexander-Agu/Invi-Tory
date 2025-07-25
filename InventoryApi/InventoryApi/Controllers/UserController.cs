@@ -118,13 +118,13 @@ namespace InventoryApi.Controllers
         // Get user information
         [Authorize]
         [HttpGet("get-user/{userId}")]
-        public async Task<ActionResult<UserDto>> GetUser(int userId)
+        public async Task<ActionResult<GetUserDto>> GetUser(int userId)
         {
             var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             if (tokenUserId != userId) return Forbid();
 
 
-            GetUserDto? user = await userService.GetUserAsync(userId);
+           GetUserDto? user = await userService.GetUserAsync(userId);
             if (user == null) return BadRequest("User not found");
 
             return Ok(user);

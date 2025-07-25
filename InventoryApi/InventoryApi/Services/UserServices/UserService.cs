@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using InventoryApi.Entities;
 using InventoryApi.Mappings;
 using InventoryApi.Models.UserDtos;
 using InventoryApi.Repository;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using InventoryApi.Entities;
 
 namespace InventoryApi.Services.UserServices
 {
@@ -158,6 +158,8 @@ namespace InventoryApi.Services.UserServices
 
             int days = currentDate.DayNumber - joinedDate.DayNumber + 1;
             getUserDto.Days = days;
+            getUserDto.Email = user.Email;
+            getUserDto.CreatedAt = user.CreatedAt;
 
             return getUserDto;
         }

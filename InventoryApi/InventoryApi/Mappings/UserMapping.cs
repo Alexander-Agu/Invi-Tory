@@ -1,5 +1,5 @@
-﻿using InventoryApi.Entities;
-using InventoryApi.Models.UserDtos;
+﻿using InventoryApi.Models.UserDtos;
+using InventoryApi.Entities;
 
 namespace InventoryApi.Mappings
 {

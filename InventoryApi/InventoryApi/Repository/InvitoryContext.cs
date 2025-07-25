@@ -1,4 +1,5 @@
 ﻿using InventoryApi.Entities;
+using InventoryApi.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryApi.Repository

@@ -1,4 +1,6 @@
-﻿namespace InventoryApi.Entities
+﻿using InventoryApi.Mappings;
+
+namespace InventoryApi.Entities
 {
     public class Item
     {
