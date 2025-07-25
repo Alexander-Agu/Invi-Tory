@@ -1,6 +1,7 @@
 import { FaLock } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { MdOutlineWarning } from "react-icons/md";
+import { DeleteAccountAsync } from "../../api/UserApi";
 
 export const profileCards = ()=> {
     return [
@@ -31,5 +32,38 @@ export const profileCards = ()=> {
             title: "Keep Your Data Safe",
             content: "Never share your login credentials or personal information with others. Always log out when using shared devices."
         },
+    ]
+}
+
+
+// update buttons for the update endpoint
+export const deleteButtons = (setPopup, userId, deleteButton, setDeleteButton)=> {
+    return [
+        {
+            "buttonId": 1,
+            "name": "Cancel",
+            "color": "white",
+            "fontColor": "black",
+            "execute": setPopup
+        },
+        {
+            "buttonId": 2,
+            "name": "Delete",
+            "color": "rgb(220, 38, 38)",
+            "fontColor": "white",
+            "execute": async function  () {
+                if (deleteButton) return;
+
+                try {
+                    setDeleteButton(true);
+                    const res =  await DeleteAccountAsync(userId);
+                    window.location = "/";
+                    setPopup(false)
+                } catch (error) {
+                    setDeleteButton(false);
+                    console.log(error)
+                }
+            }
+        }
     ]
 }

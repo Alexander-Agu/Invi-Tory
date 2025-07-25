@@ -33,6 +33,7 @@
     width: 100px;
     height: 40px;
 
+    text-decoration: none;
     font-family: "TikTok Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -46,6 +47,10 @@
     border: 1px solid #4b5563;
     outline: none;
     border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-app-intro {
