@@ -10,6 +10,7 @@ import InventoryHome from './components/InventoryHome/InventoryHome';
 import ItemHome from './components/ItemHome/ItemHome';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import InventoryBoxHome from "./pages/InvitoryBoxHome/InvitoryBoxHome";
+import Profile from './pages/Profile/Profile';
 
 function App() {
   const router = createBrowserRouter([
@@ -62,6 +63,10 @@ function App() {
     {
       path: "/dashboard/:userId/inventory/:inventoryId",
       element: <InventoryBoxHome />
+    },
+    {
+      path: "/dashboard/:userId/profile",
+      element: <Profile />
     }
 ]);
 

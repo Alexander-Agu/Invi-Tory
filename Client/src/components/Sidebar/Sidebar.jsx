@@ -5,10 +5,13 @@ import DashboardLink from '../../UI/DashboardLink/DashboardLink';
 import AccountNav from '../../UI/AccountNav/AccountNav';
 import { BiLogOut } from "react-icons/bi";
 import { sidebarLinks } from './Links';
+import { useParams } from 'react-router-dom';
 
 
 
 function Sidebar({setLogoutPopUp, name}) {
+    const { userId } = useParams();
+    
   return <>
   <input type="checkbox" style={{display: "none"}} id='sidebar' />
     <section className='sidebarContainer'>
@@ -30,7 +33,7 @@ function Sidebar({setLogoutPopUp, name}) {
         </nav>
 
         <div className="sidebarFooter">
-            <AccountNav name={name} link={"#"} />
+            <AccountNav name={name} link={`/dashboard/${userId}/profile`} />
             <button className='logoutButton' onClick={()=> setLogoutPopUp(true)}>
                 <BiLogOut />
                 <p>Logout</p>

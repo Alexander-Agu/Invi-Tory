@@ -3,21 +3,21 @@ import "./loadScreen.css"
 
 export default function LoadScreen() {
   return (
-    <div class="loading-container">
+    <div className="loading-container">
     <div>
-      <div class="loading-text">
-        <span class="loading-letter">L</span>
-        <span class="loading-letter">O</span>
-        <span class="loading-letter">A</span>
-        <span class="loading-letter">D</span>
-        <span class="loading-letter">I</span>
-        <span class="loading-letter">N</span>
-        <span class="loading-letter">G</span>
+      <div className="loading-text">
+        <span className="loading-letter">L</span>
+        <span className="loading-letter">O</span>
+        <span className="loading-letter">A</span>
+        <span className="loading-letter">D</span>
+        <span className="loading-letter">I</span>
+        <span className="loading-letter">N</span>
+        <span className="loading-letter">G</span>
       </div>
-      <div class="loading-dots">
-        <div class="loading-dot"></div>
-        <div class="loading-dot"></div>
-        <div class="loading-dot"></div>
+      <div className="loading-dots">
+        <div className="loading-dot"></div>
+        <div className="loading-dot"></div>
+        <div className="loading-dot"></div>
       </div>
     </div>
   </div>
