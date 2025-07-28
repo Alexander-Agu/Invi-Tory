@@ -68,6 +68,9 @@ namespace InventoryApi.Services.UserServices
             User? user = await context.Users.FindAsync(userId);
             if(user == null) return false; // Cannot delete if user is not found
 
+            // Prevents users from deleting the demo account
+            if (user.Username == "alexagu22") return false;
+
             await context.Users.Where(u => u.Id == userId)
                 .ExecuteDeleteAsync();
 

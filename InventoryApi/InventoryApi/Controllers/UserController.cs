@@ -100,12 +100,12 @@ namespace InventoryApi.Controllers
 
 
         // Update password
-        [Authorize]
+        //[Authorize]
         [HttpPut("update-password/{userId}")]
         public async Task<ActionResult<bool>> UpdatePassword(int userId, PasswordDto request)
         {
-            var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            if (tokenUserId != userId) return Forbid();
+            //var tokenUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            //if (tokenUserId != userId) return Forbid();
 
 
             bool passowordUpdated = await userService.UpdatePasswordAsync(userId, request);

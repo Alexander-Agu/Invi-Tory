@@ -21,7 +21,7 @@ namespace InventoryApi.Services.InventoryServices
             if (user == null) return null;
 
             // Do not allow user to add an inventory with the same Inventory Name
-            if (await context.Inventory.Where(n => n.Name == request.Name ).AnyAsync()) return null;
+            if (await context.Inventory.Where(n => n.Name == request.Name && n.UserId == userId).AnyAsync()) return null;
 
 
 
