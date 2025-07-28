@@ -9,7 +9,6 @@ export default function InputBox({type, title, input, setInput, placeHolder, che
   const [tempType, setTempType] = useState(type);
 
   const showPassword = ()=> {
-    console.log(type)
     if (captureType === "password" && tempType === "password") setTempType("text");
 
     else if (captureType === "password" && tempType === "text") setTempType("password"); 
