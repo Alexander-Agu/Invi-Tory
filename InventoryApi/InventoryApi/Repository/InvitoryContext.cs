@@ -1,5 +1,6 @@
 ﻿using InventoryApi.Entities;
 using InventoryApi.Mappings;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryApi.Repository
@@ -61,6 +62,23 @@ namespace InventoryApi.Repository
                 .WithOne(i => i.InventoryValuation)
                 .HasForeignKey<InventoryValuation>(x => x.InventoryId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+
+            //var todaysData = DateOnly.FromDateTime(DateTime.Today);
+
+            // SEED USER DATA
+            User user = new User();
+            user.Id = 1;
+            user.Firstname = "Alexander";
+            user.Lastname = "Agu";
+            user.Username = "alexagu22";
+            user.Email = "agudemo@gmail.com";
+            user.HashedPassword = "@Lexander2704#";
+            //user.CreatedAt = todaysData;
+
+
+
+            modelBuilder.Entity<User>().HasData(user);
         }
     }
 }
