@@ -15,6 +15,7 @@
 /* Search Header */
 .search-header{
     width: 100%;
+    margin-bottom: 30px;
 
     color: white;
     font-size: 1rem;
@@ -59,4 +60,78 @@
     background-color: #374151;
     color: white;
     transition: 200ms;
+}
+/* Responsive */
+@media screen and (max-width: 590px) {
+    .search-header{
+        gap: 0.5rem;
+    }
+
+    .search-header h1{
+        font-size: 1.5rem;
+    }
+
+    .search-header button{
+        width: 80px;
+    }
+}
+@media screen and (max-width: 335px) {
+    .search-header h1{
+        font-size: 1.1rem;
+    }
+}
+
+
+/* Inventory result container */
+.inventory-results-container{
+    width: 100%;
+    min-height: 50px;
+    margin-top: 30px;
+
+    color: #d1d5db;
+    font-size: 1.3rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+}
+
+.inventory-results-title{
+    margin-bottom: 10px;
+}
+/* Responsive */
+@media screen and (max-width: 500px) {
+    .inventory-results-title{
+        font-size: 1.4rem;
+    }
+}
+
+
+
+/* Item result container */
+.items-results-container{
+    width: 100%;
+    min-height: 50px;
+    margin-top: 30px;
+
+    color: #d1d5db;
+    font-size: 1.3rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+}
+
+.items-results-title{
+    margin-bottom: 10px;
+}
+/* Responsive */
+@media screen and (max-width:500px) {
+    .items-results-title{
+        font-size: 1.4rem;
+    }
 }
