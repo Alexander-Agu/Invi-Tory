@@ -50,7 +50,7 @@ export const updateItemButtons = (setUpdateItemPopUp, userId, targetItemId, targ
                 try {
                     console.log(`${userId} ${targetInventoryId}`)
                     const res =  await UpdateItemAsync(userId, targetInventoryId, targetItemId, body);
-                    // location.reload();
+                    location.reload();
                     setUpdateItemPopUp(false)
                 } catch (error) {
                     console.log(error)

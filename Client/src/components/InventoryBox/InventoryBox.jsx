@@ -24,7 +24,6 @@ export default function InventoryBox({id, category, name, itemCount, setDeletePo
     setUpdateName(name);
     setUpdateCategory(category);
     setSharedCosts(sharedCosts)
-    console.log(sharedCosts)
   }
 
   return (

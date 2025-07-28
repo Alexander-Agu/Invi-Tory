@@ -1,0 +1,109 @@
+
+
+
+/* Search Box container */
+.search-box-container{
+    width: 100%;
+    padding: 2rem;
+
+    background-color: #6b72801c;
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-box-container input{
+    width: 90%;
+    height: 50px;
+    padding: 1rem;
+
+    color: white;
+    background-color: #374151;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    border: 1px solid #4b5563;
+
+    font-size: 1rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+}
+
+.search-box-container button{
+    width: 9%;
+    height: 50px;
+
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #3b82f6;
+    color: white;
+
+    font-size: 1rem;
+    font-family: "TikTok Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.search-box-container button:hover{
+    background-color: #2f72dd;
+}
+/* Responsive */
+@media screen and (max-width: 1050px) {
+    .search-box-container input{
+        width: 80%;
+    }
+
+    .search-box-container button{
+        width: 15%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .search-box-container {
+        padding: 1rem;
+    }
+
+    .search-box-container input{
+        width: 75%;
+    }
+
+    .search-box-container button{
+        width: 20%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .search-box-container input{
+        width: 65%;
+    }
+
+    .search-box-container button{
+        width: 30%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .search-box-container{
+        padding: 1rem;
+    }
+
+    .search-box-container input{
+        width: 65%;
+    }
+
+    .search-box-container button{
+        font-size: 0.8rem;
+    }
+}

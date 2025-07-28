@@ -102,7 +102,8 @@ export const updateInputBoxes = (name, setName, category, setCategory, sharedCos
 
 
 // buttons for the create item endpoint
-export const createItemButtons = (setCreatePopup, userId, inventoryId, itemId, body, createItemButton, setCreateItemButton)=> {
+export const createItemButtons = (setCreatePopup, userId, inventoryId, body, createButton, setCreateItemButton)=> {
+    console.log(userId)
     return [
         {
             "buttonId": 1,
@@ -117,12 +118,12 @@ export const createItemButtons = (setCreatePopup, userId, inventoryId, itemId, b
             "color": "#2563eb",
             "fontColor": "white",
             "execute": async function  () {
-                if (createItemButton) return;
-
+                setCreateItemButton(false);
+                if (createButton) return;
 
                 try {
                     setCreateItemButton(true);
-                    const res =  await CreateItemAsync(userId, inventoryId, itemId, body);
+                    const res =  await CreateItemAsync(userId, inventoryId, body);
                     location.reload();
                     setCreatePopup(false)
                 } catch (error) {

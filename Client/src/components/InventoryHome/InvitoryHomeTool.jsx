@@ -114,6 +114,7 @@ export const CreateButtons = (setInventoryPopUp, userId, body, addButton, setAdd
             "color": "#2563eb",
             "fontColor": "white",
             "execute": async function  () {
+                setAddButton(false)
                 if (addButton) return;
 
                 try {

@@ -38,26 +38,3 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
 }
-/* @media screen and (max-width: 1700px) {
-    .inventory-bottom-section {
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr))
-    }
-}
-
-@media screen and (max-width: 1035px) {
-    .inventory-bottom-section {
-        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr))
-    }
-} */
-
-@media screen and (max-width: 560px) {
-    .inventory-bottom-section {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))
-    }
-}
-
-@media screen and (max-width: 439px) {
-    .inventory-bottom-section {
-        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr))
-    }
-}

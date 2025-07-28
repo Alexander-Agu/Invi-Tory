@@ -45,8 +45,8 @@ export default function InvitoryBoxHome() {
   // Button click checks
   const [deleteButton, setDeleteButton] = useState(false);
   const [updateButton, setUpdateButton] = useState(false);
-  const [createItemButton, setCreateItemButton] = useState(false);
-  
+  const [createButton, setCreateItemButton] = useState(false);
+
 
   useEffect(()=>{
     let isMounted = true;
@@ -63,7 +63,6 @@ export default function InvitoryBoxHome() {
         if (isMounted){
           setData(dataRes);
           setValuationData(valuationDataRes);
-          console.log(items)
 
           setUpdateName(dataRes.name);
           setUpdateCategory(dataRes.category);
@@ -84,7 +83,6 @@ export default function InvitoryBoxHome() {
 
         if (isMounted){
           const res = await GetInventoryItemsAsync(userId, inventoryId);
-          console.log(res);
           setItems(res);
         }
         
@@ -133,7 +131,7 @@ export default function InvitoryBoxHome() {
 
           <article className='invi-box-details'>
             <section className='invi-box-left-details'>
-              <BoxDetails 
+              <BoxDetails key={1}
                 icon={<FiBox style={{"color": "#2563eb", "fontSize": "1.5rem"}} />} 
                 title={"Inventory Data"} 
                 data={parseInventoryData(data)} 
@@ -141,7 +139,7 @@ export default function InvitoryBoxHome() {
             </section>
 
             <section className='invi-box-right-details'>
-              <BoxDetails 
+              <BoxDetails key={2}
                 icon={<BsGraphUpArrow style={{"color": "#10b981", "fontSize": "1.5rem"}} />} 
                 data={parseInventoryValuationData(valuationData)} 
                 title={"Inventory Valuation (Weighted Average)"} 
@@ -194,7 +192,7 @@ export default function InvitoryBoxHome() {
         createItemPopup? <Popup 
           message={"Create Item"}
           inputs={createItemInputBoxes(createName, setName, createTag, setTag, value, setValue, value, setValue)}
-          buttons={createItemButtons(setCreateItemPopup, userId, inventoryId, {"name": createName, "tag": createTag, "value": value}, createItemButton, setCreateItemButton)}
+          buttons={createItemButtons(setCreateItemPopup, userId, inventoryId, {"name": createName, "tag": createTag, "value": value}, createButton, setCreateItemButton)}
           popup={setCreateItemPopup}
         /> : <p></p>
       }

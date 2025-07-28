@@ -5,25 +5,32 @@ import { CreateInventoryAsync } from '../../api/InventoryApi';
 import { useParams } from 'react-router-dom';
 
 export default function InventoryPopup({setInventoryPopUp}) {
-  const [inventoryName, setInventoryName] = useState("");
-  const [category, setCategory] = useState("");
-  const { userId } = useParams();
+    const [inventoryName, setInventoryName] = useState("");
+    const [category, setCategory] = useState("");
+    const { userId } = useParams();
 
-  // Create inventory
-  const CreateInventory = async (userId) => {
-    let body = {
-        "name": inventoryName,
-        "category": category
-    };
+    // Button clicks check
+    const [addButton, setAddButton] = useState(false);
 
-    try {
-        const res = await CreateInventoryAsync(userId, body);
-        location.reload();
-        setInventoryPopUp(false)
-    } catch (error) {
-        console.log(error);
+    // Create inventory
+    const CreateInventory = async (userId) => {
+        let body = {
+            "name": inventoryName,
+            "category": category
+        };
+
+        if (addButton) return;
+
+        try {
+            setAddButton(true);
+            const res = await CreateInventoryAsync(userId, body);
+            location.reload();
+            setInventoryPopUp(false)
+        } catch (error) {
+            setAddButton(false);
+            console.log(error);
+        }
     }
-  }
 
   return (
     <div className="inventory-popup" onClick={()=> setInventoryPopUp(false)}>

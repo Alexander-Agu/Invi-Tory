@@ -77,7 +77,6 @@ export default function ItemHome() {
 
     if (items.length > 0) {
       filterItems();
-      console.log(filteredItems)
     }
   },[userId, items, targetCategory, targetInventoryName])
 

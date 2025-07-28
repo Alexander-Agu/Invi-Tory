@@ -77,11 +77,9 @@ export default function InventoryHome({}) {
     useEffect(()=> {
         const filterInventory = async ()=> {
             try {
-                // const res = await FilterInventoryAsync(userId, {"category": targetCategory})
                 const res = FilterInventories(inventories, targetCategory);
 
                 setFilteredInventory(res);
-                console.log(inventories[1].sharedCosts)
             } catch (error) {
                 console.log(error)
             }
@@ -137,7 +135,7 @@ export default function InventoryHome({}) {
                 {
                     // ADD INVENTORY POPUP
                     inventoryPopup? <Popup 
-                        message={"Create Inventory"}
+                        message={"Create Inventory ( Choose unique name! )"}
                         inputs={CreateInputs(inventoryName, setInventoryName, category, setCategory, sharedCost, setSharedCost)}
                         buttons={CreateButtons(setInventoryPopUp, userId, {"name": inventoryName, "category": category, "sharedCosts": sharedCost}, addButton, setAddButton)}
                         popup={setInventoryPopUp}
