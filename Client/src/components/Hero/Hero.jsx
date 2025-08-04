@@ -16,7 +16,7 @@ export default function Hero() {
 
     if (result === true){
       try {
-        // setLoadLogin(true);
+        // setLoadLogin(true); 
         setButtonClicked(true);
         let res = await LoginUserAsync(body);
         
@@ -24,7 +24,7 @@ export default function Hero() {
         window.location = `dashboard/${res.userId}`;
       } catch (error) {
         // setLoadLogin(false);
-        alert("Invalid email or password");
+        alert("Trouble accessing demo account");
         console.log("Test")
         setButtonClicked(false);
       }
