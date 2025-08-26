@@ -6,7 +6,7 @@ let token = GetToken();
 
 
 const api = axios.create({
-    baseURL: "https://localhost:7216/api",
+    baseURL: "https://invi-tory-7en0.onrender.com/api",
     headers: {
         Authorization: `Bearer ${token}`
     }
@@ -15,7 +15,7 @@ const api = axios.create({
 // Creating user account
 export const RegisterUserAsync = async (body)=> {
     try {
-        const response = await axios.post("https://localhost:7216/api/User/register", body);
+        const response = await axios.post("https://invi-tory-7en0.onrender.com/api/User/register", body);
 
         return await response.data;
     } catch (error) {
@@ -27,7 +27,7 @@ export const RegisterUserAsync = async (body)=> {
 // Log user in
 export const LoginUserAsync = async (body) => {
     try {
-        const res = await axios.post("https://localhost:7216/api/User/login", body);
+        const res = await axios.post("https://invi-tory-7en0.onrender.com/api/User/login", body);
 
         return await res.data;
     } catch (error) {

@@ -5,7 +5,7 @@ import { GetToken } from "../tools/ApiTools";
 let token = GetToken();
 
 const api = axios.create({
-    baseURL: "https://localhost:7216/api",
+    baseURL: "https://invi-tory-7en0.onrender.com/api",
     headers: {
         Authorization: `Bearer ${token}`
     }
