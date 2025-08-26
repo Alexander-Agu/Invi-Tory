@@ -9,7 +9,7 @@ import { CreateItemAsync } from '../../api/ItemApi';
 export default function CreateItem({setCreateItem}) {
     const [itemName, setItemName] = useState("");
     const [tag, setTag] = useState("");
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(0);
     const [expiryDate, setExpiryDate] = useState("yyyy/mm/dd");
     const [inventoryId, setInventoryId] = useState("");
     const { logoutPopUp, setLogoutPopUp, inventories } = useOutletContext();
@@ -30,7 +30,8 @@ export default function CreateItem({setCreateItem}) {
         try {
             setAddButton(true);
             const res = await CreateItemAsync(userId, inventoryId, body)
-            location.reload();
+            console.log(res)
+            // location.reload();
         } catch (error) {
             setAddButton(false);
             console.log(error)
