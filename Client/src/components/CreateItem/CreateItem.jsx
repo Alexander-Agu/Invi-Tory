@@ -24,13 +24,13 @@ export default function CreateItem({setCreateItem}) {
         "value": value
     };
 
-    const CreateItem = async (e)=> { // Creates item
-        e.preventDefault();
+    const CreateItem = async ()=> { // Creates item
+        // e.preventDefault();
         if (addButton) return;
 
         try {
             setAddButton(true);
-            const res = await CreateItemAsync(userId, inventoryId, body)
+            const res = await CreateItemAsync(userId, inventoryId, {"name": itemName, "tag": tag, "value": value})
             console.log(res)
             // location.reload();
         } catch (error) {
@@ -44,7 +44,7 @@ export default function CreateItem({setCreateItem}) {
 
         <div className="create-item-app" onClick={(e) => e.stopPropagation()}>
             <h2>Add New Item</h2>
-            <form>
+            <form onSubmit={CreateItem}>
                 <div>
                     <label htmlFor="name">Item Name *</label>
                     <input onChange={e => setItemName(e.target.value)} type="text" id="name" placeholder="Enter item name" value={itemName} />
@@ -81,7 +81,7 @@ export default function CreateItem({setCreateItem}) {
 
                 <div className="actions">
                     <button type="button" className="btn btn-outline" onClick={()=> setCreateItem(false)}>Cancel</button>
-                    <button type="submit" className="btn btn-primary" onClick={(e)=> CreateItem(e)}>Add Item</button>
+                    <button type="submit" className="btn btn-primary">Add Item</button>
                 </div>
             </form>
         </div>
