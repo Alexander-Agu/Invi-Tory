@@ -3,8 +3,8 @@
 
 /* Item box container */
 .item-box-container{
-    /* width: 15rem;
-    min-height: 15rem; */
+    /* width: 15rem; */
+    min-height: 15rem;
     padding: 1rem;
 
     background-color: #1f2937b7;

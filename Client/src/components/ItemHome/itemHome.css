@@ -30,7 +30,7 @@
 
 .item-home .item-bottom{
     width: 100%;
-    min-height: 100%;
+    min-height: 10rem;
     
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
