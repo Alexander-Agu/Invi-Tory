@@ -9,11 +9,18 @@
     border: 1px solid #374151;
     border-radius: 20px;
     background-color: #1f2937;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 /* Responsive */
 @media screen and (max-width: 650px) {
     .sign-up-container{
         width: 500px;
+        gap: 1rem;
     }
 }
 
@@ -48,11 +55,17 @@
 
 
 /* Sign Up Critical Info */
-
+.sign-up-crit-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 /* Responsive */
 @media screen and (max-width: 650px) {
     .sign-up-crit-info{
-        display: grid;
+        gap: 1rem;
         /* grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr); */
     }
