@@ -41,8 +41,8 @@
     gap: 1rem;
 }
 /* Responsive */
-@media screen and (max-width: 435px) {
+/* @media screen and (max-width: 435px) {
     .inventory-bottom-section{
-        /* grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); */
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     }
-}
+} */

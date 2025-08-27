@@ -25,6 +25,7 @@ export default function CreateItem({setCreateItem}) {
     };
 
     const CreateItem = async (e)=> { // Creates item
+        e.preventDefault();
         if (addButton) return;
 
         try {

@@ -93,9 +93,9 @@
     font-style: normal;
 }
 @media screen and (max-width: 419px) {
-    .inventory-box h2{
-        /* font-size: 1.5rem; */
-    }
+    /* .inventory-box h2{
+        font-size: 1.5rem;
+    } */
 }
 
 
