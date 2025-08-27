@@ -1,4 +1,4 @@
-import { DeleteItemAsync, UpdateItemAsync } from "../../api/ItemApi";
+import { CreateItemAsync, DeleteItemAsync, UpdateItemAsync } from "../../api/ItemApi";
 
 
 
@@ -78,5 +78,71 @@ export const updateItemInputBoxes = (name, setName, tag, setTag) => {
             "input": tag,
             "setInput": setTag
         }
+    ]
+}
+
+
+// buttons for the create item endpoint
+export const createItemButtons = (setCreatePopup, userId, inventoryId, body, createButton, setCreateItemButton)=> {
+    console.log(userId)
+    return [
+        {
+            "buttonId": 1,
+            "name": "Cancel",
+            "color": "white",
+            "fontColor": "black",
+            "execute": setCreatePopup
+        },
+        {
+            "buttonId": 2,
+            "name": "Create",
+            "color": "#2563eb",
+            "fontColor": "white",
+            "execute": async function  () {
+                setCreateItemButton(false);
+                if (createButton) return;
+
+                try {
+                    setCreateItemButton(true);
+                    const res =  await CreateItemAsync(userId, inventoryId, body);
+                    location.reload();
+                    setCreatePopup(false)
+                } catch (error) {
+                    setCreateItemButton(false);
+                    console.log(error)
+                }
+            }
+        }
+    ]
+}
+
+
+// create item input boxes
+export const createItemInputBoxes = (name, setName, tag, setTag, value, setValue) => {
+    return [
+        {
+            "type": "text",
+            "inputBoxId": 1,
+            "title": "Name",
+            "input": name,
+            "setInput": setName,
+            "placeHolder": name
+        },
+        {
+            "type": "text",
+            "inputBoxId": 2,
+            "title": "Tag",
+            "input": tag,
+            "setInput": setTag,
+            "placeHolder": tag
+        },
+        {
+            "type": "number",
+            "inputBoxId": 3,
+            "title": "Value \ Price",
+            "input": value,
+            "setInput": setValue,
+            "placeHolder": value
+        },
     ]
 }

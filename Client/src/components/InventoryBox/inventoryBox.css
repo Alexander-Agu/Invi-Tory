@@ -3,8 +3,8 @@
 
 /* Inventory Box Container */
 .inventory-box{
-    /* width: 20rem;
-    min-height: 20rem; */
+    width: 15rem;
+    min-height: 10rem;
     padding: 1rem;
 
     background-color: #6b72801c;
