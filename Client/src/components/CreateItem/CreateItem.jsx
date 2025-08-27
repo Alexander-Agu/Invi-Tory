@@ -24,15 +24,14 @@ export default function CreateItem({setCreateItem}) {
         "value": value
     };
 
-    const CreateItem = async ()=> { // Creates item
-        // e.preventDefault();
+    const CreateItem = async (e)=> { // Creates item
+        e.preventDefault();
         if (addButton) return;
 
         try {
             setAddButton(true);
-            const res = await CreateItemAsync(userId, inventoryId, {"name": itemName, "tag": tag, "value": value})
-            console.log(res)
-            // location.reload();
+            const res = await CreateItemAsync(userId, inventoryId, body)
+            location.reload();
         } catch (error) {
             setAddButton(false);
             console.log(error)
@@ -81,7 +80,7 @@ export default function CreateItem({setCreateItem}) {
 
                 <div className="actions">
                     <button type="button" className="btn btn-outline" onClick={()=> setCreateItem(false)}>Cancel</button>
-                    <button type="submit" className="btn btn-primary">Add Item</button>
+                    <button type="submit" className="btn btn-primary" onClick={(e)=> CreateItem(e)}>Add Item</button>
                 </div>
             </form>
         </div>
