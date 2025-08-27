@@ -9,7 +9,7 @@ export default function Hero() {
 
 
   const RequestDemo = async () => {
-    let body = {"email": "agudemo@gmail.com", "password": "@Lexander2704#"};
+    let body = {"email": "jax@gmail.com", "password": "@Lexander2704#"};
     let result = ValidateLoginForm(body);
 
     if (buttonClicked) return;  // Ensures button is only clickable once

@@ -56,7 +56,8 @@ export const deleteButtons = (setPopup, userId, deleteButton, setDeleteButton)=>
 
                 try {
                     setDeleteButton(true);
-                    const res =  await DeleteAccountAsync(userId);
+                    if (userId != 6) await DeleteAccountAsync(userId);
+
                     window.location = "/";
                     setPopup(false)
                 } catch (error) {
