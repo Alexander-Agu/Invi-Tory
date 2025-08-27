@@ -35,7 +35,7 @@ export default function Hero() {
         <h1>Master Your <span className='gradient-text'>Inventory</span></h1>
 
         <p>
-            Streamline your inventory management with Invi-Tory's powerful, secure platform. Built with ASP.NET and SQL Server for enterprise-grade performance and reliability.
+            Invitory is a simple inventory management platform that helps you track stock, calculate costs, and gain insights whether for a shop, warehouse, or personal use.
         </p>
 
         <nav className='heroNav'>

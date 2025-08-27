@@ -52,7 +52,7 @@
 
 .hero p {
     text-align: center;
-    width: 50%;
+    width: 90%;
     color: #d1d5db;
     font-size: 1.5rem;
     font-family: "Roboto", sans-serif;
@@ -119,6 +119,9 @@
     font-variation-settings:
     "wdth" 100;
 
+    outline: none;
+    border: none;
+
     border-radius: 10px;
 
     display: grid;
@@ -132,7 +135,7 @@
 
 .request{
     background-color: white;
-    color: #d1d5db;
+    color: #b6b9bd;
 }
 /* Responsive */
 @media screen and (max-width: 1200px) {

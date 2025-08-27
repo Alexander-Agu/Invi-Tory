@@ -57,7 +57,7 @@ export default function SignIn({loadLogin, setLoadLogin}) {
     <article className='sign-in-container'>
         <SignIntro 
             title={"Welcome back"}
-            content={"Join thousands of businesses using Invi-Tory to manage their inventory"}
+            content={"Sign in to your Invi-Tory account to continue managing your inventory"}
         />
 
         <InputBox 
