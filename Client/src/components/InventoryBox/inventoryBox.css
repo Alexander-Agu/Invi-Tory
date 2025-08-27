@@ -3,8 +3,8 @@
 
 /* Inventory Box Container */
 .inventory-box{
-    width: 15rem;
-    min-height: 10rem;
+    width: 18rem;
+    height: 10rem;
     padding: 1rem;
 
     background-color: #6b72801c;
@@ -34,6 +34,13 @@
 
     display: grid;
     place-content: center;
+}
+/* Responsive */
+@media screen and (max-width: 325px) {
+    .inventory-box{
+        width: 16rem;
+        height: 12rem;
+    }
 }
 
 
@@ -87,7 +94,7 @@
 }
 @media screen and (max-width: 419px) {
     .inventory-box h2{
-        font-size: 1.5rem;
+        /* font-size: 1.5rem; */
     }
 }
 

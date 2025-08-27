@@ -30,11 +30,19 @@
 
 /* Inventory Bottom Section */
 .inventory-bottom-section{
-    min-height: 32rem;
+    padding: 10px;
     width: 100%;
-    padding: 2rem;
+    min-height: 10rem;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    place-content: center;
+    place-items: center;
     gap: 1rem;
+}
+/* Responsive */
+@media screen and (max-width: 435px) {
+    .inventory-bottom-section{
+        /* grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); */
+    }
 }
