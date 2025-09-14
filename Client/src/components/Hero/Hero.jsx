@@ -3,7 +3,7 @@ import "./hero.css"
 import { LoginUserAsync } from '../../api/UserApi';
 import { ValidateLoginForm } from '../../tools/Validators';
 
-export default function Hero() {
+export default function Hero({isLoading}) {
   // Triggered button state
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -16,17 +16,17 @@ export default function Hero() {
 
     if (result === true){
       try {
-        // setLoadLogin(true); 
+        isLoading(true);
         setButtonClicked(true);
         let res = await LoginUserAsync(body);
         
         localStorage.setItem('user', JSON.stringify(res));
         window.location = `dashboard/${res.userId}`;
       } catch (error) {
-        // setLoadLogin(false);
         alert("Trouble accessing demo account");
         console.log("Test")
         setButtonClicked(false);
+        isLoading(false);
       }
   }
   };
