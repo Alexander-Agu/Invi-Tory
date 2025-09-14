@@ -112,6 +112,7 @@ export default function InventoryHome({}) {
                         filteredInventory.map(x => {
                             const {category, inventoryId, itemCount, name, sharedCosts} = x;
                             return <InventoryBox 
+                                key={inventoryId}
                                 id={inventoryId}
                                 category={category}
                                 itemCount={itemCount}

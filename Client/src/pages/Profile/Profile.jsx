@@ -76,8 +76,8 @@ export default function Profile() {
 
                     <section className='profile-app-messages'>
                         {
-                            profileCards().map(x => {
-                                return <ProfileCard data={x} key={x.name}/>
+                            profileCards().map((x, index) => {
+                                return <ProfileCard data={x} key={index}/>
                             })
                         }
                     </section>

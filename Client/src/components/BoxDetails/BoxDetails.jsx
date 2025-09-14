@@ -12,8 +12,8 @@ export default function BoxDetails({icon, title, data}) {
 
         <div className="box-detail-container">
             {
-                data.map(x => {
-                    return  <div className="box-details">
+                data.map((x, index) => {
+                    return  <div className="box-details" key={index}>
                         <p className='detail-title'>{x[0]}</p>
 
                         <p className='detail-info'>{x[1]}</p>
