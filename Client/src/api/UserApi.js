@@ -6,7 +6,7 @@ let token = GetToken();
 
 
 const api = axios.create({
-    baseURL: "https://invi-tory-7en0.onrender.com/api",
+    baseURL: "https://invi-tory-fdf3.onrender.com/api",
     headers: {
         Authorization: `Bearer ${token}`
     }

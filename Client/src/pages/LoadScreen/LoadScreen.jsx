@@ -19,6 +19,10 @@ export default function LoadScreen() {
         <div className="loading-dot"></div>
         <div className="loading-dot"></div>
       </div>
+
+      <div className='load-message'>
+        <p>Running on a free service, this might take a while... please be patient</p>
+      </div>
     </div>
   </div>
   )

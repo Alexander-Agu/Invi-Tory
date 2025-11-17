@@ -24,6 +24,15 @@
     margin-bottom: 2rem;
 }
 
+.load-message{
+    margin-top: 20px;
+    color: #3b82f6;
+}
+
+.load-message p{
+    text-align: center;
+}
+
 .loading-letter {
     font-size: 3.75rem;
     font-weight: 700;
