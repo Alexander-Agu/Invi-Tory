@@ -5,7 +5,7 @@ import { GetToken } from "../tools/ApiTools";
 let token = GetToken();
 
 const api = axios.create({
-    baseURL: "https://invi-tory-fdf3.onrender.com/api",
+    baseURL: "http://invitory.runasp.net/api",
     headers: {
         Authorization: `Bearer ${token}`
     }

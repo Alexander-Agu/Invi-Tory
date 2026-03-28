@@ -5,7 +5,7 @@ import { GetToken } from "../tools/ApiTools";
 let token = GetToken();
 
 const api = axios.create({
-    baseURL: "https://invi-tory-fdf3.onrender.com/api",
+    baseURL: "http://invitory.runasp.net/api",
     headers: {
         Authorization: `Bearer ${token}`
     }
@@ -35,7 +35,7 @@ export const GetInventoryAsync = async (userId, inventoryId) => {
 // Delete inventory
 export const DeleteInventoryAsync = async (userId, inventoryId) => {
     try {
-       let res = await api.delete(`/Inventory/delete-inventory/${userId}/${inventoryId}`)
+        let res = await api.delete(`/Inventory/delete-inventory/${userId}/${inventoryId}`)
     } catch (error) {
         console.log(error);
     }

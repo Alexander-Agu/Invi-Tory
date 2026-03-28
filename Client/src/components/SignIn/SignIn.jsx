@@ -67,7 +67,7 @@ export default function SignIn({loadLogin, setLoadLogin}) {
             title={"Email"}
             input={email}
             setInput={setEmail}
-            placeHolder={"doe@gmail.com"}
+            placeHolder={"alex@gmail.com"}
         />
         <InputBox 
             type={"password"}

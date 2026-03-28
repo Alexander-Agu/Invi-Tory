@@ -80,7 +80,7 @@ export default function SignUp({loadLogin, setLoadLogin}) {
                 title={"Firstname"}
                 input={firstname}
                 setInput={setFirstname}
-                placeHolder={"John"}
+                placeHolder={"Alex"}
             />
 
             <InputBox 
@@ -91,7 +91,7 @@ export default function SignUp({loadLogin, setLoadLogin}) {
                 title={"Lastname"}
                 input={lastname}
                 setInput={setLastname}
-                placeHolder={"Doe"}
+                placeHolder={"Agu"}
             />
         </section>
 
@@ -114,7 +114,7 @@ export default function SignUp({loadLogin, setLoadLogin}) {
                 title={"Email"}
                 input={email}
                 setInput={setEmail}
-                placeHolder={"doe@gmail.com"}
+                placeHolder={"alex@gmail.com"}
             />
 
             <div className="pass-rules">
