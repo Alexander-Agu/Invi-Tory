@@ -5,7 +5,7 @@ import { GetToken } from "../tools/ApiTools";
 let token = GetToken();
 
 const api = axios.create({
-    baseURL: "http://invitory.runasp.net/api",
+    baseURL: "https://invitory.runasp.net/api",
     headers: {
         Authorization: `Bearer ${token}`
     }
